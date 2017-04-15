@@ -7,7 +7,6 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using my_website.Models;
 using System.Configuration;
-using System.Collections.Specialized;
 
 namespace my_website
 {
