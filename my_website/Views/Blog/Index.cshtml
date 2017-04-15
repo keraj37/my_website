@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<my_website.Models.Blog>
+
+@{
+    ViewBag.Title = "My Blog";
+}
+
+<h2>My Blog</h2>
+
+@if (Request.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+@foreach (var item in Model)
+{
+    @Html.Raw("<div class=\"lead\"><pre>" + @Html.Encode(item.Content) + "<br/><br/>" + "<b>" + @Html.Encode(item.User) + " " + @Html.Encode(item.Time) + "</b>" + "</pre></div>")
+    if (User.IsInRole("admin"))
+    {
+        <table class="table">
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        </table>
+    }
+}
+
+<div>
+    @if ((Model as my_website.Helpers.PaginatedList<my_website.Models.Blog>).HasPreviousPage)
+    {
+        @Html.RouteLink("<<<", "BlogPage", new { page = ((Model as my_website.Helpers.PaginatedList<my_website.Models.Blog>).PageIndex - 1) });
+    }
+         
+    @if ((Model as my_website.Helpers.PaginatedList<my_website.Models.Blog>).HasNextPage)
+    {
+        @Html.RouteLink(">>>", "BlogPage", new { page = ((Model as my_website.Helpers.PaginatedList<my_website.Models.Blog>).PageIndex + 1) });
+    }
+</div>
