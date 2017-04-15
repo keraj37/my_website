@@ -1,4 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
+@using my_website.Helpers
+@using my_website.Models
+@using my_website.Users
+
 @model IEnumerable<my_website.Models.Blog>
 
 @{
@@ -7,7 +11,7 @@
 
 <h2>Blog</h2>
 
-@if (User.IsInRole(my_website.Users.Users.Roles.ADMIN))
+@if (User.IsInRole(Users.Roles.ADMIN))
 {
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -16,8 +20,12 @@
 
 @foreach (var item in Model)
 {
-    @Html.Raw("<div class=\"lead\"><pre>" + @Html.Encode(item.Content) + "<br/><br/>" + "<b>" + @Html.Encode(item.User) + " " + @Html.Encode(item.Time) + "</b>" + "</pre></div>")
-    if (User.IsInRole(my_website.Users.Users.Roles.ADMIN))
+    <div class="myentry multiline">@Html.Raw(@Html.Encode(item.Content) +
+            "<br/><br/>" +
+            "<b>" + @Html.Encode(item.User) + " " + @Html.Encode(item.Time) + "</b>"
+       )
+    </div>
+    if (User.IsInRole(Users.Roles.ADMIN))
     {
         <table class="table">
             <tr>
@@ -32,13 +40,13 @@
 }
 
 <div>
-    @if ((Model as my_website.Helpers.PaginatedList<my_website.Models.Blog>).HasPreviousPage)
+    @if ((Model as PaginatedList<Blog>).HasPreviousPage)
     {
-        @Html.RouteLink("<<<", "BlogPage", new { page = ((Model as my_website.Helpers.PaginatedList<my_website.Models.Blog>).PageIndex - 1) });
+        @Html.RouteLink("<<<", "BlogPage", new { page = ((Model as PaginatedList<Blog>).PageIndex - 1) });
     }
          
-    @if ((Model as my_website.Helpers.PaginatedList<my_website.Models.Blog>).HasNextPage)
+    @if ((Model as PaginatedList<Blog>).HasNextPage)
     {
-        @Html.RouteLink(">>>", "BlogPage", new { page = ((Model as my_website.Helpers.PaginatedList<my_website.Models.Blog>).PageIndex + 1) });
+        @Html.RouteLink(">>>", "BlogPage", new { page = ((Model as PaginatedList<Blog>).PageIndex + 1) });
     }
 </div>
