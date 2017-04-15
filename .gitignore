@@ -6,9 +6,9 @@
 *.user
 *.userosscache
 *.sln.docstates
-ConnectionStrings.config
-SensitiveData.config
-AppSettings.config
+
+#custom
+/my_website/Config/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
