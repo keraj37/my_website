@@ -41,7 +41,7 @@ namespace my_website.Controllers
             return View(blog);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = Users.Users.Roles.ADMIN)]
         public ActionResult Create()
         {
             return View();
@@ -49,7 +49,7 @@ namespace my_website.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = Users.Users.Roles.ADMIN)]
         public ActionResult Create([Bind(Include = "ID,Time,User,Content")] Blog blog)
         {
             if (ModelState.IsValid)
@@ -63,7 +63,7 @@ namespace my_website.Controllers
             return View(blog);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = Users.Users.Roles.ADMIN)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,7 +80,7 @@ namespace my_website.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = Users.Users.Roles.ADMIN)]
         public ActionResult Edit([Bind(Include = "ID,Time,User,Content")] Blog blog)
         {
             if (ModelState.IsValid)
@@ -93,7 +93,7 @@ namespace my_website.Controllers
             return View(blog);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = Users.Users.Roles.ADMIN)]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,7 +110,7 @@ namespace my_website.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = Users.Users.Roles.ADMIN)]
         public ActionResult DeleteConfirmed(int id)
         {
             Blog blog = db.Blogs.Find(id);

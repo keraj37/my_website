@@ -7,7 +7,7 @@
 
 <h2>Blog</h2>
 
-@if (Request.IsAuthenticated)
+@if (User.IsInRole(my_website.Users.Users.Roles.ADMIN))
 {
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -17,7 +17,7 @@
 @foreach (var item in Model)
 {
     @Html.Raw("<div class=\"lead\"><pre>" + @Html.Encode(item.Content) + "<br/><br/>" + "<b>" + @Html.Encode(item.User) + " " + @Html.Encode(item.Time) + "</b>" + "</pre></div>")
-    if (User.IsInRole("admin"))
+    if (User.IsInRole(my_website.Users.Users.Roles.ADMIN))
     {
         <table class="table">
             <tr>
