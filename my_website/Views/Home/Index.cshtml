@@ -1,4 +1,6 @@
-﻿@{
+﻿@model  my_website.Models.UserClient
+
+@{
     ViewBag.Title = "Jerry Switalski";
 }
 
@@ -42,6 +44,16 @@
         <div class="myentry myentry-md5">
             <h2>Site Under Construction</h2>
             <p>Site Under Construction</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10">
+        <div class="myentry">
+            <h2>Welcome!</h2>
+            <p>
+                Your IP is <span style="color:#00ff90">@Model.IP</span> and you are most likely viewing this site using <span style="color:#00ff90">@Model.Browser</span>
+            </p>
         </div>
     </div>
 </div>

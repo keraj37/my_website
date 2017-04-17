@@ -10,7 +10,10 @@ namespace my_website.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            Models.UserClient clientData = new Models.UserClient();
+            clientData.IP = Request.UserHostAddress;
+            clientData.Browser = Request.Browser.Browser;
+            return View(clientData);
         }
 
         public ActionResult About()
