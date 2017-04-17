@@ -20,6 +20,12 @@ namespace my_website
             );
 
             routes.MapRoute(
+                name: "3DArt",
+                url: "Home/3D",
+                defaults: new { controller = "Home", action = "Art" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

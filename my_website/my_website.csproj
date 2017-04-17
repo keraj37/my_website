@@ -279,9 +279,11 @@
     <Content Include="Views\Blog\Details.cshtml" />
     <Content Include="Views\Blog\Edit.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Home\Art.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Art\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

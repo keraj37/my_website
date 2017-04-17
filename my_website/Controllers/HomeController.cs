@@ -26,5 +26,11 @@ namespace my_website.Controllers
 
             return View();
         }
+
+        public ActionResult Art()
+        {
+            ViewBag.Message = "Some of my 3D renders";
+            return View("Art");
+        }
     }
 }
