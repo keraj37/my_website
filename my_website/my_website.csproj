@@ -200,6 +200,9 @@
     <Compile Include="Users\Users.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Art\1.jpg" />
+    <Content Include="Art\2.jpg" />
+    <Content Include="Art\3.jpg" />
     <Content Include="back.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -283,7 +286,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Art\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
