@@ -8,13 +8,14 @@
 
 <div>
     <section id="console">
-        <div class="console multiline">@Model
+        <div class="console multiline">***Console project v0.0.1***
+@Model
         </div>
         <div>
             @using (Html.BeginForm("Console", "Projects", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-            { 
+            {
                 <input id="console-input" type="text" name="cmd" class="console" />
-                <input id="execute" type="submit" value="Execute" class="console-button"/>
+                <input id="execute" type="submit" value="Execute" class="console-button" />
             }
         </div>
     </section>

@@ -290,6 +290,7 @@
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Projects\Console.cshtml" />
+    <Content Include="Views\Projects\AI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
