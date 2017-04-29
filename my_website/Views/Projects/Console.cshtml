@@ -14,7 +14,7 @@
         <div>
             @using (Html.BeginForm("Console", "Projects", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
             {
-                <input id="console-input" type="text" name="cmd" class="console" />
+                <input id="console-input" type="text" name="cmd" class="console" autofocus/>
                 <input id="execute" type="submit" value="Execute" class="console-button" />
             }
         </div>
