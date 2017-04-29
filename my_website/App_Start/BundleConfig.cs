@@ -28,7 +28,7 @@ namespace my_website
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/myscripts").Include(
-                        "~/Scripts/fadeInMyEntry.js"));
+                        "~/Scripts/my_css_and_anims.js"));
         }
     }
 }

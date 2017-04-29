@@ -1,8 +1,22 @@
-﻿@{
+﻿@model string
+
+@{
     ViewBag.Title = "Console";
 }
 
 @Html.Partial("_ProjectsPartial")
 
-<h2>Console</h2>
+<div>
+    <section id="console">
+        <div class="console multiline">@Model
+        </div>
+        <div>
+            @using (Html.BeginForm("Console", "Projects", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            { 
+                <input id="console-input" type="text" name="cmd" class="console" />
+                <input id="execute" type="submit" value="Execute" class="console-button"/>
+            }
+        </div>
+    </section>
+</div>
 

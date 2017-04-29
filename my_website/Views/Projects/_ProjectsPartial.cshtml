@@ -1,8 +1,22 @@
-﻿<div class="navbar navbar-custom-md2 navbar-inverse">
+﻿@{
+    string[] allProjects = { "Console" };
+}
+
+<div class="navbar navbar-custom-md2 navbar-inverse">
     <div class="container">
         <div>
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Console", "Console", "Projects")</li>
+                @foreach (string title in allProjects)
+                {
+                    if (ViewBag.Title == title)
+                    {
+                        <li class="active">@Html.ActionLink(title, title, "Projects")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink(title, title, "Projects")</li>
+                    }
+                }
             </ul>
         </div>
     </div>
