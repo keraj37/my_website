@@ -3,12 +3,15 @@
         $(this).hide().fadeIn(500 + Math.random() * 2000);
     })
 
+    /*
     $('.myentry-multiple').each(function (index, elem) {
         $(this).hide().fadeIn(500 + Math.random() * 2000);
         $(this).css('background-color', getRandomColor('rgba'));
     })
+    */
 });
 
+/*
 function getRandomColor(format) {
     var rint = Math.floor(0x100000000 * Math.random());
     switch (format) {
@@ -24,3 +27,4 @@ function getRandomColor(format) {
             return rint;
     }
 }
+*/
