@@ -10,5 +10,6 @@ namespace my_website.Models
         public int ID { get; set; }
         public string IP { get; set; }
         public string Browser { get; set; }
+        public string OS { get; internal set; }
     }
 }

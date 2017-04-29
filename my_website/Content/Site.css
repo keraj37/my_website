@@ -26,6 +26,10 @@
     color: #ee0000;
     background-color: rgba(50, 50, 50, 0.85);
 }
+.navbar-custom-md2 {
+    color: #ee0000;
+    background-color: rgba(100, 100, 100, 0.45);
+}
 .jumbotron{
     background-color: rgba(00, 00, 00, 0.59);
 }

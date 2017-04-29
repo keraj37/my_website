@@ -23,12 +23,14 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("3D", "Art", "Home")</li>
+                    <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
                     <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+    @RenderSection("header", false)
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -40,6 +42,5 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/myscripts")
-    @RenderSection("scripts", required: false)
 </body>
 </html>
