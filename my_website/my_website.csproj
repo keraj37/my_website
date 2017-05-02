@@ -180,7 +180,6 @@
     <Compile Include="Configuration\SensitiveData.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AS3TOCS\AS3TOCSConverter.cs" />
-    <Compile Include="Controllers\AS3TOCS\Program.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\Console\ConsoleCommandParser.cs" />
     <Compile Include="Controllers\HomeController.cs" />
