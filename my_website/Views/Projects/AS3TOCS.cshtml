@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "AS3TOCS";
+}
+
+@Html.Partial("_ProjectsPartial")
+
+<h2>@ViewBag.Title</h2>
+<div>
+    <section id="console">        
+        <div>
+            @using (Html.BeginForm("AS3TOCS", "Projects", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            {
+                <textarea id="input" type="text" name="source" class="input" autofocus></textarea>
+                <input id="convert" type="submit" value="Convert" class="console-button" />
+            }
+        </div>       
+    </section>
+</div>

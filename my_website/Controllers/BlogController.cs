@@ -23,8 +23,8 @@ namespace my_website.Controllers
             if (finalPageSize < 1)
                 finalPageSize = 1;
 
-            PaginatedList<Blog> paginatedDinners = new PaginatedList<Blog>(db.Blogs.OrderByDescending(x => x.ID), page ?? 1, finalPageSize);
-            return View(paginatedDinners);
+            PaginatedList<Blog> paginated = new PaginatedList<Blog>(db.Blogs.OrderByDescending(x => x.ID), page ?? 1, finalPageSize);
+            return View(paginated);
         }
 
         public ActionResult Details(int? id)

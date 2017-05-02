@@ -1,7 +1,10 @@
-﻿using System;
+﻿using AS3TOCS;
+using my_website.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -18,9 +21,17 @@ namespace my_website.Controllers
         }
 
         [HttpGet]
-        public ActionResult Console()
+        public ActionResult Console(bool? auth, string redirectToAction)
         {
-            return View(Session[CONSOLE]);
+            string forAuth = (auth != null && auth == true) ? "You were redirected to console. Please eneter your password here, using pass command.\n" : "";
+
+            ConsoleCommand cmd = new ConsoleCommand();
+            cmd.Content = forAuth + (string)Session[CONSOLE];
+
+            if (!string.IsNullOrEmpty(redirectToAction))
+                cmd.RedirectToAction = redirectToAction;
+
+            return View(cmd);
         }
 
         [HttpPost]
@@ -36,13 +47,15 @@ namespace my_website.Controllers
                     break;
             }
 
-            string result = Controllers.Console.ConsoleCommandParser.Parse(cmd);
+            string toAction = null;
+
+            string result = Controllers.Console.ConsoleCommandParser.Parse(cmd, this, ref toAction);
             if(!string.IsNullOrEmpty(result))
             {
                 Session[CONSOLE] += "\n" + result;
             }
 
-            return RedirectToAction("Console");
+            return RedirectToAction("Console", new { redirectToAction = toAction });
         }
 
         [HttpGet]
@@ -64,19 +77,52 @@ namespace my_website.Controllers
                     break;
             }
 
-            string result = Controllers.Console.ConsoleCommandParser.Parse(cmd);
-            if (!string.IsNullOrEmpty(result))
-            {
-                Session[AI_NAME] += "\n" + result;
-            }
+            //string result = Controllers.Console.ConsoleCommandParser.Parse(cmd, this, ref null);
+            //if (!string.IsNullOrEmpty(result))
+            //{
+                //Session[AI_NAME] += "\n" + result;
+            //}
 
             return RedirectToAction("AI");
+        }
+
+        [HttpGet]
+        public ActionResult AS3TOCS()
+        {
+            if(IsBigpoint())
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Console", new { auth = true });
+            }            
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult AS3TOCS(string source)
+        {
+            if (!IsBigpoint())
+                return RedirectToAction("Console");
+
+            AS3TOCSConverter converter = new AS3TOCSConverter();
+
+            string csString = converter.Convert(source);
+                  
+            return File(Encoding.UTF8.GetBytes(csString), "text/plain", "YourCSharpClass.cs");
         }
 
         [NonAction]
         private string AddNewLine(object value)
         {
             return !string.IsNullOrEmpty(value as string) ? "\n" : string.Empty;
+        }
+
+        [NonAction]
+        private bool IsBigpoint()
+        {
+            return Session["bigpoint"] != null && (bool)Session["bigpoint"] == true;
         }
     }
 }

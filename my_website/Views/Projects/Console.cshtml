@@ -1,4 +1,6 @@
-﻿@model string
+﻿@using my_website.Models
+
+@model ConsoleCommand
 
 @{
     ViewBag.Title = "Console";
@@ -9,7 +11,7 @@
 <div>
     <section id="console">
         <div class="console multiline">***Console project v0.0.1***
-@Model
+@Model.Content
         </div>
         <div>
             @using (Html.BeginForm("Console", "Projects", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
@@ -20,4 +22,9 @@
         </div>
     </section>
 </div>
+
+@if (!string.IsNullOrEmpty(Model.RedirectToAction))
+{
+    <META HTTP-EQUIV="Refresh" CONTENT="1;URL=@(Url.Action(Model.RedirectToAction, "Projects"))">
+}
 

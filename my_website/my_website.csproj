@@ -179,6 +179,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Configuration\SensitiveData.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AS3TOCS\AS3TOCSConverter.cs" />
+    <Compile Include="Controllers\AS3TOCS\Program.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\Console\ConsoleCommandParser.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -195,6 +197,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\ConsoleCommand.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserClient.cs" />
@@ -287,10 +290,11 @@
     <Content Include="Views\Blog\Edit.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Home\Art.cshtml" />
-    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Projects\AS3TOCS.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Projects\Console.cshtml" />
     <Content Include="Views\Projects\AI.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
