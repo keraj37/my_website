@@ -120,12 +120,12 @@ namespace my_website.Controllers
             return !string.IsNullOrEmpty(value as string) ? "\n" : string.Empty;
         }
 
-        private bool IsBigpoint
+        public bool IsBigpoint
         {
             get { return Session["bigpoint"] != null && (bool)Session["bigpoint"] == true; }
         }
 
-        private bool IsBigpointPassSet
+        public bool IsBigpointPassSet
         {
             get { return !string.IsNullOrEmpty(ConfigurationManager.AppSettings[@"bigpointpass"]); }
         }

@@ -9,7 +9,7 @@ namespace my_website.Controllers.Console
 {
     public class ConsoleCommandParser
     {
-        public static string Parse(string cmd, Controller controller, ref string toAction)
+        public static string Parse(string cmd, ProjectsController controller, ref string toAction)
         {
             if (string.IsNullOrEmpty(cmd))
                 return null;
@@ -23,7 +23,7 @@ namespace my_website.Controllers.Console
                     case "goto":
                         return "So, you want to go to " + ss[1];
                     case "pass":
-                        if(ss[1] == ConfigurationManager.AppSettings[@"bigpointpass"])
+                        if((controller.IsBigpointPassSet && !controller.IsBigpoint) && ss[1] == ConfigurationManager.AppSettings[@"bigpointpass"])
                         {
                             controller.Session["bigpoint"] = true;
                             toAction = "AS3TOCS";
