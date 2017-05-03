@@ -9,5 +9,10 @@ namespace my_website.Models
     {
         public string Content { get; set; }
         public string RedirectToAction { get; set; }
+
+        public bool HasRedirection
+        {
+            get { return !string.IsNullOrEmpty(RedirectToAction); }
+        }
     }
 }
