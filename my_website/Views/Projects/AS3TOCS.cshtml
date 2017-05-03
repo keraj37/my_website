@@ -4,8 +4,15 @@
 
 @Html.Partial("_ProjectsPartial")
 
-<h2>@ViewBag.Title</h2>
 <div>
+    <div class="myentry">
+        <h2>How to use it</h2>
+        <p>
+            It is as simple as copy/paste your as3 source into the textbox visible below, and pressing "Convert" button.
+            <br/>
+            If everything went good, as a result you will recive your cs file.
+        </p>
+    </div>
     <section id="console">        
         <div>
             @using (Html.BeginForm("AS3TOCS", "Projects", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
