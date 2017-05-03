@@ -50,6 +50,7 @@ namespace my_website.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = Users.Users.Roles.ADMIN)]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "ID,Time,User,Content")] Blog blog)
         {
             if (ModelState.IsValid)

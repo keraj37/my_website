@@ -20,11 +20,8 @@
 
 @foreach (var item in Model)
 {
-    <div class="myentry multiline">@Html.Raw(@Html.Encode(item.Content) +
-            "<br/><br/>" +
-            "<b>" + @Html.Encode(item.User) + " " + @Html.Encode(item.Time) + "</b>"
-       )
-    </div>
+    <div class="myentry multiline">@Html.Raw(item.Content)<br/><b>@Html.Encode(item.User) &nbsp @Html.Encode(item.Time)</b></div>
+
     if (User.IsInRole(Users.Roles.ADMIN))
     {
         <table class="table">
