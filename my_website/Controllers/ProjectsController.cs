@@ -24,7 +24,7 @@ namespace my_website.Controllers
         [HttpGet]
         public ActionResult Console(bool? auth, string redirectToAction)
         {
-            string forAuth = (auth != null && auth == true) ? "\nYou were redirected to console. Please eneter your password here, using pass command.\n" : "";
+            string forAuth = (auth != null && auth == true) ? "\nYou were redirected to console. Please enter your password here, using pass command.\n" : "";
 
             ConsoleCommand cmd = new ConsoleCommand();
             cmd.Content = (string)Session[CONSOLE] + forAuth;
