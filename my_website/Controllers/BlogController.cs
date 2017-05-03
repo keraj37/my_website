@@ -82,6 +82,7 @@ namespace my_website.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = Users.Users.Roles.ADMIN)]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "ID,Time,User,Content")] Blog blog)
         {
             if (ModelState.IsValid)
