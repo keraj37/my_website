@@ -122,8 +122,8 @@ namespace my_website.Controllers
         [NonAction]
         private bool IsBigpoint()
         {
-            //return Session["bigpoint"] != null && (bool)Session["bigpoint"] == true;
-            return true;
+            return Session["bigpoint"] != null && (bool)Session["bigpoint"] == true;
+            //return true;
         }
     }
 }
