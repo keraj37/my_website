@@ -2,6 +2,7 @@
 using my_website.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -89,7 +90,7 @@ namespace my_website.Controllers
         [HttpGet]
         public ActionResult AS3TOCS()
         {
-            if(IsBigpoint())
+            if(!IsBigpointPassSet || IsBigpoint)
             {
                 return View();
             }
@@ -103,7 +104,7 @@ namespace my_website.Controllers
         [ValidateInput(false)]
         public ActionResult AS3TOCS(string source)
         {
-            if (!IsBigpoint())
+            if (IsBigpointPassSet && !IsBigpoint)
                 return RedirectToAction("Console");
 
             AS3TOCSConverter converter = new AS3TOCSConverter();
@@ -119,11 +120,14 @@ namespace my_website.Controllers
             return !string.IsNullOrEmpty(value as string) ? "\n" : string.Empty;
         }
 
-        [NonAction]
-        private bool IsBigpoint()
+        private bool IsBigpoint
         {
-            return Session["bigpoint"] != null && (bool)Session["bigpoint"] == true;
-            //return true;
+            get { return Session["bigpoint"] != null && (bool)Session["bigpoint"] == true; }
+        }
+
+        private bool IsBigpointPassSet
+        {
+            get { return !string.IsNullOrEmpty(ConfigurationManager.AppSettings[@"bigpointpass"]); }
         }
     }
 }
