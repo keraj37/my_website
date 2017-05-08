@@ -10,19 +10,44 @@
 
 <div>
     <section id="console">
-        <div id="ajax-update" class="console multiline">***Console project v0.0.1***
-@Model.Content
+        <div class="console multiline">
+            ***Console project v0.0.1***
+            <div id="console-output">
+                @Model.Content
+            </div>
         </div>
         <div>
-            @using (Ajax.BeginForm("Console", "Projects", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "ajax-update", LoadingElementId = "waitimage" }))
-            {
-                <input id="console-input" type="text" name="cmd" class="console" autofocus/>
-                <input id="execute" type="submit" value="Execute" class="console-button" />
-            }
+            <input id="console-input" type="text" name="cmd" class="console" autofocus />
+            <input id="execute" type="submit" value="Execute" class="console-button" />
         </div>
     </section>
-    <img id="waitimage" src="/Imgs/loading.gif" style="display:none" />
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#execute').click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Projects/Console",
+                    data: '{cmd: "' + $("#console-input").val() + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $("#console-output").val(response.content);
+                    },
+                    failure: function (response) {
+                        alert("Sorry, something went wrong");
+                    },
+                    error: function (response) {
+                        alert("Sorry, something went wrong");
+                    }
+                });
+            });
+        });
+    </script>
+}
 
 @if (Model.HasRedirection)
 {

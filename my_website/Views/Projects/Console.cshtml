@@ -8,23 +8,56 @@
 
 @Html.Partial("_ProjectsPartial")
 
-<div>
+<div style="position: relative">
     <section id="console">
         <div class="console multiline">***Console project v0.0.1***
-@Model.Content
+            <div id="console-output">@Model.Content
+            </div>
         </div>
         <div>
-            @using (Html.BeginForm("Console", "Projects", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-            {
-                <input id="console-input" type="text" name="cmd" class="console" autofocus />
-                <input id="execute" type="submit" value="Execute" class="console-button" />
-            }
+            <input id="console-input" type="text" name="cmd" class="console" autofocus />
+            <input id="execute" type="submit" value="Execute" class="console-button" />
         </div>
     </section>
+    <img id="loadingimage" style="display:none; position: absolute; top:30%; left:50%; margin-top:-33px; margin-left:-33px;" src="/Imgs/loading.gif" />
 </div>
 
-@if (Model.HasRedirection)
+@section Scripts
 {
-    <META HTTP-EQUIV="Refresh" CONTENT="1;URL=@(Url.Action(Model.RedirectToAction, "Projects"))">
-}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#execute').click(function () {
+               
+                $.ajax({
+                    type: "POST",
+                    url: "/Projects/Console",
+                    data: '{cmd: "' + $("#console-input").val() + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $("#console-output").text(response.content);
 
+                        if (response.redirectToAction != null)
+                        {
+                            t1 = window.setTimeout(function () { window.location = "/Projects/" + response.redirectToAction; }, 1000);
+                        }                        
+                    },
+                    failure: function (response) {
+                        alert("Sorry, something went wrong");
+                    },
+                    error: function (response) {
+                        alert("Sorry, something went wrong");
+                    },
+                    beforeSend: function () {
+                        $('#loadingimage').css("display", "block");
+                    },
+                    complete: function () {
+                        $('#console-input').val("");
+                        $('#console-input').focus();
+                        $('#loadingimage').css("display", "none");
+                    },
+                });
+            });
+        });
+    </script>
+}

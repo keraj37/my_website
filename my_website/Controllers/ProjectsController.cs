@@ -22,23 +22,20 @@ namespace my_website.Controllers
         }
 
         [HttpGet]
-        public ActionResult Console(bool? auth, string redirectToAction)
+        public ActionResult Console(bool? auth)
         {
-            string forAuth = (auth != null && auth == true) ? "\nYou were redirected to console. Please enter your password here, using pass command.\n" : "";
-
             ConsoleCommand cmd = new ConsoleCommand();
-            cmd.Content = (string)Session[CONSOLE] + forAuth;
-
-            if (!string.IsNullOrEmpty(redirectToAction))
-                cmd.RedirectToAction = redirectToAction;
+            cmd.Content = (string)Session[CONSOLE];
 
             return View(cmd);
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Console(string cmd)
+        public JsonResult Console(string cmd)
         {
+            System.Threading.Thread.Sleep(1000);
+
             Session[CONSOLE] += AddNewLine(Session[CONSOLE]) + string.Format("[{0}@jerryswitalski.com ~] ", User.Identity.Name) + cmd;
 
             switch(cmd)
@@ -56,7 +53,7 @@ namespace my_website.Controllers
                 Session[CONSOLE] += "\n" + result;
             }
 
-            return RedirectToAction("Console", new { redirectToAction = toAction });
+            return Json(new { content = Session[CONSOLE], redirectToAction = toAction });
         }
 
         [HttpGet]
@@ -96,7 +93,8 @@ namespace my_website.Controllers
             }
             else
             {
-                return RedirectToAction("Console", new { auth = true });
+                Session[CONSOLE] += "\nYou were redirected to console. Please enter your password here, using pass command.";
+                return RedirectToAction("Console");
             }            
         }
 
