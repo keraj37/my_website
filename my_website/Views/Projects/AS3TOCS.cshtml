@@ -17,7 +17,7 @@
         <div>
             @using (Html.BeginForm("AS3TOCS", "Projects", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
             {
-                <textarea id="input" type="text" name="source" class="input" autofocus></textarea>
+                <textarea id="input" type="text" name="source" class="input" autofocus style="width:100%; height:300px;"></textarea>
                 <input id="convert" type="submit" value="Convert" class="console-button" />
             }
         </div>       

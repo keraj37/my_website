@@ -298,7 +298,6 @@
     <Content Include="Views\Projects\Console.cshtml" />
     <Content Include="Views\Projects\AI.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
-    <Content Include="Views\Projects\Console_ajax.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
