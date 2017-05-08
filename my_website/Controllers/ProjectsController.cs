@@ -34,8 +34,6 @@ namespace my_website.Controllers
         [ValidateInput(false)]
         public JsonResult Console(string cmd)
         {
-            System.Threading.Thread.Sleep(1000);
-
             Session[CONSOLE] += AddNewLine(Session[CONSOLE]) + string.Format("[{0}@jerryswitalski.com ~] ", User.Identity.Name) + cmd;
 
             switch(cmd)
