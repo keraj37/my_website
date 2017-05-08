@@ -29,6 +29,11 @@ namespace my_website
 
             bundles.Add(new ScriptBundle("~/bundles/myscripts").Include(
                         "~/Scripts/my_css_and_anims.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ajax").Include(
+                        "~/Scripts/jquery.unobtrusive-ajax.js",
+                        "~/Scripts/jquery.validate*",
+                        "~/Scripts/jquery.validate.unobtrusive.js"));
         }
     }
 }

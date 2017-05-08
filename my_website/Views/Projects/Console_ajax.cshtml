@@ -10,17 +10,18 @@
 
 <div>
     <section id="console">
-        <div class="console multiline">***Console project v0.0.1***
+        <div id="ajax-update" class="console multiline">***Console project v0.0.1***
 @Model.Content
         </div>
         <div>
-            @using (Html.BeginForm("Console", "Projects", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            @using (Ajax.BeginForm("Console", "Projects", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "ajax-update", LoadingElementId = "waitimage" }))
             {
-                <input id="console-input" type="text" name="cmd" class="console" autofocus />
+                <input id="console-input" type="text" name="cmd" class="console" autofocus/>
                 <input id="execute" type="submit" value="Execute" class="console-button" />
             }
         </div>
     </section>
+    <img id="waitimage" src="/Imgs/loading.gif" style="display:none" />
 </div>
 
 @if (Model.HasRedirection)

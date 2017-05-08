@@ -205,9 +205,9 @@
     <Compile Include="Users\Users.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Art\1.jpg" />
-    <Content Include="Art\2.jpg" />
-    <Content Include="Art\3.jpg" />
+    <Content Include="Imgs\Art\1.jpg" />
+    <Content Include="Imgs\Art\2.jpg" />
+    <Content Include="Imgs\Art\3.jpg" />
     <Content Include="back.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -217,6 +217,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imgs\loading.gif" />
     <Content Include="logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -230,6 +231,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\my_css_and_anims.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -249,7 +252,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Imgs\rozaniec.png" />
+    <Content Include="Imgs\Blog\rozaniec.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -295,6 +298,7 @@
     <Content Include="Views\Projects\Console.cshtml" />
     <Content Include="Views\Projects\AI.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Projects\Console_ajax.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
