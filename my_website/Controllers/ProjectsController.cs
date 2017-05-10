@@ -103,9 +103,11 @@ namespace my_website.Controllers
             if (IsBigpointPassSet && !IsBigpoint)
                 return RedirectToAction("Console");
 
-            string csString = new AS3TOCSConverter().Convert(source);
-                  
-            return File(Encoding.UTF8.GetBytes(csString), "text/plain", "YourCSharpClass.cs");
+            string[] csString = new AS3TOCSConverter().Convert(source);
+
+            string className = csString[1] ?? "YourCSharpFile";
+
+            return File(Encoding.UTF8.GetBytes(csString[0]), "text/plain", className + ".cs");
         }
 
         [NonAction]

@@ -10,19 +10,38 @@ namespace AS3TOCS
 {
     public class AS3TOCSConverter
     {
+        private string className = null;
+
         public AS3TOCSConverter()
         {
         }
 
-        public string Convert(string as3)
+        public string[] Convert(string as3)
         {
             string as3content = as3;
+
+            className = GetClassName(as3content);
 
             as3content = BasicChanges(as3content);
             as3content = AdvancedConvertion(as3content);
             as3content = Finalizing(as3content);
 
-            return as3content;
+            return new string[] { as3content, className };
+        }
+
+        private string GetClassName(string as3content)
+        {
+            int i = as3content.IndexOf(" class ");
+
+            if (i != -1)
+            {
+                string afterClass = as3content.Substring(i + " class ".Length, as3content.Length - (i + " class ".Length) - 1);
+                string[] ss = afterClass.Split(" "[0]);
+
+                return ss[0];
+            }
+
+            return null;
         }
 
         private string BasicChanges(string as3connent)
@@ -53,8 +72,8 @@ namespace AS3TOCS
             as3connent = as3connent.Replace("     ", " ");
             as3connent = as3connent.Replace("    ", " ");
             as3connent = as3connent.Replace("   ", " ");
-            as3connent = as3connent.Replace("  ", " ");           
-            
+            as3connent = as3connent.Replace("  ", " ");
+
             as3connent = as3connent.Replace(" )", ")");
             as3connent = as3connent.Replace("( ", "(");
             as3connent = as3connent.Replace(" ,", ",");
@@ -368,11 +387,11 @@ namespace AS3TOCS
                         {
                             string finalLine = CreateGetter(l2);
                             result.Add(finalLine);
-                        }                        
+                        }
                         else
                         {
-                             string finalLine = SingleTypeConvertion(l2, true);
-                             result.Add(finalLine);
+                            string finalLine = SingleTypeConvertion(l2, true);
+                            result.Add(finalLine);
                         }
                     }
                     else if (ll.Length > 2)
