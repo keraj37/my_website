@@ -51,9 +51,9 @@ article {
     -webkit-columns: 250px;
        -moz-columns: 250px;
             columns: 250px;
-    -webkit-column-gap: 0px;
-       -moz-column-gap: 0px;
-            column-gap: 0px; }
+    -webkit-column-gap: 6px;
+       -moz-column-gap: 6px;
+            column-gap: 6px; }
   .D article {
     -webkit-column-break-inside: avoid;
        page-break-inside: avoid;
