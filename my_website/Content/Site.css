@@ -55,10 +55,11 @@ h2 {
     background-color: rgba(00, 00, 00, 0.59);
     transition: all .2s ease-in-out;
     animation-name: myentryanim;
-    animation-duration: 1.5s;
+    animation-duration: 0.9s;
 }
     .myentry:hover {
         transform: scale(1.04);
+        background-color: rgba(00, 00, 00, 0.89);
     }
 
 @keyframes myentryanim {
