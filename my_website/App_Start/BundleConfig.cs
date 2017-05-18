@@ -28,8 +28,8 @@ namespace my_website
                       "~/Content/site.css",
                       "~/Content/grid.css"));
 
-            //bundles.Add(new ScriptBundle("~/bundles/myscripts").Include(
-            //            "~/Scripts/my_css_and_anims.js"));
+            bundles.Add(new ScriptBundle("~/bundles/myscripts").Include(
+                        "~/Scripts/my_css_and_anims.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/ajax").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.js",
