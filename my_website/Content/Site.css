@@ -37,6 +37,10 @@
 .col-md-4{
     padding: 0px;
 }
+.grow {
+    transition: all .2s ease-in-out;
+}
+
 .myentry {
     margin: 3px;
     padding: 28px;
@@ -45,8 +49,24 @@
     border-color: rgba(255, 255, 255, 0.59);
     border-radius: 10px;
     background-color: rgba(00, 00, 00, 0.59);
-    display: none;
+    transition: all .2s ease-in-out;
+    animation-name: myentryanim;
+    animation-duration: 1.5s;
 }
+    .myentry:hover {
+        transform: scale(1.04);
+    }
+
+@keyframes myentryanim {
+    from {
+        background-color: rgba(00, 00, 00, 0.00);
+    }
+
+    to {
+        background-color: rgba(00, 00, 00, 0.59);
+    }
+}
+
 .myentry-md2 {
     border-color: rgba(0, 204, 5, 1);
     background-color: rgba(0, 0, 0, 0.7);
