@@ -9,51 +9,31 @@
     <p class="lead">Here you can find my projects, blog and many more as I will be updating this site on regular basis.</p>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <div class="myentry">
+<div class="D">
+    <main>
+        <article class="myentry">
             <h2>Source code</h2>
-            <p>
-                If you are intrested, you can find source code of this entire site here: <a href="https://github.com/keraj37/my_website" target="_blank">github</a>
-            </p>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="myentry myentry-md2">
+            <p>If you are intrested, you can find source code of this entire site here: <a href="https://github.com/keraj37/my_website" target="_blank">github</a></p>
+        </article>
+        <article class="myentry">
             <h2>Blog</h2>
             <p>@Html.ActionLink("Here", "Index", "Blog", new { page = 1 }, null) you can find my blog. I will be adding new entries there from time to time.</p>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="myentry myentry-md3">
+        </article>
+        <article class="myentry">
             <h2>3D</h2>
             <p>@Html.ActionLink("Here", "3D") you can find some of my 3D renders.</p>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-8">
-        <div class="myentry myentry-md4">
+        </article>
+        <article class="myentry">
             <h2>More to come!</h2>
-            <p>
-                This site is going to be my hub for learning and doing some technical experiments.
-            </p>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="myentry myentry-md5">
+            <p>This site is going to be my hub for learning and doing some technical experiments.</p>
+        </article>
+        <article class="myentry">
             <h2>Site Under Construction</h2>
             <p>Site Under Construction</p>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-10">
-        <div class="myentry">
+        </article>
+        <article class="myentry">
             <h2>Welcome!</h2>
-            <p>
-                Your IP is <span style="color:#00ff90">@Model.IP</span> and you are most likely viewing this site using <span style="color:#00ff90">@Model.Browser</span> on <span style="color:#00ff90">@Model.OS</span>
-            </p>
-        </div>
-    </div>
+            <p>Your IP is <span style="color:#00ff90">@Model.IP</span> and you are most likely viewing this site using <span style="color:#00ff90">@Model.Browser</span> on <span style="color:#00ff90">@Model.OS</span></p>
+        </article>
+    </main>
 </div>

@@ -19,7 +19,7 @@ namespace my_website.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Short info about me";
+            //ViewBag.Message = "Short info about me";
 
             return View();
         }

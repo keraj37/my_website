@@ -25,7 +25,8 @@ namespace my_website
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/grid.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/myscripts").Include(
                         "~/Scripts/my_css_and_anims.js"));

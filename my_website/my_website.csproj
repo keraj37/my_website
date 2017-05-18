@@ -205,6 +205,7 @@
     <Compile Include="Users\Users.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\grid.css" />
     <Content Include="Imgs\Art\1.jpg" />
     <Content Include="Imgs\Art\2.jpg" />
     <Content Include="Imgs\Art\3.jpg" />
