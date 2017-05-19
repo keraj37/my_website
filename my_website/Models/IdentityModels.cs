@@ -31,5 +31,6 @@ namespace my_website.Models
         }
 
         public System.Data.Entity.DbSet<my_website.Models.Blog> Blogs { get; set; }
+        public System.Data.Entity.DbSet<my_website.Models.Data> DataCollections { get; set; }
     }
 }
