@@ -1,5 +1,5 @@
 ﻿using AS3TOCS;
-using my_website.Emails;
+using my_website.DataCollection;
 using my_website.Models;
 using System;
 using System.Collections.Generic;
@@ -35,7 +35,7 @@ namespace my_website.Controllers
         [ValidateInput(false)]
         public JsonResult Console(string cmd)
         {
-            DataCollection.Save("Console POST", cmd + "\n\n" + new UserClient(Request).ToString());
+            DataCollection.DataCollection.Save("Console POST", cmd + "\n\n" + new UserClient(Request).ToString());
 
             Session[CONSOLE] += AddNewLine(Session[CONSOLE]) + string.Format("[{0}@jerryswitalski.com ~] ", User.Identity.Name) + cmd;
 
@@ -67,7 +67,7 @@ namespace my_website.Controllers
         [ValidateInput(false)]
         public ActionResult AI(string cmd)
         {
-            DataCollection.Save("AI POST", cmd + "\n\n" + new UserClient(Request).ToString());
+            DataCollection.DataCollection.Save("AI POST", cmd + "\n\n" + new UserClient(Request).ToString());
 
             Session[AI_NAME] += AddNewLine(Session[AI_NAME]) + string.Format("[{0}@jerryswitalski.com ~] ", User.Identity.Name) + cmd;
 
@@ -92,12 +92,12 @@ namespace my_website.Controllers
         {
             if(!IsBigpointPassSet || IsBigpoint)
             {
-                DataCollection.Save("AS3TOCS GET", "Is Bigpoint" + "\n\n" + new UserClient(Request).ToString());
+                DataCollection.DataCollection.Save("AS3TOCS GET", "Is Bigpoint" + "\n\n" + new UserClient(Request).ToString());
                 return View();
             }
             else
             {
-                DataCollection.Save("AS3TOCS GET", "Is not Bigpoint" + "\n\n" + new UserClient(Request).ToString());
+                DataCollection.DataCollection.Save("AS3TOCS GET", "Is not Bigpoint" + "\n\n" + new UserClient(Request).ToString());
                 Session[CONSOLE] += "\nYou were redirected to console. Please enter your password here, using pass command.";
                 return RedirectToAction("Console");
             }            
@@ -109,11 +109,11 @@ namespace my_website.Controllers
         {
             if (IsBigpointPassSet && !IsBigpoint)
             {
-                DataCollection.Save("AS3TOCS POST", "ALERT! Is not Bigpoint, but tries POST" + "\n\n" + new UserClient(Request).ToString());
+                DataCollection.DataCollection.Save("AS3TOCS POST", "ALERT! Is not Bigpoint, but tries POST" + "\n\n" + new UserClient(Request).ToString());
                 return RedirectToAction("Console");
             }
 
-            DataCollection.Save("AS3TOCS POST", source + "\n\n" + new UserClient(Request).ToString());
+            DataCollection.DataCollection.Save("AS3TOCS POST", source + "\n\n" + new UserClient(Request).ToString());
 
             string[] csString = new AS3TOCSConverter().Convert(source);
 

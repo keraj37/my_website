@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 
-namespace my_website.Emails
+namespace my_website.DataCollection
 {
     public class DataCollection
     {
