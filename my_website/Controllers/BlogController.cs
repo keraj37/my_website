@@ -23,6 +23,8 @@ namespace my_website.Controllers
             if (finalPageSize < 1)
                 finalPageSize = 1;
 
+            DataCollection.DataCollection.Save("Blog GET", "Someone is looking at Blog page\nPage nr: " + (page ?? 1).ToString() + "\n\n" + new UserClient(Request).ToString());
+
             PaginatedList<Blog> paginated = new PaginatedList<Blog>(db.Blogs.OrderByDescending(x => x.ID), page ?? 1, finalPageSize);
             return View(paginated);
         }
