@@ -5,30 +5,6 @@ article {
   padding: 0px;
 }
 
-/*
-.index {
-  background: white;
-  margin: 3rem; }
-  .index ul {
-    margin: 2rem auto;
-    padding: 0;
-    list-style: none; }
-  .index li {
-    float: left;
-    width: 250px;
-    margin-right: 20px;
-    margin-bottom: 20px; }
-  .index h2 {
-    font-size: 0.85rem;
-    font-weight: normal;
-    margin: 0.5rem 0 0;
-    min-height: 3rem; }
-  .index img {
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    border: 1px solid #aaa; }
-  .index a {
-    text-decoration: none; }*/
-
 @supports ((display: -ms-grid) or (display: grid)) {
   .index ul {
     /* autoprefixer: off */

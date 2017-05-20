@@ -53,7 +53,7 @@ namespace my_website.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = Users.Users.Roles.ADMIN)]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "ID,Time,User,Content")] Blog blog)
+        public ActionResult Create([Bind(Include = "ID,Title,Time,User,Content")] Blog blog)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace my_website.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = Users.Users.Roles.ADMIN)]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "ID,Time,User,Content")] Blog blog)
+        public ActionResult Edit([Bind(Include = "ID,Title,Time,User,Content")] Blog blog)
         {
             if (ModelState.IsValid)
             {
