@@ -8,6 +8,7 @@ namespace my_website.Models
     public class Data
     {
         public int ID { get; set; }
+        public DateTime Time { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
     }

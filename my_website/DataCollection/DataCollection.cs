@@ -37,6 +37,7 @@ namespace my_website.DataCollection
                 Data data = new Data();
                 data.Subject = subject;
                 data.Body = body;
+                data.Time = DateTime.Now;
 
                 db.DataCollections.Add(data);
                 db.SaveChanges();
