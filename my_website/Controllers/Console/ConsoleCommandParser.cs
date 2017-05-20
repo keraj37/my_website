@@ -20,18 +20,30 @@ namespace my_website.Controllers.Console
             {
                 switch (ss[0])
                 {
+                    case "db":
+                        if(controller.User.IsInRole(Users.Users.Roles.ADMIN))
+                            return new DataBaseCommand().Execute(ss);
+                        else
+                            return "You are not authorized to use that command";
                     case "goto":
                         return "So, you want to go to " + ss[1];
                     case "pass":
-                        if((controller.IsBigpointPassSet && !controller.IsBigpoint) && ss[1] == ConfigurationManager.AppSettings[@"bigpointpass"])
+                        if(ss[1] == ConfigurationManager.AppSettings[@"bigpointpass"])
                         {
-                            controller.Session["bigpoint"] = true;
-                            toAction = "AS3TOCS";
-                            return "Welcome Bigpoint employee. Now you can use AS3TOCS.\nYou are now being redirected to AS3TOCS...";
-                        }
+                            if (controller.IsBigpointPassSet && !controller.IsBigpoint)
+                            {
+                                controller.Session["bigpoint"] = true;
+                                toAction = "AS3TOCS";
+                                return "Welcome Bigpoint employee. Now you can use AS3TOCS.\nYou are now being redirected to AS3TOCS...";
+                            }
+                            else
+                            {
+                                return "You are already authorized...";
+                            }
+                        }                       
                         else
                         {
-                            return "Sorry, something went wrong.";
+                            return "Unknown password...";
                         }
                     default:
                         return "I don't understand.";

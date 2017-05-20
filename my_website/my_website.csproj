@@ -181,7 +181,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AS3TOCS\AS3TOCSConverter.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\Console\BaseCommand.cs" />
     <Compile Include="Controllers\Console\ConsoleCommandParser.cs" />
+    <Compile Include="Controllers\Console\DataBaseCommand.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />

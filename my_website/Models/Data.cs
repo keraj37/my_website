@@ -13,5 +13,10 @@ namespace my_website.Models
         public string Subject { get; set; }
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("ID: {0}\nTime: {1}\nSubject: {2}\nBody:\n{3}", ID.ToString(), Time.ToString(), Subject, Body);
+        }
     }
 }

@@ -106,8 +106,12 @@ h2 {
     background-color: rgba(00, 00, 00, 1);
     color: chartreuse;
     width: 100%;
-    height: 100%;
 }
+.console-output {
+    height: 350px;
+    overflow-y: auto;
+}
+
 
 .console-button {
     background-color: rgba(00, 00, 00, 1);
