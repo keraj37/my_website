@@ -4,53 +4,45 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Reflection;
+using my_website.Controllers.Console.Commands;
 
 namespace my_website.Controllers.Console
 {
     public class ConsoleCommandParser
     {
-        public static string Parse(string cmd, ProjectsController controller, ref string toAction)
+        private static string FirstCharToUpper(string input)
+        {
+            if (String.IsNullOrEmpty(input))
+                throw new ArgumentException("You are lame programmer!");
+            return input.First().ToString().ToUpper() + input.Substring(1);
+        }
+
+        public static ConsoleReturnVo Parse(string cmd, ProjectsController controller)
         {
             if (string.IsNullOrEmpty(cmd))
-                return null;
+                return new ConsoleReturnVo("?");
 
             string[] ss = cmd.Split(" "[0]);
 
-            if(ss.Length >= 2)
+            Type commandtype = Type.GetType("my_website.Controllers.Console.Commands." + FirstCharToUpper(ss[0].ToLower()) + "Command");
+            if (commandtype != null)
             {
-                switch (ss[0])
+                bool doexecute = true;
+                ConsoleCommandAttribute attribute = (ConsoleCommandAttribute)Attribute.GetCustomAttribute(commandtype, typeof(ConsoleCommandAttribute));
+                if (attribute != null)
                 {
-                    case "db":
-                        if(controller.User.IsInRole(Users.Users.Roles.ADMIN))
-                            return new DataBaseCommand().Execute(ss);
-                        else
-                            return "You are not authorized to use that command";
-                    case "goto":
-                        return "So, you want to go to " + ss[1];
-                    case "pass":
-                        if(ss[1] == ConfigurationManager.AppSettings[@"bigpointpass"])
-                        {
-                            if (controller.IsBigpointPassSet && !controller.IsBigpoint)
-                            {
-                                controller.Session["bigpoint"] = true;
-                                toAction = "AS3TOCS";
-                                return "Welcome Bigpoint employee. Now you can use AS3TOCS.\nYou are now being redirected to AS3TOCS...";
-                            }
-                            else
-                            {
-                                return "You are already authorized...";
-                            }
-                        }                       
-                        else
-                        {
-                            return "Unknown password...";
-                        }
-                    default:
-                        return "I don't understand.";
+                    if (!controller.User.IsInRole(attribute.Role))
+                        doexecute = false;
                 }
+
+                if (doexecute && !commandtype.IsAbstract)
+                    return ((BaseCommand)Activator.CreateInstance(commandtype, controller)).Execute(ss);
+                else
+                    return new ConsoleReturnVo("You are not authorized to use that command");
             }
 
-            return null;
+            return new ConsoleReturnVo(cmd);
         }
     }
 }

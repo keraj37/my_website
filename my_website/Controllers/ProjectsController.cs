@@ -1,4 +1,5 @@
 ﻿using AS3TOCS;
+using my_website.Controllers.Console;
 using my_website.DataCollection;
 using my_website.Models;
 using System;
@@ -46,15 +47,13 @@ namespace my_website.Controllers
                     break;
             }
 
-            string toAction = null;
-
-            string result = Controllers.Console.ConsoleCommandParser.Parse(cmd, this, ref toAction);
-            if(!string.IsNullOrEmpty(result))
+            ConsoleReturnVo result = Controllers.Console.ConsoleCommandParser.Parse(cmd, this);
+            if(!string.IsNullOrEmpty(result.Message))
             {
-                Session[CONSOLE] += "\n" + result;
+                Session[CONSOLE] += "\n" + result.Message;
             }
 
-            return Json(new { content = Session[CONSOLE], redirectToAction = toAction });
+            return Json(new { content = Session[CONSOLE], redirectToAction = result.ToAction });
         }
 
         [HttpGet]

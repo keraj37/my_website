@@ -3,21 +3,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
-namespace my_website.Controllers.Console
+namespace my_website.Controllers.Console.Commands
 {
-    public class DataBaseCommand : BaseCommand
+    [ConsoleCommand(Role = Users.Users.Roles.ADMIN)]
+    public class DatabaseCommand : BaseCommand
     {
         private ApplicationDbContext db;
 
-        public DataBaseCommand()
+        public DatabaseCommand(Controller controller = null):base(controller)
         {
             db = new ApplicationDbContext();
         }
 
-        public override string Execute(string[] cmd)
+        public override ConsoleReturnVo Execute(string[] cmd)
         {
-            string result = base.Execute(cmd);
+            ConsoleReturnVo result = base.Execute(cmd);
             switch (cmd[1])
             {
                 case "data":
@@ -28,16 +30,16 @@ namespace my_website.Controllers.Console
                             case "clear":
                                 if (cmd.Length > 3)
                                 {
-                                    result = "Not implemented yet...";
+                                    result.Message += "Not implemented yet...";
                                 }
                                 else
                                 {
                                     db.Database.ExecuteSqlCommand("delete from Data");
-                                    result += "Cleared: " + cmd[1];
+                                    result.Message += "Cleared: " + cmd[1];
                                 }
                                 break;
                             default:
-                                result += "db error: " + 101;
+                                result.Message += "db error: " + 101;
                                 break;
                         }
                     }
@@ -46,12 +48,12 @@ namespace my_website.Controllers.Console
                         IEnumerable<Data> dbresult = db.DataCollections;
                         foreach(Data d in dbresult)
                         {
-                            result += d.ToString() + "\n----------------------------------------\n";
+                            result.Message += d.ToString() + "\n----------------------------------------\n";
                         }
                     }
                     break;
                 default:
-                    result += "db error: " + 100;
+                    result.Message += "db error: " + 100;
                     break;
             }
 
