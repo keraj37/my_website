@@ -22,11 +22,25 @@ namespace my_website.DataCollection
             GMailer.GmailPassword = ConfigurationManager.AppSettings[@"gmailPass"];
         }
 
-        public static void Save(string subject, string body)
+        public static void Save(string IP, string subject, string body)
         {
+            string excludedIps = ConfigurationManager.AppSettings[@"dataCollectionIpExclude"];
+
+            if(!string.IsNullOrEmpty(excludedIps))
+            {
+                string[] ss = excludedIps.Split("|"[0]);
+                foreach (string s in ss)
+                {
+                    if(s == IP)
+                    {
+                        return;
+                    }
+                }
+            }
+
             ThreadPool.QueueUserWorkItem(delegate {
 
-                if(bool.Parse(ConfigurationManager.AppSettings[@"sendDataCollectionEmails"]))
+                if(bool.Parse(ConfigurationManager.AppSettings[@"sendDataCollectionEmails"] ?? "false"))
                 {
                     mailer.Subject = "[mywebsite] " + subject;
                     mailer.Body = body;
