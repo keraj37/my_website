@@ -24,7 +24,7 @@ namespace my_website.Controllers.Console.Commands
                 {
                     if ((Controller as ProjectsController).IsBigpointPassSet && !(Controller as ProjectsController).IsBigpoint)
                     {
-                        Controller.Session["bigpoint"] = true;
+                        Controller.Session[ProjectsController.BIGPOINT] = true;
                         result.ToAction = "AS3TOCS";
                         result.Message += "Welcome Bigpoint employee. Now you can use AS3TOCS.\nYou are now being redirected to AS3TOCS...";
                         return result;

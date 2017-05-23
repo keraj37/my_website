@@ -184,6 +184,7 @@
     <Compile Include="Controllers\Console\Commands\BaseCommand.cs" />
     <Compile Include="Controllers\Console\Commands\ConsoleCommandAttribute.cs" />
     <Compile Include="Controllers\Console\Commands\DatabaseCommand.cs" />
+    <Compile Include="Controllers\Console\Commands\ClearCommand.cs" />
     <Compile Include="Controllers\Console\Commands\PassCommand.cs" />
     <Compile Include="Controllers\Console\ConsoleReturnVo.cs" />
     <Compile Include="Controllers\Console\ConsoleCommandParser.cs" />

@@ -15,7 +15,8 @@ namespace my_website.Controllers
 {
     public class ProjectsController : Controller
     {
-        private const string CONSOLE = "console";
+        public const string CONSOLE = "console";
+        public const string BIGPOINT = "bigpoint";
         private const string AI_NAME = "ai";
 
         public ActionResult Index()
@@ -40,18 +41,11 @@ namespace my_website.Controllers
 
             Session[CONSOLE] += AddNewLine(Session[CONSOLE]) + string.Format("[{0}@jerryswitalski.com ~] ", User.Identity.Name) + cmd;
 
-            switch(cmd)
-            {
-                case "clear":
-                    Session[CONSOLE] = null;
-                    break;
-            }
-
             ConsoleReturnVo result = Controllers.Console.ConsoleCommandParser.Parse(cmd, this);
             if(!string.IsNullOrEmpty(result.Message))
             {
                 Session[CONSOLE] += "\n" + result.Message;
-            }
+            }           
 
             return Json(new { content = Session[CONSOLE], redirectToAction = result.ToAction });
         }
@@ -129,7 +123,7 @@ namespace my_website.Controllers
 
         public bool IsBigpoint
         {
-            get { return Session["bigpoint"] != null && (bool)Session["bigpoint"] == true; }
+            get { return Session[BIGPOINT] != null && (bool)Session[BIGPOINT] == true; }
         }
 
         public bool IsBigpointPassSet
