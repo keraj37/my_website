@@ -67,22 +67,7 @@ h2 {
     background-color: rgba(00, 00, 00, 0.89);
 }
 
-.myentry-norandomsize {
-    margin: 3px;
-    padding: 28px;
-    border: 3px;
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.59);
-    border-radius: 10px;
-    background-color: rgba(00, 00, 00, 0.59);
-    transition: all .2s ease-in-out;
-    animation-name: myentryanim;
-    animation-duration: 0.9s;
-}
-
-.myentry-norandomsize:hover {
-    transform: scale(1.04);
-    background-color: rgba(00, 00, 00, 0.89);
+.randomsize {
 }
 
 .myblog {

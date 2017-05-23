@@ -13,6 +13,7 @@ namespace my_website.Controllers.Console.Commands
         private Dictionary<string, string> commands = new Dictionary<string, string>
         {
             { "help", "General help of usuing this console"},
+            { "clear", "Clears console output"},
             { "pass", "Gives session authorization after entering correct password"},
             { "database", "Operations on this site's database. You need \"admin\" role to use it"}
         };
