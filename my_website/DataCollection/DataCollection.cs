@@ -26,21 +26,12 @@ namespace my_website.DataCollection
         {
             string excludedIps = ConfigurationManager.AppSettings[@"dataCollectionIpExclude"];
 
-            if(!string.IsNullOrEmpty(excludedIps))
+            if (!string.IsNullOrEmpty(excludedIps) && excludedIps.Split("|"[0]).FirstOrDefault(x => x.Equals(IP)) != default(string))
+                return;
+
+            ThreadPool.QueueUserWorkItem(delegate
             {
-                string[] ss = excludedIps.Split("|"[0]);
-                foreach (string s in ss)
-                {
-                    if(s == IP)
-                    {
-                        return;
-                    }
-                }
-            }
-
-            ThreadPool.QueueUserWorkItem(delegate {
-
-                if(bool.Parse(ConfigurationManager.AppSettings[@"sendDataCollectionEmails"] ?? "false"))
+                if (bool.Parse(ConfigurationManager.AppSettings[@"sendDataCollectionEmails"] ?? "false"))
                 {
                     mailer.Subject = "[mywebsite] " + subject;
                     mailer.Body = body;

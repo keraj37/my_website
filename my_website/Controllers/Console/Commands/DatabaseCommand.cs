@@ -20,41 +20,48 @@ namespace my_website.Controllers.Console.Commands
         public override ConsoleReturnVo Execute(string[] cmd)
         {
             ConsoleReturnVo result = base.Execute(cmd);
-            switch (cmd[1])
+            if(cmd.Length > 1)
             {
-                case "data":
-                    if(cmd.Length > 2)
-                    {
-                        switch (cmd[2])
+                switch (cmd[1])
+                {
+                    case "data":
+                        if (cmd.Length > 2)
                         {
-                            case "clear":
-                                if (cmd.Length > 3)
-                                {
-                                    result.Message += "Not implemented yet...";
-                                }
-                                else
-                                {
-                                    db.Database.ExecuteSqlCommand("delete from Data");
-                                    result.Message += "Cleared: " + cmd[1];
-                                }
-                                break;
-                            default:
-                                result.Message += "db error: " + 101;
-                                break;
+                            switch (cmd[2])
+                            {
+                                case "clear":
+                                    if (cmd.Length > 3)
+                                    {
+                                        result.Message += "Not implemented yet...";
+                                    }
+                                    else
+                                    {
+                                        db.Database.ExecuteSqlCommand("delete from Data");
+                                        result.Message += "Cleared: " + cmd[1];
+                                    }
+                                    break;
+                                default:
+                                    result.Message += "db error: " + 101;
+                                    break;
+                            }
                         }
-                    }
-                    else
-                    {
-                        IEnumerable<Data> dbresult = db.DataCollections;
-                        foreach(Data d in dbresult)
+                        else
                         {
-                            result.Message += d.ToString() + "\n----------------------------------------\n";
+                            IEnumerable<Data> dbresult = db.DataCollections;
+                            foreach (Data d in dbresult)
+                            {
+                                result.Message += d.ToString() + "\n----------------------------------------\n";
+                            }
                         }
-                    }
-                    break;
-                default:
-                    result.Message += "db error: " + 100;
-                    break;
+                        break;
+                    default:
+                        result.Message += "db error: " + 100;
+                        break;
+                }
+            }
+            else
+            {
+                result.Message += "This command needs params";
             }
 
             return result;
