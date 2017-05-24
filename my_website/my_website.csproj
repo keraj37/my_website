@@ -48,6 +48,10 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AS3TOCS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=037528890f1fa2c8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Controllers\AS3TOCS\AS3TOCS.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -179,7 +183,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Configuration\SensitiveData.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AS3TOCS\AS3TOCSConverter.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\Console\Commands\BaseCommand.cs" />
     <Compile Include="Controllers\Console\ConsoleCommandDescriptionAttribute.cs" />
@@ -217,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\grid.css" />
+    <Content Include="Controllers\AS3TOCS\AS3TOCS.dll" />
     <Content Include="Imgs\Art\1.jpg" />
     <Content Include="Imgs\Art\2.jpg" />
     <Content Include="Imgs\Art\3.jpg" />

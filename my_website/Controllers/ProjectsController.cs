@@ -1,5 +1,4 @@
-﻿using AS3TOCS;
-using my_website.Controllers.Console;
+﻿using my_website.Controllers.Console;
 using my_website.DataCollection;
 using my_website.Models;
 using System;
@@ -108,7 +107,7 @@ namespace my_website.Controllers
 
             DataCollection.DataCollection.Save(Request.UserHostAddress, "AS3TOCS POST", source + "\n\n" + new UserClient(Request).ToString());
 
-            string[] csString = new AS3TOCSConverter().Convert(source);
+            string[] csString = new AS3TOCS.AS3TOCS().Convert(source);
 
             string className = csString[1] ?? "YourCSharpFile";
 
