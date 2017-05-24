@@ -25,11 +25,11 @@ namespace my_website.Controllers.Console
 
             string[] ss = cmd.Split(" "[0]);
 
-            Type commandtype = Type.GetType("my_website.Controllers.Console.Commands." + FirstCharToUpper(ss[0].ToLower()) + "Command");
+            Type commandtype = Type.GetType(BaseCommand.COMMANDS_NS + "." + FirstCharToUpper(ss[0].ToLower()) + "Command");
             if (commandtype != null)
             {
                 bool doexecute = true;
-                ConsoleCommandAttribute attribute = (ConsoleCommandAttribute)Attribute.GetCustomAttribute(commandtype, typeof(ConsoleCommandAttribute));
+                ConsoleCommandAttribute attribute = commandtype.GetCustomAttribute<ConsoleCommandAttribute>();
                 if (attribute != null)
                 {
                     if (!controller.User.IsInRole(attribute.Role))

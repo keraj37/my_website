@@ -8,6 +8,8 @@ namespace my_website.Controllers.Console.Commands
 {
     public abstract class BaseCommand
     {
+        public const string COMMANDS_NS = "my_website.Controllers.Console.Commands";
+
         protected Controller Controller { get; set; }
 
         public BaseCommand (Controller controller = null)

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 namespace my_website.Controllers.Console.Commands
 {
     [ConsoleCommand(Role = Users.Users.Roles.ADMIN)]
+    [ConsoleCommandDescription(Name = "database", Description = "Operations on this site's database. You need \"admin\" role to use it", Priority = 3)]
     public class DatabaseCommand : BaseCommand
     {
         private ApplicationDbContext db;

@@ -1,15 +1,10 @@
 ﻿$(document).ready(function () {
-    $('.myentry').each(function (index, elem)
-    {
-        if ($(this).hasClass("randomsize"))
-        {
-            $(this).css("font-size", function ()
-            {
-                return Math.ceil(Math.random() * 19 + 13) + "px";
-            });
-        }
+    $('.randomsize').each(function (index, elem) {
+        $(this).css("font-size", function () {
+            return Math.ceil(Math.random() * 19 + 13) + "px";
+        });
     })
-    
+
     /*
     $('.myentry-multiple').each(function (index, elem) {
         $(this).hide().fadeIn(500 + Math.random() * 2000);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace my_website.Controllers.Console.Commands
+namespace my_website.Controllers.Console
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = true)]
     public class ConsoleCommandAttribute : Attribute

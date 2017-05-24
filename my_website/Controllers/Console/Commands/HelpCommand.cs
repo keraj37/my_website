@@ -3,34 +3,34 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
 namespace my_website.Controllers.Console.Commands
 {
+    [ConsoleCommandDescription(Name = "help", Description = "General help of using this console", Priority = 0)]
     public class HelpCommand : BaseCommand
     {
-        private Dictionary<string, string> commands = new Dictionary<string, string>
-        {
-            { "help", "General help of using this console"},
-            { "clear", "Clears console output"},
-            { "pass", "Gives session authorization after entering correct password"},
-            { "database", "Operations on this site's database. You need \"admin\" role to use it"}
-        };
+        private List<ConsoleCommandDescriptionAttribute> attribuesList;
 
         public HelpCommand(Controller controller = null):base(controller)
         {
+            attribuesList = new List<ConsoleCommandDescriptionAttribute>();
+            Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsClass && !t.IsAbstract && t.Namespace == COMMANDS_NS).ToList().ForEach(delegate (Type t)
+            {
+                ConsoleCommandDescriptionAttribute descAttr = t.GetCustomAttribute<ConsoleCommandDescriptionAttribute>();
+                if (descAttr != null)
+                    attribuesList.Add(descAttr);
+            });
+
+            attribuesList = attribuesList.OrderBy(x => x.Priority).ToList();
         }
 
         public override ConsoleReturnVo Execute(string[] cmd)
         {
             ConsoleReturnVo result = base.Execute(cmd);
-
-            foreach(KeyValuePair<string, string> kvp in commands)
-            {
-                result.Message += "\n" + kvp.Key + ": " + kvp.Value;
-            }
-
+            attribuesList.ForEach(x => result.Message += "\n" + x.ToString());
             return result;
         }
     }

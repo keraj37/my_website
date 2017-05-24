@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace my_website.Controllers.Console.Commands
 {
+    [ConsoleCommandDescription(Name = "pass", Description = "Gives session authorization after entering correct password", Priority = 2)]
     public class PassCommand : BaseCommand
     {
         public PassCommand(Controller controller = null):base(controller)

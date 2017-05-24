@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace my_website.Controllers.Console.Commands
 {
+    [ConsoleCommandDescription(Name = "clear", Description = "Clears console output", Priority = 1)]
     public class ClearCommand : BaseCommand
     {
         public ClearCommand(Controller controller = null):base(controller)
