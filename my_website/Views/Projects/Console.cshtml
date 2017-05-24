@@ -1,6 +1,6 @@
 ﻿@using my_website.Models
 
-@model ConsoleCommand
+@model ConsoleOutput
 
 @{
     ViewBag.Title = "Console";
@@ -10,11 +10,7 @@
 
 <div style="position: relative">
     <section id="console">
-        <div class="console console-output multiline">Type "help" for list of commands
-            <div id="console-output">
-                @Model.Content
-            </div>
-        </div>
+        <div id="console-output" class="console console-output multiline">@Model.Content</div>
         <div>
             <input id="console-input" type="text" name="cmd" class="console" autofocus />
             <input id="execute" type="submit" value="Execute" class="console-button" />

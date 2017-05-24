@@ -26,7 +26,8 @@ namespace my_website.Controllers
         [HttpGet]
         public ActionResult Console(bool? auth)
         {
-            ConsoleCommand cmd = new ConsoleCommand();
+            if (string.IsNullOrEmpty(Session[CONSOLE] as string)) Session[CONSOLE] += "Type 'help' for list of commands. Use TAB key for tab completion. Use ENTER key or 'Execute' button to send command.";
+            ConsoleOutput cmd = new ConsoleOutput();
             cmd.Content = (string)Session[CONSOLE];
 
             return View(cmd);
@@ -34,19 +35,20 @@ namespace my_website.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public JsonResult Console(string cmd)
+        public JsonResult Console(string cmd, bool? tab)
         {
             DataCollection.DataCollection.Save(Request.UserHostAddress, "Console POST", cmd + "\n\n" + new UserClient(Request).ToString());
 
-            Session[CONSOLE] += AddNewLine(Session[CONSOLE]) + string.Format("[{0}@jerryswitalski.com ~] ", User.Identity.Name) + cmd;
+            if(!(tab ?? false))
+                Session[CONSOLE] += AddNewLine(Session[CONSOLE]) + string.Format("[{0}@jerryswitalski.com ~] ", User.Identity.Name) + cmd;
 
-            ConsoleReturnVo result = Controllers.Console.ConsoleCommandParser.Parse(cmd, this);
+            ConsoleReturnVo result = Controllers.Console.ConsoleCommandParser.Parse(cmd, tab, this);
             if(!string.IsNullOrEmpty(result.Message))
             {
                 Session[CONSOLE] += "\n" + result.Message;
             }           
 
-            return Json(new { content = Session[CONSOLE], redirectToAction = result.ToAction });
+            return Json(new { content = Session[CONSOLE], redirectToAction = result.ToAction, fillInput = result.FillInput });
         }
 
         [HttpGet]

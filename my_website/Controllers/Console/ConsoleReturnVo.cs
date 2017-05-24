@@ -9,11 +9,13 @@ namespace my_website.Controllers.Console
     {
         public string Message { get; set; }
         public string ToAction { get; set; }
+        public string FillInput { get; set; }
 
-        public ConsoleReturnVo(string message, string toAction = null)
+        public ConsoleReturnVo(string message = null, string toAction = null, string fillInput = null)
         {
             Message = message;
             ToAction = toAction;
+            FillInput = fillInput;
         }
     }
 }

@@ -18,10 +18,10 @@ namespace my_website.Controllers.Console
             return input.First().ToString().ToUpper() + input.Substring(1);
         }
 
-        public static ConsoleReturnVo Parse(string cmd, ProjectsController controller)
+        public static ConsoleReturnVo Parse(string cmd, bool? tabPressed, ProjectsController controller)
         {
             if (string.IsNullOrEmpty(cmd))
-                return new ConsoleReturnVo("?");
+                return new ConsoleReturnVo((tabPressed ?? false) ? null : "?");
 
             string[] ss = cmd.Split(" "[0]);
 
@@ -42,7 +42,15 @@ namespace my_website.Controllers.Console
                     return new ConsoleReturnVo("You are not authorized to use that command");
             }
 
-            return new ConsoleReturnVo(cmd);
+            var allCmds = HelpCommand.GetAllCommandsDesciptions(cmd);
+            if(allCmds.Count > 0)
+            {
+                string msg = string.Format("All ({0}) commands matching input:", allCmds.Count);
+                allCmds.ForEach(x => msg += "\n" + x.Name);
+                return new ConsoleReturnVo(message: msg, fillInput: allCmds[0].Name);
+            }
+
+            return new ConsoleReturnVo((tabPressed ?? false) ? null : cmd);
         }
     }
 }

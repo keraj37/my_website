@@ -14,17 +14,22 @@ namespace my_website.Controllers.Console.Commands
     {
         private List<ConsoleCommandDescriptionAttribute> attribuesList;
 
-        public HelpCommand(Controller controller = null):base(controller)
+        public static List<ConsoleCommandDescriptionAttribute> GetAllCommandsDesciptions(string search = null)
         {
-            attribuesList = new List<ConsoleCommandDescriptionAttribute>();
+            List<ConsoleCommandDescriptionAttribute> result = new List<ConsoleCommandDescriptionAttribute>();
             Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsClass && !t.IsAbstract && t.Namespace == COMMANDS_NS).ToList().ForEach(delegate (Type t)
             {
                 ConsoleCommandDescriptionAttribute descAttr = t.GetCustomAttribute<ConsoleCommandDescriptionAttribute>();
-                if (descAttr != null)
-                    attribuesList.Add(descAttr);
+                if (descAttr != null && (search != null ? descAttr.Name.StartsWith(search) : true))
+                    result.Add(descAttr);
             });
 
-            attribuesList = attribuesList.OrderBy(x => x.Priority).ToList();
+            return result;
+        }
+
+        public HelpCommand(Controller controller = null):base(controller)
+        {
+            attribuesList = GetAllCommandsDesciptions().OrderBy(x => x.Priority).ToList();
         }
 
         public override ConsoleReturnVo Execute(string[] cmd)
