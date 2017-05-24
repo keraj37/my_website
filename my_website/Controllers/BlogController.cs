@@ -18,7 +18,7 @@ namespace my_website.Controllers
 
         public ActionResult Index(int? page, int? pageSize)
         {
-            int finalPageSize = pageSize ?? 2;
+            int finalPageSize = pageSize ?? 5;
 
             if (finalPageSize < 1)
                 finalPageSize = 1;
