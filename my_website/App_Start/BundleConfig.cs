@@ -29,12 +29,15 @@ namespace my_website
                       "~/Content/grid.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/myscripts").Include(
-                        "~/Scripts/my_css_and_anims.js"));
+                        "~/Scripts/Custom/my_css_and_anims.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/ajax").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.js",
                         "~/Scripts/jquery.validate*",
                         "~/Scripts/jquery.validate.unobtrusive.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/console_ajax").Include(
+                        "~/Scripts/Custom/console_ajax.js"));
         }
     }
 }
