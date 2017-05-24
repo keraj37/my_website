@@ -30,6 +30,7 @@
         },
         complete: function () {
             $('#loadingimage').css("display", "none");
+            $("#console-output").animate({ scrollTop: $(document).height() }, "slow");
         },
     });
 }
