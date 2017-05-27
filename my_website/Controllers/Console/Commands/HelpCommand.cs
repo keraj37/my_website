@@ -12,6 +12,8 @@ namespace my_website.Controllers.Console.Commands
     [ConsoleCommandDescription(Name = "help", Description = "General help of using this console", Priority = 0)]
     public class HelpCommand : BaseCommand
     {
+        private const string HELP = "help_cache";
+
         private List<ConsoleCommandDescriptionAttribute> attribuesList;
 
         public static List<ConsoleCommandDescriptionAttribute> GetAllCommandsDesciptions(string search = null)
@@ -27,7 +29,7 @@ namespace my_website.Controllers.Console.Commands
             return result;
         }
 
-        public HelpCommand(Controller controller = null):base(controller)
+        public HelpCommand(Controller controller = null) : base(controller)
         {
             attribuesList = GetAllCommandsDesciptions().OrderBy(x => x.Priority).ToList();
         }

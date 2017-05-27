@@ -209,6 +209,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\BlogComment.cs" />
     <Compile Include="Models\ConsoleOutput.cs" />
     <Compile Include="Models\Data.cs" />
     <Compile Include="Models\IdentityModels.cs" />

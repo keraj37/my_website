@@ -36,6 +36,7 @@
 }
 
 $(document).ready(function () {
+    $("#console-output").animate({ scrollTop: $(document).height() }, "slow");
     $('#execute').click(send);
     $('#console-input').keypress(function (e) {
         var keyCode = e.keyCode || e.which; 
