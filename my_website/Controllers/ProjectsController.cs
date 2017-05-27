@@ -40,7 +40,7 @@ namespace my_website.Controllers
             DataCollection.DataCollection.Save(Request.UserHostAddress, "Console POST", cmd + "\n\n" + new UserClient(Request).ToString());
 
             if(!(tab ?? false))
-                Session[CONSOLE] += AddNewLine(Session[CONSOLE]) + string.Format("[{0}@jerryswitalski.com ~] ", User.Identity.Name) + cmd;
+                Session[CONSOLE] += AddNewLine(Session[CONSOLE]) + string.Format("[{0}@quisutdeus.in ~] ", User.Identity.Name) + cmd;
 
             ConsoleReturnVo result = Controllers.Console.ConsoleCommandParser.Parse(cmd, tab, this);
             if(!string.IsNullOrEmpty(result.Message))
@@ -63,7 +63,7 @@ namespace my_website.Controllers
         {
             DataCollection.DataCollection.Save(Request.UserHostAddress, "AI POST", cmd + "\n\n" + new UserClient(Request).ToString());
 
-            Session[AI_NAME] += AddNewLine(Session[AI_NAME]) + string.Format("[{0}@jerryswitalski.com ~] ", User.Identity.Name) + cmd;
+            Session[AI_NAME] += AddNewLine(Session[AI_NAME]) + string.Format("[{0}@quisutdeus.in ~] ", User.Identity.Name) + cmd;
 
             switch (cmd)
             {
