@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using my_website.Models;
 using System.Web.Security;
 using my_website.Helpers;
+using System.Configuration;
 
 namespace my_website.Controllers
 {    
@@ -18,7 +19,7 @@ namespace my_website.Controllers
 
         public ActionResult Index(int? page, int? pageSize)
         {
-            int finalPageSize = pageSize ?? 5;
+            int finalPageSize = pageSize ?? int.Parse(ConfigurationManager.AppSettings[@"blogPageSize"] ?? "5");
 
             if (finalPageSize < 1)
                 finalPageSize = 1;

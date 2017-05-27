@@ -19,21 +19,18 @@ namespace my_website.Controllers
         public ActionResult About()
         {
             DataCollection.DataCollection.Save(Request.UserHostAddress, "About GET", "Someone is looking at About page" + "\n\n" + new UserClient(Request).ToString());
-            //ViewBag.Message = "Short info about me";
             return View();
         }
 
         public ActionResult Contact()
         {
             DataCollection.DataCollection.Save(Request.UserHostAddress, "Contact GET", "Someone is looking at Contact page" + "\n\n" + new UserClient(Request).ToString());
-            ViewBag.Message = "All contacts";
             return View();
         }
 
         public ActionResult Art()
         {
             DataCollection.DataCollection.Save(Request.UserHostAddress, "Art/3D GET", "Someone is looking at 3D page" + "\n\n" + new UserClient(Request).ToString());
-            ViewBag.Message = "Some of my 3D renders";
             return View("Art");
         }
     }

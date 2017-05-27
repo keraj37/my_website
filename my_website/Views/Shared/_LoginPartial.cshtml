@@ -1,4 +1,11 @@
 ﻿@using Microsoft.AspNet.Identity
+@{
+    var allNavigations = new[]
+    {
+        new { linkText = "Register", actionName = "Register", controlerName = "Account", id = "registerLink" },
+        new { linkText = "Log in", actionName = "Login", controlerName = "Account", id = "loginLink" }
+    };
+}
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -16,7 +23,10 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        @foreach (var nav in allNavigations)
+        {
+            string active = ViewBag.Title == nav.linkText ? "class=\"active\"" : string.Empty;
+            <li @Html.Raw(active)>@Html.ActionLink(nav.linkText, nav.actionName, nav.controlerName, routeValues: null, htmlAttributes: new { id = nav.id })</li>
+        }
     </ul>
 }

@@ -1,9 +1,21 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var allNavigations = new[]
+    {
+        new { linkText = "Home", actionName = "Index", controlerName = "Home" },
+        new { linkText = "About", actionName = "About", controlerName = "Home" },
+        new { linkText = "Contact", actionName = "Contact", controlerName = "Home" },
+        new { linkText = "3D", actionName = "Art", controlerName = "Home" },
+        new { linkText = "Projects", actionName = "Index", controlerName = "Projects" },
+        new { linkText = "Blog", actionName = "Index", controlerName = "Blog" }
+    };
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Personal Website</title>
+    <title>Jerry Switalski - Personal Website</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -19,12 +31,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("3D", "Art", "Home")</li>
-                    <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
-                    <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
+                    @foreach (var nav in allNavigations)
+                    {
+                        string active = ViewBag.Title == nav.linkText ? "class=\"active\"" : string.Empty;
+                        <li @Html.Raw(active)>@Html.ActionLink(nav.linkText, nav.actionName, nav.controlerName)</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
