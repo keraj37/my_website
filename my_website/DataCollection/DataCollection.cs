@@ -24,6 +24,9 @@ namespace my_website.DataCollection
 
         public static void Save(string IP, string subject, string body)
         {
+            if (!bool.Parse(ConfigurationManager.AppSettings[@"dataCollection"] ?? "false"))
+                return;
+
             string excludedIps = ConfigurationManager.AppSettings[@"dataCollectionIpExclude"];
 
             if (!string.IsNullOrEmpty(excludedIps) && excludedIps.Split("|"[0]).FirstOrDefault(x => x.Equals(IP)) != default(string))

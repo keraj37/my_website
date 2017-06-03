@@ -1,24 +1,57 @@
 * {
-  box-sizing: border-box; }
+    box-sizing: border-box;
+}
 
 article {
-  padding: 0px;
+    padding: 0px;
 }
 
 .D {
-  margin: 1em; }
-  .D h1 {
-    margin-top: 0;
-    margin-left: 0.75rem; }
-  .D main {
-    -webkit-columns: 250px;
-       -moz-columns: 250px;
-            columns: 250px;
-    -webkit-column-gap: 6px;
-       -moz-column-gap: 6px;
-            column-gap: 6px; }
-  .D article {
-    -webkit-column-break-inside: avoid;
-       page-break-inside: avoid;
-            break-inside: avoid-column;
-    margin-bottom: 1rem; }
+    margin: 1em;
+}
+
+    .D h1 {
+        margin-top: 0;
+        margin-left: 0.75rem;
+    }
+
+    .D main {
+        -webkit-columns: 250px;
+        -moz-columns: 250px;
+        columns: 250px;
+        -webkit-column-gap: 6px;
+        -moz-column-gap: 6px;
+        column-gap: 6px;
+    }
+
+    .D article {
+        -webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+        break-inside: avoid-column;
+        margin-bottom: 1rem;
+    }
+
+.Dbox {
+    margin: 0em;
+}
+
+    .Dbox h1 {
+        margin-top: 0;
+        margin-left: 0rem;
+    }
+
+    .Dbox main {
+        -webkit-columns: 250px;
+        -moz-columns: 250px;
+        columns: 250px;
+        -webkit-column-gap: 0px;
+        -moz-column-gap: 0px;
+        column-gap: 0px;
+    }
+
+    .Dbox article {
+        -webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+        break-inside: avoid-column;
+        margin-bottom: 0rem;
+    }

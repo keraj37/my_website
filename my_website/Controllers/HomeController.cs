@@ -33,5 +33,11 @@ namespace my_website.Controllers
             DataCollection.DataCollection.Save(Request.UserHostAddress, "Art/3D GET", "Someone is looking at 3D page" + "\n\n" + new UserClient(Request).ToString());
             return View("Art");
         }
+
+        public ActionResult Arma3()
+        {
+            DataCollection.DataCollection.Save(Request.UserHostAddress, "Arma3 GET", "Someone is looking at Arma3 page" + "\n\n" + new UserClient(Request).ToString());
+            return View();
+        }
     }
 }

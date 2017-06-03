@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Arma3";
+}
+
+@{
+    var imgsUrls = new List<string>
+    {
+        @"https://steamuserimages-a.akamaihd.net/ugc/789665468331713746/3D3192441DF833EA91A39E9056782129C9615460/",
+        @"https://steamuserimages-a.akamaihd.net/ugc/789666247158974960/7D715738A69D76A2809CA405E40146654C8BEC8F/",
+        @"https://steamuserimages-a.akamaihd.net/ugc/789666247158974099/026C3720B74DF776A90741805E285425E98654A3/",
+        @"https://steamuserimages-a.akamaihd.net/ugc/789666247149906309/846B3622D6CB6F8221C08AC5B73B029B0547DD8C/",
+        @"https://steamuserimages-a.akamaihd.net/ugc/789665468331714368/CEB52F7164DDEFF342BA3ED69F35B520033B6F45/",
+        @"https://steamuserimages-a.akamaihd.net/ugc/789665468331712198/5297DD8CA972CAF9E75002B528CD5401059802C2/",
+        @"https://steamuserimages-a.akamaihd.net/ugc/789665468331300604/E355312AF86C66DFCAF785F0F3E29FED0003C15A/",
+        @"https://steamuserimages-a.akamaihd.net/ugc/841456395995443420/085D81344915AD04C4AE1607153E54A3813D0D24/",
+        @"https://steamuserimages-a.akamaihd.net/ugc/841456062822435614/8C19F4E894B4EC3EA4046B18A2CF774AE5BAC5B7/",
+        @"https://steamuserimages-a.akamaihd.net/ugc/841456062824878065/2657611D2851C434BF6502C1BCFD0200D724049A/",
+        @"https://steamuserimages-a.akamaihd.net/ugc/820062603941378212/BC4D1425C377A4AA0FEECFEBF328C22F11220ADB/",
+        @"https://steamuserimages-a.akamaihd.net/ugc/841456062822434499/42A8C33476E799E44CD664510A591FDC0E33C5D0/"
+    };
+    var random = new Random();
+    imgsUrls.Sort((x,y) => random.Next(100) > 50 ? 0 : 1 );
+}
+
+<div class="Dbox">
+    <main>
+        @{
+            foreach (var url in imgsUrls)
+            {
+                var maxWidth = random.Next(100, 300).ToString() + "px";
+                <article class="mybox" style="width:@(maxWidth);">
+                    <img src="@(url)" alt="Arma3" style="max-width:100%; max-height:100%;">
+                </article>
+            }
+        }
+    </main>
+</div>
+
+
+
+
+
+
+
+
