@@ -185,15 +185,21 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\Console\Commands\BaseCommand.cs" />
+    <Compile Include="Controllers\Console\Commands\MbCommand.cs" />
     <Compile Include="Controllers\Console\ConsoleCommandDescriptionAttribute.cs" />
     <Compile Include="Controllers\Console\ConsoleCommandAttribute.cs" />
     <Compile Include="Controllers\Console\Commands\DatabaseCommand.cs" />
     <Compile Include="Controllers\Console\Commands\ClearCommand.cs" />
     <Compile Include="Controllers\Console\Commands\PassCommand.cs" />
+    <Compile Include="Controllers\Console\ConsoleMandelbrotReturnVo.cs" />
     <Compile Include="Controllers\Console\ConsoleReturnVo.cs" />
     <Compile Include="Controllers\Console\ConsoleCommandParser.cs" />
     <Compile Include="Controllers\Console\Commands\HelpCommand.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MandelbrotSet\MandelbrotSetManager.cs" />
+    <Compile Include="Controllers\MandelbrotSet\Solution01\ComplexPoint.cs" />
+    <Compile Include="Controllers\MandelbrotSet\Solution01\Mandelbrot.cs" />
+    <Compile Include="Controllers\MandelbrotSet\Solution01\ScreenPixelManage.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="DataCollection\DataCollection.cs" />
@@ -201,6 +207,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Helpers\PaginatedList.cs" />
     <Compile Include="Migrations\201704031157451_InitialCreate.cs" />
     <Compile Include="Migrations\201704031157451_InitialCreate.Designer.cs">
@@ -212,6 +219,7 @@
     <Compile Include="Models\BlogComment.cs" />
     <Compile Include="Models\ConsoleOutput.cs" />
     <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\FractalImage.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserClient.cs" />
@@ -251,6 +259,7 @@
     <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\Custom\mandelbrot_ajax.js" />
     <Content Include="Scripts\Custom\console_ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -320,6 +329,7 @@
     <Content Include="Views\Projects\AI.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Home\Arma3.cshtml" />
+    <Content Include="Views\Projects\MandelbrotSet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

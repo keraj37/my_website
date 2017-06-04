@@ -1,24 +1,20 @@
-﻿function send(tabPressed) {
-    consoleUrl = "/Projects/Console";
+﻿function send(tabPressed, cmd = null) {
+    url = "/Projects/MandelbrotSet";
     if (tabPressed)
-        consoleUrl += "?tab=true";
+        url += "?tab=true";
     $.ajax({
         type: "POST",
-        url: consoleUrl,
-        data: '{cmd: "' + $("#console-input").val() + '" }',
+        url: url,
+        data: '{cmd: "' + (cmd == null ? $("#console-input").val() : cmd) + '" }',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
-            var consoleOutput = $("#console-output").text() + response.content;
-            $("#console-output").text(consoleOutput);
-            if (response.redirectToAction != null) {
-                t1 = window.setTimeout(function () { window.location = "/Projects/" + response.redirectToAction; }, 1000);
-            }
             if (!tabPressed) $('#console-input').val("");
             if (response.fillInput != null) {
                 $('#console-input').val(response.fillInput);
             }
             $('#console-input').focus();
+            $('#mb_img').attr('src', 'data:image/png;base64,' + response.image);
         },
         failure: function (response) {
             alert("Sorry, something went wrong");
@@ -31,13 +27,11 @@
         },
         complete: function () {
             $('#loadingimage').css("display", "none");
-            $("#console-output").animate({ scrollTop: $(document).height() }, "slow");
         },
     });
 }
 
 $(document).ready(function () {
-    $("#console-output").animate({ scrollTop: $(document).height() }, "slow");
     $('#execute').click(send);
     $('#console-input').keypress(function (e) {
         var keyCode = e.keyCode || e.which;
@@ -48,5 +42,7 @@ $(document).ready(function () {
             send(true);
         }
     });
+
+    send(false, "mb zoom 1 step 1 k 50");
 })
 

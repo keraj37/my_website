@@ -24,6 +24,21 @@ namespace my_website.Controllers
         }
 
         [HttpGet]
+        public ActionResult MandelbrotSet()
+        {
+            //FractalImage model = new MandelbrotSet.MandelbrotSet().GetImage();
+            return View(/*model*/);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public JsonResult MandelbrotSet(string cmd, bool? tab)
+        {
+            DataCollection.DataCollection.Save(Request.UserHostAddress, "Mandelbrot POST", cmd + "\n\n" + new UserClient(Request).ToString());
+            return GenericProcessCommand(cmd, false);
+        }
+
+        [HttpGet]
         public ActionResult Console(bool? auth)
         {
             if (string.IsNullOrEmpty(Session[CONSOLE] as string)) Session[CONSOLE] += "Type 'help' for list of commands. Use TAB key for tab completion. Use ENTER key or 'Execute' button to send command.";
@@ -33,22 +48,28 @@ namespace my_website.Controllers
             return View(cmd);
         }
 
+        [NonAction]
+        public JsonResult GenericProcessCommand(string cmd, bool? tab)
+        {
+            ConsoleReturnVo result = Controllers.Console.ConsoleCommandParser.Parse(cmd, tab, this);
+            if (!string.IsNullOrEmpty(result.Message))
+            {
+                Session[CONSOLE] += result.Message;
+            }
+
+            return Json(result.ToObject());
+        }
+
         [HttpPost]
         [ValidateInput(false)]
         public JsonResult Console(string cmd, bool? tab)
         {
             DataCollection.DataCollection.Save(Request.UserHostAddress, "Console POST", cmd + "\n\n" + new UserClient(Request).ToString());
 
-            if(!(tab ?? false))
+            if (!(tab ?? false))
                 Session[CONSOLE] += AddNewLine(Session[CONSOLE]) + string.Format("[{0}@quisutdeus.in ~] ", User.Identity.Name) + cmd;
 
-            ConsoleReturnVo result = Controllers.Console.ConsoleCommandParser.Parse(cmd, tab, this);
-            if(!string.IsNullOrEmpty(result.Message))
-            {
-                Session[CONSOLE] += "\n" + result.Message;
-            }           
-
-            return Json(new { content = Session[CONSOLE], redirectToAction = result.ToAction, fillInput = result.FillInput });
+            return GenericProcessCommand(cmd, tab);
         }
 
         [HttpGet]

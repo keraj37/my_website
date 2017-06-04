@@ -27,24 +27,24 @@ namespace my_website.Controllers.Console.Commands
                     {
                         Controller.Session[ProjectsController.BIGPOINT] = true;
                         result.ToAction = "AS3TOCS";
-                        result.Message += "Welcome Bigpoint employee. Now you can use AS3TOCS.\nYou are now being redirected to AS3TOCS...";
+                        result.Message += "\nWelcome Bigpoint employee. Now you can use AS3TOCS.\nYou are now being redirected to AS3TOCS...";
                         return result;
                     }
                     else
                     {
-                        result.Message += "You are already authorized...";
+                        result.Message += "\nYou are already authorized...";
                         return result;
                     }
                 }
                 else
                 {
-                    result.Message += "Unknown password...";
+                    result.Message += "\nUnknown password...";
                     return result;
                 }
             }
             else
             {
-                result.Message += "Empty password...";
+                result.Message += "\nEmpty password...";
                 return result;
             }
         }

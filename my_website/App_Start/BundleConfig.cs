@@ -38,6 +38,9 @@ namespace my_website
 
             bundles.Add(new ScriptBundle("~/bundles/console_ajax").Include(
                         "~/Scripts/Custom/console_ajax.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/mandelbrot_ajax").Include(
+                        "~/Scripts/Custom/mandelbrot_ajax.js"));
         }
     }
 }

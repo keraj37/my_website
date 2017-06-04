@@ -13,9 +13,19 @@ namespace my_website.Controllers.Console
 
         public ConsoleReturnVo(string message = null, string toAction = null, string fillInput = null)
         {
-            Message = message;
+            if (!string.IsNullOrEmpty(message))
+            {
+                bool addNewLine = message[0] != '\n' ? true : false;
+                Message = (addNewLine ? "\n" : string.Empty) + message;
+            }
+            
             ToAction = toAction;
             FillInput = fillInput;
+        }
+
+        public virtual object ToObject()
+        {
+            return new { content = Message, redirectToAction = ToAction, fillInput = FillInput };
         }
     }
 }
