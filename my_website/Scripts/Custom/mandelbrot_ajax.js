@@ -36,13 +36,20 @@ $(document).ready(function () {
     $('#console-input').keypress(function (e) {
         var keyCode = e.keyCode || e.which;
         if (keyCode == 13) {
+            setCookie("__lastcmd", $("#console-input").val(), 100);
             send(false);
         }
         else if (keyCode == 9) {
             send(true);
         }
+        else if (keyCode == 38) {
+            var cmd = getCookie("__lastcmd");
+            if (cmd != "") {
+                $('#console-input').val(cmd);
+            } 
+        }
     });
 
-    send(false, "mb zoom 1 step 1 k 50");
+    send(false, "mb width 1100 height 700 zoom 1 step 1 k 50");
 })
 

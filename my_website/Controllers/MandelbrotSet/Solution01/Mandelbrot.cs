@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
+using System.Drawing.Imaging;
+using my_website.Controllers.Console.Commands.Attributes;
 
 namespace my_website.Controllers.MandelbrotSet.Solution01
 {
@@ -16,6 +18,12 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
 
     public class Mandelbrot
     {
+        private const int DEFAULT_WIDTH = 1200;
+        private const int DEFAULT_HEIGHT = 700;
+        private const int DEFAULT_ZOOM = 1;
+        private const int DEFAULT_K = 50;
+        private const int DEFAULT_STEP = 1;
+
         private ScreenPixelManage myPixelManager;
         private ComplexPoint zoomCoord1 = new ComplexPoint(-1, 1);
         private ComplexPoint zoomCoord2 = new ComplexPoint(-2, 1);
@@ -28,16 +36,31 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
         private int zoomScale = 7;
 
         private Graphics g;
-        private Bitmap myBitmap;
         private double xValue;
         private double yValue;
         private int undoNum = 0;
         private string userName;
         private ColourTable colourTable = null;
 
-        public void RenderImageToBitmap(Bitmap myBitmap, int? kMaxParam = 50, int? zoomScaleParam = 1, int? xyPixelStepParam = 1)
+        public byte[] GetImage(ConsoleCommandVariableAttribute.Vo[] objs)
         {
-            kMax = (int)kMaxParam;
+            int width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, zoomScaleParam = DEFAULT_ZOOM, kMaxParam = DEFAULT_K, xyPixelStepParam = DEFAULT_STEP;
+
+            for(int i = 0; i < objs.Length; i++)
+            {
+                switch(i)
+                {
+                    case 0: width = objs[i].IntValue ?? DEFAULT_WIDTH; break;
+                    case 1: height = objs[i].IntValue ?? DEFAULT_HEIGHT; break;
+                    case 2: zoomScaleParam = objs[i].IntValue ?? DEFAULT_ZOOM; break;
+                    case 3: kMaxParam = objs[i].IntValue ?? DEFAULT_K; break;
+                    case 4: xyPixelStepParam = objs[i].IntValue ?? DEFAULT_STEP; break;
+                }
+            }
+
+            Bitmap bmp = new Bitmap(width, height);           
+
+            kMax = kMaxParam;
             numColours = kMax;
 
             if ((colourTable == null) || (kMax != colourTable.kMax) || (numColours != colourTable.nColour))
@@ -45,7 +68,7 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
                 colourTable = new ColourTable(numColours, kMax);
             }
 
-            zoomScale = (int)zoomScaleParam;
+            zoomScale = zoomScaleParam;
 
             int kLast = -1;
             double modulusSquared;
@@ -55,13 +78,13 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
             ComplexPoint screenBottomLeft = new ComplexPoint(xMin, yMin);
             ComplexPoint screenTopRight = new ComplexPoint(xMax, yMax);
 
-            myPixelManager = new ScreenPixelManage(myBitmap, screenBottomLeft, screenTopRight);
+            myPixelManager = new ScreenPixelManage(bmp, screenBottomLeft, screenTopRight);
 
-            int xyPixelStep = (int)xyPixelStepParam;
+            int xyPixelStep = xyPixelStepParam;
             ComplexPoint pixelStep = new ComplexPoint(xyPixelStep, xyPixelStep);
             ComplexPoint xyStep = myPixelManager.GetDeltaMathsCoord(pixelStep);
 
-            int yPix = myBitmap.Height - 1;
+            int yPix = bmp.Height - 1;
             for (double y = yMin; y < yMax; y += xyStep.y)
             {
                 int xPix = 0;
@@ -92,9 +115,9 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
 
                         if (xyPixelStep == 1)
                         {
-                            if ((xPix < myBitmap.Width) && (yPix >= 0))
+                            if ((xPix < bmp.Width) && (yPix >= 0))
                             {
-                                myBitmap.SetPixel(xPix, yPix, color);
+                                bmp.SetPixel(xPix, yPix, color);
                             }
                         }
                         else
@@ -103,9 +126,9 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
                             {
                                 for (int pY = 0; pY < xyPixelStep; pY++)
                                 {
-                                    if (((xPix + pX) < myBitmap.Width) && ((yPix - pY) >= 0))
+                                    if (((xPix + pX) < bmp.Width) && ((yPix - pY) >= 0))
                                     {
-                                        myBitmap.SetPixel(xPix + pX, yPix - pY, color);
+                                        bmp.SetPixel(xPix + pX, yPix - pY, color);
                                     }
                                 }
                             }
@@ -115,6 +138,15 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
                 }
                 yPix -= xyPixelStep;
             }
+
+            byte[] bytes = null;
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                bmp.Save(memoryStream, ImageFormat.Png);
+                bytes = memoryStream.GetBuffer();
+            }
+
+            return bytes;
         }
 
         private static Color ColorFromHSLA(double H, double S, double L)

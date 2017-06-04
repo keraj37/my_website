@@ -7,29 +7,19 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
+using my_website.Controllers.Console.Commands.Interfaces;
+using my_website.Controllers.Console.Commands.Attributes;
 
 namespace my_website.Controllers.MandelbrotSet
 {
-    public class MandelbrotSetManager
+    public class MandelbrotSetManager : IConsoleCommandStrategy<FractalImage>
     {
-        public Mandelbrot alghorithm = new Mandelbrot();
-
-        public FractalImage GetImage(int k = 50, int zoom = 1, int step = 1)
-        {
-            Bitmap bmp = new Bitmap(900, 600);
-            alghorithm.RenderImageToBitmap(bmp, kMaxParam: k, zoomScaleParam: zoom, xyPixelStepParam: step);
-
-            byte[] bytes = null;
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                bmp.Save(memoryStream, ImageFormat.Png);
-                bytes = memoryStream.GetBuffer();
-            }
-
+        public FractalImage Execute(ConsoleCommandVariableAttribute.Vo[] objs)
+        { 
+            string bmpBase64 = Convert.ToBase64String(new Mandelbrot().GetImage(objs));
             FractalImage img = new FractalImage();
             img.Name = "Mandelbrot Set";
-            img.ImageBase64 = Convert.ToBase64String(bytes);
-
+            img.ImageBase64 = bmpBase64;
             return img;
         }
 

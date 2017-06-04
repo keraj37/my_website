@@ -185,9 +185,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\Console\Commands\BaseCommand.cs" />
+    <Compile Include="Controllers\Console\Commands\Interfaces\IConsoleCommandStrategy.cs" />
     <Compile Include="Controllers\Console\Commands\MbCommand.cs" />
-    <Compile Include="Controllers\Console\ConsoleCommandDescriptionAttribute.cs" />
-    <Compile Include="Controllers\Console\ConsoleCommandAttribute.cs" />
+    <Compile Include="Controllers\Console\Commands\Attributes\ConsoleCommandVariableAttribute.cs" />
+    <Compile Include="Controllers\Console\Commands\Attributes\ConsoleCommandDescriptionAttribute.cs" />
+    <Compile Include="Controllers\Console\Commands\Attributes\ConsoleCommandAttribute.cs" />
     <Compile Include="Controllers\Console\Commands\DatabaseCommand.cs" />
     <Compile Include="Controllers\Console\Commands\ClearCommand.cs" />
     <Compile Include="Controllers\Console\Commands\PassCommand.cs" />
@@ -259,6 +261,7 @@
     <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\Custom\cookies.js" />
     <Content Include="Scripts\Custom\mandelbrot_ajax.js" />
     <Content Include="Scripts\Custom\console_ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />

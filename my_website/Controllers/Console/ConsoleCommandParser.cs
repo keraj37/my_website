@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Reflection;
 using my_website.Controllers.Console.Commands;
+using my_website.Controllers.Console.Commands.Attributes;
 
 namespace my_website.Controllers.Console
 {
