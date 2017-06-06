@@ -48,9 +48,6 @@ $(document).ready(function () {
                 $('#console-input').val(cmd);
             } 
         }
-    });
-
-    send(false, "mb width 700 height 700 zoom 1 step 1 k 50 xmin -2 xmax 2 ymin -2 ymax 2", "01");
-    send(false, "mb ymin -0.6 ymax -0.5 xmin -0.6 xmax -0.5 k 400", "02");
+    });    
 })
 
