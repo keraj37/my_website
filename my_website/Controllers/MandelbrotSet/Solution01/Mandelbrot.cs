@@ -18,28 +18,21 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
 
     public class Mandelbrot
     {
-        private const int DEFAULT_WIDTH = 1200;
+        private const int DEFAULT_WIDTH = 700;
         private const int DEFAULT_HEIGHT = 700;
         private const int DEFAULT_ZOOM = 1;
         private const int DEFAULT_K = 50;
         private const int DEFAULT_STEP = 1;
 
         private ScreenPixelManage myPixelManager;
-        private ComplexPoint zoomCoord1 = new ComplexPoint(-1, 1);
-        private ComplexPoint zoomCoord2 = new ComplexPoint(-2, 1);
         private double yMin = -2.0;
-        private double yMax = 0.0;
+        private double yMax = 2.0;
         private double xMin = -2.0;
-        private double xMax = 1.0;
+        private double xMax = 2.0;
         private int kMax = 50;
-        private int numColours = 85;
+        private int numColours = 256;
         private int zoomScale = 7;
 
-        private Graphics g;
-        private double xValue;
-        private double yValue;
-        private int undoNum = 0;
-        private string userName;
         private ColourTable colourTable = null;
 
         public byte[] GetImage(ConsoleCommandVariableAttribute.Vo[] objs)
@@ -55,6 +48,10 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
                     case 2: zoomScaleParam = objs[i].IntValue ?? DEFAULT_ZOOM; break;
                     case 3: kMaxParam = objs[i].IntValue ?? DEFAULT_K; break;
                     case 4: xyPixelStepParam = objs[i].IntValue ?? DEFAULT_STEP; break;
+                    case 5: yMin = objs[i].FloatValue ?? yMin; break;
+                    case 6: yMax = objs[i].FloatValue ?? yMax; break;
+                    case 7: xMin = objs[i].FloatValue ?? xMin; break;
+                    case 8: xMax = objs[i].FloatValue ?? xMax; break;
                 }
             }
 
@@ -222,99 +219,6 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
             Color color = Color.FromArgb((int)(r * 255), (int)(g * 255), (int)(b * 255));
             return color;
         }
-
-        /*
-        /// <summary>
-        /// On-click handler for main form. Defines the points (lower-left and upper-right)
-        /// of a zoom rectangle.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mouseClickOnForm(object sender, MouseEventArgs e)
-        {
-            if (zoomCheckbox.Checked)
-            {
-                Pen box = new Pen(Color.Black);
-                double x = Convert.ToDouble(e.X);
-                xValue = x;
-                double y = Convert.ToDouble(e.Y);
-                yValue = y;
-
-                try
-                {
-                    zoomScale = Convert.ToInt16(zoomTextBox.Text);
-                }
-                catch (Exception c)
-                {
-                    MessageBox.Show("Error: " + c.Message, "Error");
-                }
-                // Zoom scale has to be above 0, or their is no point in zooming.
-                if (zoomScale < 1)
-                {
-                    MessageBox.Show("Zoom scale must be above 0");
-                    zoomScale = 7;
-                    zoomTextBox.Text = "7";
-                    return;
-                }
-
-                ComplexPoint pixelCoord = new ComplexPoint((int)(xValue - (1005 / (zoomScale)) / 4), (int)(yValue - (691 / (zoomScale)) / 4));//
-                zoomCoord1 = myPixelManager.GetAbsoluteMathsCoord(pixelCoord);
-            }
-        }
-
-        /// <summary>
-        /// Mouse-up handler for main form. The coordinates of the rectangle are
-        /// saved so the new drawing can be rendered.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mouseUpOnForm(object sender, MouseEventArgs e)
-        {
-            if (zoomCheckbox.Checked)
-            {
-                double x = Convert.ToDouble(e.X);
-                double y = Convert.ToDouble(e.Y);
-
-                ComplexPoint pixelCoord = new ComplexPoint((int)(xValue + (1005 / (zoomScale)) / 4), (int)(yValue + (691 / (zoomScale)) / 4));//
-                zoomCoord2 = myPixelManager.GetAbsoluteMathsCoord(pixelCoord);
-
-                // Swap to ensure that zoomCoord1 stores the lower-left
-                // coordinate for the zoom region, and zoomCoord2 stores the
-                // upper right coordinate.
-                if (zoomCoord2.x < zoomCoord1.x)
-                {
-                    double temp = zoomCoord1.x;
-                    zoomCoord1.x = zoomCoord2.x;
-                    zoomCoord2.x = temp;
-                }
-                if (zoomCoord2.y < zoomCoord1.y)
-                {
-                    double temp = zoomCoord1.y;
-                    zoomCoord1.y = zoomCoord2.y;
-                    zoomCoord2.y = temp;
-                }
-                yMinCheckBox.Text = Convert.ToString(zoomCoord1.y);
-                yMaxCheckBox.Text = Convert.ToString(zoomCoord2.y);
-                xMinCheckBox.Text = Convert.ToString(zoomCoord1.x);
-                xMaxCheckBox.Text = Convert.ToString(zoomCoord2.x);
-                RenderImage();
-            }
-        }
-
-        /// <summary>
-        /// This will apply the zoom rectangle coordinates to the
-        /// yMin yMax, xMin xMax text boxes.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button2_Click(object sender, EventArgs e)
-        {
-            yMinCheckBox.Text = Convert.ToString(zoomCoord1.y);
-            yMaxCheckBox.Text = Convert.ToString(zoomCoord2.y);
-            xMinCheckBox.Text = Convert.ToString(zoomCoord1.x);
-            xMaxCheckBox.Text = Convert.ToString(zoomCoord2.x);
-        }
-        */
 
         private class ColourTable
         {

@@ -12,7 +12,8 @@ namespace my_website.Controllers.Console.Commands.Attributes
         {
             INT,
             FLOAT,
-            BOOL
+            BOOL,
+            STRING
         }
 
         public struct Vo
@@ -20,12 +21,14 @@ namespace my_website.Controllers.Console.Commands.Attributes
             public int? IntValue { get; set; }
             public float? FloatValue { get; set; }
             public bool? BoolValue { get; set; }
+            public string StringValue { get; set; }
 
-            public Vo(int? intValue = null, float? floatValue = null, bool? boolValue = null)
+            public Vo(int? intValue = null, float? floatValue = null, bool? boolValue = null, string stringValue = null)
             {
                 IntValue = intValue;
                 FloatValue = floatValue;
                 BoolValue = boolValue;
+                StringValue = stringValue;
             }
         }
 
@@ -56,6 +59,13 @@ namespace my_website.Controllers.Console.Commands.Attributes
                     if (bool.TryParse(value, out b))
                     {
                         return new Vo(boolValue: b);
+                    }
+                    break;
+                case CommandValueType.STRING:
+                    string s = null;
+                    if (!string.IsNullOrEmpty(s))
+                    {
+                        return new Vo(stringValue: s);
                     }
                     break;
             }

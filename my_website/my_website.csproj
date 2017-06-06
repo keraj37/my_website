@@ -184,6 +184,7 @@
     <Compile Include="Configuration\SensitiveData.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\Console\Commands\Attributes\ConsoleCommandStrategyAttribute.cs" />
     <Compile Include="Controllers\Console\Commands\BaseCommand.cs" />
     <Compile Include="Controllers\Console\Commands\Interfaces\IConsoleCommandStrategy.cs" />
     <Compile Include="Controllers\Console\Commands\MbCommand.cs" />

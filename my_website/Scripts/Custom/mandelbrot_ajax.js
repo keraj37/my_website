@@ -1,4 +1,4 @@
-﻿function send(tabPressed, cmd = null) {
+﻿function send(tabPressed, cmd = null, imgNum = "01") {
     url = "/Projects/MandelbrotSet";
     if (tabPressed)
         url += "?tab=true";
@@ -14,7 +14,10 @@
                 $('#console-input').val(response.fillInput);
             }
             $('#console-input').focus();
-            $('#mb_img').attr('src', 'data:image/png;base64,' + response.image);
+            $('#mb_img' + imgNum).attr('src', 'data:image/png;base64,' + response.image);
+            if (imgNum == "01") {
+                $('#mb_last_cmd').html();
+            }
         },
         failure: function (response) {
             alert("Sorry, something went wrong");
@@ -50,6 +53,7 @@ $(document).ready(function () {
         }
     });
 
-    send(false, "mb width 1100 height 700 zoom 1 step 1 k 50");
+    send(false, "mb width 700 height 700 zoom 1 step 1 k 50 xmin -2 xmax 2 ymin -2 ymax 2", "01");
+    send(false, "mb ymin -0.6 ymax -0.5 xmin -0.6 xmax -0.5 k 400", "02");
 })
 

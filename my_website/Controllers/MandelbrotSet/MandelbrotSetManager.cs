@@ -12,9 +12,9 @@ using my_website.Controllers.Console.Commands.Attributes;
 
 namespace my_website.Controllers.MandelbrotSet
 {
-    public class MandelbrotSetManager : IConsoleCommandStrategy<FractalImage>
+    public class MandelbrotSetManager : IConsoleCommandStrategy
     {
-        public FractalImage Execute(ConsoleCommandVariableAttribute.Vo[] objs)
+        public object Execute(ConsoleCommandVariableAttribute.Vo[] objs)
         { 
             string bmpBase64 = Convert.ToBase64String(new Mandelbrot().GetImage(objs));
             FractalImage img = new FractalImage();

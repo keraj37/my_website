@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace my_website.Controllers.Console.Commands.Interfaces
 {
-    interface IConsoleCommandStrategy<T>
+    public interface IConsoleCommandStrategy
     {
-        T Execute(ConsoleCommandVariableAttribute.Vo[] objs);
+        object Execute(ConsoleCommandVariableAttribute.Vo[] objs);
     }
 }
