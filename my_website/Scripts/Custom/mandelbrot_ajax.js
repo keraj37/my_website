@@ -14,10 +14,7 @@
                 $('#console-input').val(response.fillInput);
             }
             $('#console-input').focus();
-            $('#mb_img' + imgNum).attr('src', 'data:image/png;base64,' + response.image);
-            if (imgNum == "01") {
-                $('#mb_last_cmd').html();
-            }
+            if (response.image != null) $('#mb_img' + imgNum).attr('src', 'data:image/png;base64,' + response.image);
         },
         failure: function (response) {
             alert("Sorry, something went wrong");
