@@ -12,7 +12,7 @@ using my_website.Controllers.Console.Commands.Attributes;
 namespace my_website.Controllers.MandelbrotSet.Solution01
 {
     /* Original project: https://www.codeproject.com/Articles/1177443/Mandelbrot-Set-With-Csharp
-     * "This program has been made by Joseph Dillon.Created between July 2016-March 2017"
+     * "This program has been made by Joseph Dillon. Created between July 2016-March 2017"
      * Modified/ported by Jerry Switalski from WinForms to ASP.NET.
      */
 
@@ -30,18 +30,18 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
         private double xMin = -2.0;
         private double xMax = 2.0;
         private int kMax = 50;
-        private int numColours = 256;
+        private int numColours = 1024;
         private int zoomScale = 7;
 
         private ColourTable colourTable = null;
-
+        
         public byte[] GetImage(ConsoleCommandVariableAttribute.Vo[] objs)
         {
             int width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, zoomScaleParam = DEFAULT_ZOOM, kMaxParam = DEFAULT_K, xyPixelStepParam = DEFAULT_STEP;
 
-            for(int i = 0; i < objs.Length; i++)
+            for (int i = 0; i < objs.Length; i++)
             {
-                switch(i)
+                switch (i)
                 {
                     case 0: width = objs[i].IntValue ?? DEFAULT_WIDTH; break;
                     case 1: height = objs[i].IntValue ?? DEFAULT_HEIGHT; break;
@@ -55,14 +55,15 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
                 }
             }
 
-            Bitmap bmp = new Bitmap(width, height);           
+            Bitmap bmp = new Bitmap(width, height);
+            MakeBlack(bmp);
 
             kMax = kMaxParam;
             numColours = kMax;
 
-            if ((colourTable == null) || (kMax != colourTable.kMax) || (numColours != colourTable.nColour))
+            if (colourTable == null)
             {
-                colourTable = new ColourTable(numColours, kMax);
+                colourTable = new ColourTable(numColours);
             }
 
             zoomScale = zoomScaleParam;
@@ -92,8 +93,8 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
                     int k = 0;
                     do
                     {
-                        zk = zk.doCmplxSqPlusConst(c);
-                        modulusSquared = zk.doMoulusSq();
+                        zk = zk.DoCmplxSqPlusConst(c);
+                        modulusSquared = zk.DoModulusSq();
                         k++;
                     }
                     while ((modulusSquared <= 4.0) && (k < kMax));
@@ -144,6 +145,17 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
             }
 
             return bytes;
+        }
+
+        private static void MakeBlack(Bitmap bmp)
+        {
+            for(int x = 0; x < bmp.Width; x++)
+            {
+                for (int y = 0; y < bmp.Height; y++)
+                {
+                    bmp.SetPixel(x, y, Color.Black);
+                }
+            }
         }
 
         private static Color ColorFromHSLA(double H, double S, double L)
@@ -222,23 +234,20 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
 
         private class ColourTable
         {
-            public int kMax;
             public int nColour;
-            private double scale;
             private Color[] colourTable;
 
-            public ColourTable(int n, int kMax)
+            public ColourTable(int n)
             {
                 nColour = n;
-                this.kMax = kMax;
-                scale = ((double)nColour) / kMax;
                 colourTable = new Color[nColour];
 
                 for (int i = 0; i < nColour; i++)
                 {
-                    double colourIndex = ((double)i) / nColour;
-                    double hue = Math.Pow(colourIndex, 0.25);
-                    colourTable[i] = ColorFromHSLA(hue, 0.9, 0.6);
+                    double colourIndex = ((double)i) / (double)nColour;
+                    double hue = Math.Pow(colourIndex, 0.15);
+
+                    colourTable[i] = ColorFromHSLA(hue, 0.8, 0.52);
                 }
             }
 

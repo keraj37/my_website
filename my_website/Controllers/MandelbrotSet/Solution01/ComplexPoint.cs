@@ -17,17 +17,17 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
             this.y = y;
         }
 
-        public double doModulus()
+        public double DoModulus()
         {
             return Math.Sqrt(x * x + y * y);
         }
 
-        public double doMoulusSq()
+        public double DoModulusSq()
         {
             return x * x + y * y;
         }
 
-        public ComplexPoint doCmplxSq()
+        public ComplexPoint DoCmplxSq()
         {
             ComplexPoint result = new ComplexPoint(0, 0);
             result.x = x * x - y * y;
@@ -36,7 +36,7 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
             return result;
         }
 
-        public ComplexPoint doCmplxAdd(ComplexPoint arg)
+        public ComplexPoint DoCmplxAdd(ComplexPoint arg)
         {
             x += arg.x;
             y += arg.y;
@@ -44,7 +44,7 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
             return this;
         }
 
-        public ComplexPoint doCmplxSqPlusConst(ComplexPoint arg)
+        public ComplexPoint DoCmplxSqPlusConst(ComplexPoint arg)
         {
             ComplexPoint result = new ComplexPoint(0, 0);
             result.x = x * x - y * y;
