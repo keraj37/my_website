@@ -9,11 +9,6 @@ namespace my_website.Controllers.MandelbrotSet.MovieMaker
 {
     public class MovieMaker
     {
-        public void Start()
-        {
-            CreateMovie();
-        }
-
         public Bitmap ToBitmap(byte[] byteArrayIn)
         {
             var ms = new System.IO.MemoryStream(byteArrayIn);
@@ -35,30 +30,21 @@ namespace my_website.Controllers.MandelbrotSet.MovieMaker
             return reduced;
         }
 
-        private void CreateMovie()
+        public static void CreateMovie(Bitmap[] frames, int width, int height, int frameRate = 24)
         {
-            int width = 320;
-            int height = 240;
-            var framRate = 200;
-
-            var query = from d in container.ImageSet
-                        where d.Date >= startDate && d.Date <= endDate
-                        select d;
-
             using (var vFWriter = new VideoFileWriter())
             {
-                vFWriter.Open("nameOfMyVideoFile.avi", width, height, framRate, VideoCodec.Raw);
+                vFWriter.Open("mb.avi", width, height, frameRate, VideoCodec.Raw);
 
-                var imageEntities = query.ToList();
-
-                foreach (var imageEntity in imageEntities)
+                foreach (var bmp in frames)
                 {
-                    var imageByteArray = imageEntity.Data;
-                    var bmp = ToBitmap(imageByteArray);
-                    var bmpReduced = ReduceBitmap(bmp, width, height);
+                    //var imageByteArray = imageEntity.Data;
+                    //var bmp = ToBitmap(imageByteArray);
+                    //var bmpReduced = ReduceBitmap(bmp, width, height);
 
-                    vFWriter.WriteVideoFrame(bmpReduced);
+                    vFWriter.WriteVideoFrame(bmp);
                 }
+
                 vFWriter.Close();
             }
         }
