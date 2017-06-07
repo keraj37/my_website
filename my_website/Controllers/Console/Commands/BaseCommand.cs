@@ -24,11 +24,11 @@ namespace my_website.Controllers.Console.Commands
             return new ConsoleReturnVo("Command message: ");
         }
 
-        protected ConsoleCommandVariableAttribute.Vo[] GetAllValuesInOrder(string[] cmds)
+        protected ConsoleCommandVariableAttribute.Values GetAllValuesInOrder(string[] cmds)
         {
             var allVariables = this.GetType().GetCustomAttributes<ConsoleCommandVariableAttribute>().OrderBy(x => x.Order);
             var cmdsDic = GetDictionary(cmds);
-            ConsoleCommandVariableAttribute.Vo[] result = allVariables.Select(x => x.GetValue(cmdsDic.FirstOrDefault(y => x.KeyName == y.Key).Value)).ToArray<ConsoleCommandVariableAttribute.Vo>();
+            ConsoleCommandVariableAttribute.Values result = new ConsoleCommandVariableAttribute.Values(allVariables.ToDictionary(x => x.KeyName, x => x.GetValue(cmdsDic.FirstOrDefault(y => x.KeyName == y.Key).Value)));
             return result;
         }
 

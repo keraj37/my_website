@@ -14,7 +14,7 @@ namespace my_website.Controllers.MandelbrotSet
 {
     public class MandelbrotSetManager : IConsoleCommandStrategy
     {
-        public object Execute(ConsoleCommandVariableAttribute.Vo[] objs)
+        public object Execute(ConsoleCommandVariableAttribute.Values objs)
         { 
             string bmpBase64 = Convert.ToBase64String(new Mandelbrot().GetImage(objs));
             FractalImage img = new FractalImage();

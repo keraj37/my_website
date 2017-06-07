@@ -9,6 +9,6 @@ namespace my_website.Controllers.Console.Commands.Interfaces
 {
     public interface IConsoleCommandStrategy
     {
-        object Execute(ConsoleCommandVariableAttribute.Vo[] objs);
+        object Execute(ConsoleCommandVariableAttribute.Values objs);
     }
 }

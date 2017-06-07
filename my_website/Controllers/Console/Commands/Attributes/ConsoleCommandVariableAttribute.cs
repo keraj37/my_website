@@ -18,12 +18,12 @@ namespace my_website.Controllers.Console.Commands.Attributes
 
         public struct Vo
         {
-            public int? IntValue { get; set; }
-            public float? FloatValue { get; set; }
-            public bool? BoolValue { get; set; }
+            public int IntValue { get; set; }
+            public float FloatValue { get; set; }
+            public bool BoolValue { get; set; }
             public string StringValue { get; set; }
 
-            public Vo(int? intValue = null, float? floatValue = null, bool? boolValue = null, string stringValue = null)
+            public Vo(int intValue = default(int), float floatValue = default(float), bool boolValue = default(bool), string stringValue = null)
             {
                 IntValue = intValue;
                 FloatValue = floatValue;
@@ -32,9 +32,29 @@ namespace my_website.Controllers.Console.Commands.Attributes
             }
         }
 
+        public class Values
+        {
+            private Dictionary<string, Vo> Dic { get; set; }
+            public Values(Dictionary<string, Vo> dic)
+            {
+                Dic = dic;
+            }
+
+            public Vo GetValue(string name)
+            {
+                if(Dic.ContainsKey(name))
+                {
+                    return Dic[name];
+                }
+
+                return new Vo();
+            }
+        }
+
         public byte Order { get; set; }
         public string KeyName { get; set; }
         public CommandValueType Type { get; set; }
+        public object DefaultValue { get; set; }
 
         public Vo GetValue(string value)
         {
@@ -46,28 +66,40 @@ namespace my_website.Controllers.Console.Commands.Attributes
                     {
                         return new Vo(intValue: i);
                     }
-                    break;
+                    else
+                    {
+                        return new Vo(intValue: (int)DefaultValue);
+                    }
                 case CommandValueType.FLOAT:
                     float f = default(float);
                     if (float.TryParse(value, out f))
                     {
                         return new Vo(floatValue: f);
                     }
-                    break;
+                    else
+                    {
+                        return new Vo(floatValue: (float)DefaultValue);
+                    }
                 case CommandValueType.BOOL:
                     bool b = default(bool);
                     if (bool.TryParse(value, out b))
                     {
                         return new Vo(boolValue: b);
                     }
-                    break;
+                    else
+                    {
+                        return new Vo(boolValue: (bool)DefaultValue);
+                    }
                 case CommandValueType.STRING:
                     string s = null;
                     if (!string.IsNullOrEmpty(s))
                     {
                         return new Vo(stringValue: s);
                     }
-                    break;
+                    else
+                    {
+                        return new Vo(stringValue: (string)DefaultValue);
+                    }
             }
 
             return new Vo();
