@@ -68,10 +68,24 @@ h2 {
     animation-duration: 0.9s;
 }
 
-.myentry:hover {
-    transform: scale(1.04);
-    background-color: rgba(00, 00, 00, 0.89);
+    .myentry:hover {
+        transform: scale(1.04);
+        background-color: rgba(00, 00, 00, 0.89);
+    }
+
+.threejscanvas {
+    margin: 3px;
+    padding: 28px;
+    border: 3px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.59);
+    border-radius: 10px;
+    background-color: rgba(00, 00, 00, 1);
 }
+
+    .threejscanvas:hover {
+        transform: scale(1.1);
+    }
 
 .randomsize {
 }
@@ -89,10 +103,10 @@ h2 {
     animation-duration: 0.9s;
 }
 
-.myblog:hover {
-    transform: scale(1.015);
-    background-color: rgba(00, 00, 00, 0.91);
-}
+    .myblog:hover {
+        transform: scale(1.015);
+        background-color: rgba(00, 00, 00, 0.91);
+    }
 
 @keyframes myentryanim {
     from {
@@ -127,6 +141,7 @@ h2 {
     color: chartreuse;
     width: 100%;
 }
+
 .console-output {
     height: 350px;
     overflow-y: auto;
