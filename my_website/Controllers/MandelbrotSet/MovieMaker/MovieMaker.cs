@@ -1,5 +1,4 @@
-﻿using AForge.Video.FFMPEG;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -32,21 +31,6 @@ namespace my_website.Controllers.MandelbrotSet.MovieMaker
 
         public static void CreateMovie(Bitmap[] frames, int width, int height, int frameRate = 24)
         {
-            using (var vFWriter = new VideoFileWriter())
-            {
-                vFWriter.Open("mb.avi", width, height, frameRate, VideoCodec.Raw);
-
-                foreach (var bmp in frames)
-                {
-                    //var imageByteArray = imageEntity.Data;
-                    //var bmp = ToBitmap(imageByteArray);
-                    //var bmpReduced = ReduceBitmap(bmp, width, height);
-
-                    vFWriter.WriteVideoFrame(bmp);
-                }
-
-                vFWriter.Close();
-            }
         }
     }
 }
