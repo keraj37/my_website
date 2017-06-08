@@ -31,6 +31,20 @@ namespace my_website.Controllers.MandelbrotSet.MovieMaker
 
         public static void CreateMovie(Bitmap[] frames, int width, int height, int frameRate = 24)
         {
+            /*
+            Bitmap bitmap = frames[0];
+            AviManager aviManager =
+                new AviManager(@"test.avi", false);
+            VideoStream aviStream = aviManager.AddVideoStream(true, frameRate, bitmap);
+
+            foreach (Bitmap bmp in frames)
+            {
+                aviStream.AddFrame(bmp);
+                bitmap.Dispose();
+            }
+
+            aviManager.Close();
+            */
         }
     }
 }
