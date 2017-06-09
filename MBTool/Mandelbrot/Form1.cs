@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using my_website.Controllers.MandelbrotSet.MovieMaker;
 
 namespace Mandelbrot
 {
@@ -33,6 +34,17 @@ namespace Mandelbrot
             textBox9.Text = "100";
         }
 
+        private int GetLinearSum(int n)
+        {
+            int result = 0;
+            for(int i = 1; i <= n; i++)
+            {
+                result += i;
+            }
+
+            return result;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             float minX = float.Parse(textBox1.Text);
@@ -49,21 +61,41 @@ namespace Mandelbrot
 
             int frames = int.Parse(textBox9.Text);
 
-            float toAddminX = (tominX - minX) / (float)frames;
-            float toAddminY = (tominY - minY) / (float)frames;
-            float toAddmaxX = (tomaxX - maxX) / (float)frames;
-            float toAddmaxY = (tomaxY - maxY) / (float)frames;
+            float linearSum = GetLinearSum(frames);
 
-            textBox10.Text = "toAddminX: " + toAddminX + "toAddminY: " + toAddminY + "toAddmaxX: " + toAddmaxX + "toAddmaxY: " + toAddmaxY;
+            float xMinParticle = ((float)(tominX - minX) / linearSum);
+            float xMaxParticle = ((float)(tomaxX - maxX) / linearSum);
+            float yMinParticle = ((float)(tominY - minY) / linearSum);
+            float yMaxParticle = ((float)(tomaxY - maxY) / linearSum);
 
-            for (int i = 0; i < frames; i++)
+            //textBox10.Text = "toAddminX: " + toAddminX + "toAddminY: " + toAddminY + "toAddmaxX: " + toAddmaxX + "toAddmaxY: " + toAddmaxY;
+
+            int linearSumOFrames = GetLinearSum(frames);
+
+            using (MemoryStream msGif = new MemoryStream())
             {
-                mb.GetImage(minX, maxY, minY, maxY).Save(i.ToString() + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                GifWriter gifWriter = new GifWriter(msGif, 50, -1);
 
-                minX += toAddminX;
-                minY += toAddminY;
-                maxX += toAddmaxX;
-                maxY += toAddmaxY;
+                for (int i = 0; i < frames; i++)
+                {
+                    using (MemoryStream msImage = new MemoryStream())
+                    {
+                        mb.GetImage(minX, maxY, minY, maxY).Save(msImage, System.Drawing.Imaging.ImageFormat.Png);
+                        gifWriter.WriteFrame(Image.FromStream(msImage));
+                    }
+
+                    float toAddminX = xMinParticle * (float)(frames - i);
+                    float toAddmaxX = xMaxParticle * (float)(frames - i);
+                    float toAddminY = yMinParticle * (float)(frames - i);
+                    float toAddmaxY = yMaxParticle * (float)(frames - i);
+
+                    minX += toAddminX;
+                    minY += toAddminY;
+                    maxX += toAddmaxX;
+                    maxY += toAddmaxY;
+                }
+
+                File.WriteAllBytes("test.gif", msGif.GetBuffer());
             }
         }
 
@@ -78,6 +110,11 @@ namespace Mandelbrot
             MemoryStream ms = new MemoryStream();
             mb.GetImage(minX, maxY, minY, maxY).Save(ms, System.Drawing.Imaging.ImageFormat.Png);
             pictureBox1.Image = Image.FromStream(ms);
+
+            MemoryStream msGif = new MemoryStream();
+            GifWriter gifWriter = new GifWriter(msGif, 500, -1);
+            gifWriter.WriteFrame(Image.FromStream(ms));
+
             ms.Dispose();
         }
     }

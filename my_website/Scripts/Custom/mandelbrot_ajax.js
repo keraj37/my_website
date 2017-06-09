@@ -1,4 +1,4 @@
-﻿function send(tabPressed, cmd = null, imgNum = "01") {
+﻿function send(tabPressed, cmd = null) {
     url = "/Projects/MandelbrotSet";
     if (tabPressed)
         url += "?tab=true";
@@ -14,7 +14,7 @@
                 $('#console-input').val(response.fillInput);
             }
             $('#console-input').focus();
-            if (response.image != null) $('#mb_img' + imgNum).attr('src', 'data:image/png;base64,' + response.image);
+            if (response.image != null) $('#mb_img01').attr('src', 'data:image/png;base64,' + response.image);
         },
         failure: function (response) {
             alert("Sorry, something went wrong");

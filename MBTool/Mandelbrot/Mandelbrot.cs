@@ -35,8 +35,8 @@ namespace Mandelbrot
         public Bitmap GetImage(float xMinParam, float xMaxParam, float yMinParam, float yMaxParam)
         {
             // mb ymin - 0.6 ymax - 0.5 xmin - 0.6 xmax - 0.5 k 400 colpow 0.5 colshift - 10 colshift2 500
-            int width = 700;
-            int height = 700;
+            int width = 500;
+            int height = 500;
             zoomScale = 7;
             kMax = 250;
             int xyPixelStep = 1;

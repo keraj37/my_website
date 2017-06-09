@@ -7,6 +7,7 @@
 <div class="myentry">
     <h2>This mathemathical beauty is a fingerprint of God</h2>
     <p>Use console input below image to modify view of it. In example: "mb ymin -0.6 ymax -0.5 xmin -0.6 xmax -0.5 k 400".</p>
+    <img src="/Imgs/Mandelbrot/sample.gif" />
 </div>
 <div class="console">
     <img id="mb_img01" src="/Imgs/loading.gif" />
@@ -20,23 +21,12 @@
     </section>
     <img id="loadingimage" style="display:none; position: absolute; top:30%; left:50%; margin-top:-33px; margin-left:-33px;" src="/Imgs/loading.gif" />
 </div>
-<br />
-<div class="myentry">
-    <p>Example 1: <span style="color:chartreuse">mb ymin -0.6 ymax -0.5 xmin -0.6 xmax -0.5 k 400</span></p>
-    <img id="mb_img02" src="/Imgs/loading.gif" />
-</div>
-<div class="myentry">
-    <p>Example 2: <span style="color:chartreuse">mb ymin -0.53 ymax -0.52 xmin -0.53 xmax -0.52 k 590 colpow 0.5 colshift -40</span></p>
-    <img id="mb_img03" src="/Imgs/loading.gif" />
-</div>
 
 @section Scripts
 {
     @Scripts.Render("~/bundles/mandelbrot_ajax")
 
     <script>
-        send(false, "mb width 700 height 700 zoom 1 step 1 k 50 xmin -2 xmax 2 ymin -2 ymax 2", "01");
-        send(false, "mb ymin -0.6 ymax -0.5 xmin -0.6 xmax -0.5 k 400", "02");
-        send(false, "mb ymin -0.53 ymax -0.52 xmin -0.53 xmax -0.52 k 590 colpow 0.5 colshift -40", "03");
+        send(false, "mb width 700 height 700 zoom 1 step 1 k 50 xmin -2 xmax 2 ymin -2 ymax 2");
     </script>
 }

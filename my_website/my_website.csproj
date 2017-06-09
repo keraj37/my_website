@@ -200,6 +200,7 @@
     <Compile Include="Controllers\Console\Commands\HelpCommand.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MandelbrotSet\MandelbrotSetManager.cs" />
+    <Compile Include="Controllers\MandelbrotSet\MovieMaker\GifWriter.cs" />
     <Compile Include="Controllers\MandelbrotSet\MovieMaker\MovieMaker.cs" />
     <Compile Include="Controllers\MandelbrotSet\Solution01\ComplexPoint.cs" />
     <Compile Include="Controllers\MandelbrotSet\Solution01\Mandelbrot.cs" />
@@ -250,6 +251,7 @@
     <Content Include="Imgs\Blog\general_michael.png" />
     <Content Include="Imgs\Blog\templar.png" />
     <Content Include="Imgs\loading.gif" />
+    <Content Include="Imgs\Mandelbrot\sample.gif" />
     <Content Include="logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

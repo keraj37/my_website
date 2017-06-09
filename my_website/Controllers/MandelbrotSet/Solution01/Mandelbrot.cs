@@ -137,8 +137,6 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
                 bytes = memoryStream.GetBuffer();
             }
 
-            MovieMaker.MovieMaker.CreateMovie(new Bitmap[] { bmp, bmp, bmp, bmp, bmp, bmp, bmp, bmp, bmp, bmp }, width, height, 24);
-
             return bytes;
         }
 
