@@ -22,16 +22,22 @@ namespace Mandelbrot
             mb = new Mandelbrot();
             InitializeComponent();
 
-            textBox1.Text = "-2";
-            textBox2.Text = "-2";
-            textBox3.Text = "2";
-            textBox4.Text = "2";
+            textBox1.Text = "-0.6";
+            textBox2.Text = "-0.6";
+            textBox3.Text = "-0.5";
+            textBox4.Text = "-0.5";
 
             textBox8.Text = "-0.53";
             textBox7.Text = "-0.53";
             textBox6.Text = "-0.52";
             textBox5.Text = "-0.52";
             textBox9.Text = "100";
+
+            textBox11.Text = "250";
+            textBox12.Text = "3";
+
+            textBox13.Text = "41";
+            textBox14.Text = "230";
         }
 
         private int GetLinearSum(int n)
@@ -72,6 +78,12 @@ namespace Mandelbrot
 
             int linearSumOFrames = GetLinearSum(frames);
 
+            int k = int.Parse(textBox11.Text);
+            float power = float.Parse(textBox12.Text);
+
+            int startHue = int.Parse(textBox13.Text);
+            int endHue = int.Parse(textBox14.Text);
+
             using (MemoryStream msGif = new MemoryStream())
             {
                 GifWriter gifWriter = new GifWriter(msGif, 50, -1);
@@ -80,7 +92,7 @@ namespace Mandelbrot
                 {
                     using (MemoryStream msImage = new MemoryStream())
                     {
-                        mb.GetImage(minX, maxY, minY, maxY).Save(msImage, System.Drawing.Imaging.ImageFormat.Png);
+                        mb.GetImage(minX, maxY, minY, maxY, k, power, startHue, endHue).Save(msImage, System.Drawing.Imaging.ImageFormat.Png);
                         gifWriter.WriteFrame(Image.FromStream(msImage));
                     }
 
@@ -107,15 +119,15 @@ namespace Mandelbrot
             float maxX = float.Parse(textBox3.Text);
             float maxY = float.Parse(textBox4.Text);
 
+            int k = int.Parse(textBox11.Text);
+            float power = float.Parse(textBox12.Text);
+
+            int startHue = int.Parse(textBox13.Text);
+            int endHue = int.Parse(textBox14.Text);
+
             MemoryStream ms = new MemoryStream();
-            mb.GetImage(minX, maxY, minY, maxY).Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            mb.GetImage(minX, maxY, minY, maxY, k, power, startHue, endHue).Save(ms, System.Drawing.Imaging.ImageFormat.Png);
             pictureBox1.Image = Image.FromStream(ms);
-
-            MemoryStream msGif = new MemoryStream();
-            GifWriter gifWriter = new GifWriter(msGif, 500, -1);
-            gifWriter.WriteFrame(Image.FromStream(ms));
-
-            ms.Dispose();
         }
     }
 }

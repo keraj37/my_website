@@ -18,10 +18,10 @@ namespace Mandelbrot
     public class Mandelbrot
     {
         private ScreenPixelManage myPixelManager;
-        private double yMin = -2.0;
-        private double yMax = 2.0;
-        private double xMin = -2.0;
-        private double xMax = 2.0;
+        private double yMin = -0.6;
+        private double yMax = -0.5;
+        private double xMin = -0.6;
+        private double xMax = -0.5;
         private int kMax = 50;
         private int numColours = 1024;
         private int zoomScale = 7;
@@ -32,30 +32,24 @@ namespace Mandelbrot
 
         private ColourTable colourTable = null;
 
-        public Bitmap GetImage(float xMinParam, float xMaxParam, float yMinParam, float yMaxParam)
+        public Bitmap GetImage(float xMinParam, float xMaxParam, float yMinParam, float yMaxParam, int kParam, float power, int startHue, int endHue)
         {
             // mb ymin - 0.6 ymax - 0.5 xmin - 0.6 xmax - 0.5 k 400 colpow 0.5 colshift - 10 colshift2 500
             int width = 500;
             int height = 500;
             zoomScale = 7;
-            kMax = 250;
+            kMax = kParam;
             int xyPixelStep = 1;
             yMin = yMinParam;
             yMax = yMaxParam;
             xMin = xMinParam;
             xMax = xMaxParam;
-            colpow = 0.15f;
-            colhue = 0.8f;
-            collight = 0.5f;
 
             Bitmap bmp = new Bitmap(width, height);
 
             numColours = kMax;
 
-            if (colourTable == null)
-            {
-                colourTable = new ColourTable(numColours, colpow, colhue, collight, 0, 0, 0, 0);
-            }
+            colourTable = new ColourTable(numColours, power, startHue, endHue);
 
             int kLast = -1;
             double modulusSquared;
@@ -66,7 +60,6 @@ namespace Mandelbrot
             ComplexPoint screenTopRight = new ComplexPoint(xMaxParam, yMaxParam);
 
             myPixelManager = new ScreenPixelManage(bmp, screenBottomLeft, screenTopRight);
-
             
             ComplexPoint pixelStep = new ComplexPoint(xyPixelStep, xyPixelStep);
             ComplexPoint xyStep = myPixelManager.GetDeltaMathsCoord(pixelStep);
@@ -211,17 +204,25 @@ namespace Mandelbrot
             public int nColour;
             private Color[] colourTable;
 
-            public ColourTable(int n, float colpow, float colhue, float collight, int colshift, int colshift2, float colneg, float colshiftconst)
+            public ColourTable(int n, float colpow, float startHue, float endHue)
             {
                 nColour = n;
                 colourTable = new Color[nColour + 1];
 
-                for (int i = colshift; i <= nColour + colshift; i++)
+                for (int i = 0; i <= nColour; i++)
                 {
-                    double colourIndex = Math.Abs(colneg - (((double)i) / (double)(nColour + colshift2)));
-                    double hue = Math.Pow(colshiftconst + colourIndex, colpow);
+                    double diff = endHue - startHue;
+                    double perc = diff / 360d; 
 
-                    colourTable[i - colshift] = ColorFromHSLA(hue, colhue, collight);
+                    double colourIndex = (((double)i) / (double)nColour);
+                    double hue = colourIndex * perc;
+
+                    double x = (double)i / (double)nColour;
+                    double y = Math.Pow(x, colpow);
+
+                    hue *= y;
+
+                    colourTable[nColour - i] = ColorFromHSLA((startHue / 360d) + hue, 0.888f, 0.55f);
                 }
             }
 
