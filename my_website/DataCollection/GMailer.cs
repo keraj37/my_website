@@ -9,6 +9,8 @@ namespace my_website.DataCollection
 {
     public class GMailer
     {
+        public const string MY_EMAIL = "jerry.switalski@gmail.com";
+
         public static string GmailUsername { get; set; }
         public static string GmailPassword { get; set; }
         public static string GmailHost { get; set; }

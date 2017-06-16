@@ -11,14 +11,13 @@ namespace my_website.DataCollection
     public class DataCollection
     {
         private static GMailer mailer;
-        private static ApplicationDbContext db = new ApplicationDbContext();
-        private const string MY_EMAIL = "jerry.switalski@gmail.com";
+        private static ApplicationDbContext db = new ApplicationDbContext();       
 
         static DataCollection()
         {
             mailer = new GMailer();
-            mailer.ToEmail = MY_EMAIL;
-            GMailer.GmailUsername = MY_EMAIL;
+            mailer.ToEmail = GMailer.MY_EMAIL;
+            GMailer.GmailUsername = GMailer.MY_EMAIL;
             GMailer.GmailPassword = ConfigurationManager.AppSettings[@"gmailPass"];
         }
 
