@@ -18,25 +18,23 @@ namespace Mandelbrot
     public class Mandelbrot
     {
         private ScreenPixelManage myPixelManager;
-        private double yMin = -0.6;
-        private double yMax = -0.5;
-        private double xMin = -0.6;
-        private double xMax = -0.5;
+        private double yMin = -0.53;
+        private double yMax = -0.53;
+        private double xMin = -0.52;
+        private double xMax = -0.52;
         private int kMax = 50;
         private int numColours = 1024;
         private int zoomScale = 7;
 
-        private float colpow = 0.15f;
-        private float colhue = 0.8f;
-        private float collight = 0.52f;
+        private double colpow = 0.15f;
+        private double colhue = 0.8f;
+        private double collight = 0.52f;
 
         private ColourTable colourTable = null;
 
-        public Bitmap GetImage(float xMinParam, float xMaxParam, float yMinParam, float yMaxParam, int kParam, float power, int startHue, int endHue)
+        public Bitmap GetImage(int width, int height, double xMinParam, double xMaxParam, double yMinParam, double yMaxParam, int kParam, double power, int startHue, int endHue, double power2, float light)
         {
             // mb ymin - 0.6 ymax - 0.5 xmin - 0.6 xmax - 0.5 k 400 colpow 0.5 colshift - 10 colshift2 500
-            int width = 500;
-            int height = 500;
             zoomScale = 7;
             kMax = kParam;
             int xyPixelStep = 1;
@@ -49,7 +47,7 @@ namespace Mandelbrot
 
             numColours = kMax;
 
-            colourTable = new ColourTable(numColours, power, startHue, endHue);
+            colourTable = new ColourTable(numColours, power, power2, startHue, endHue, light);
 
             int kLast = -1;
             double modulusSquared;
@@ -204,7 +202,7 @@ namespace Mandelbrot
             public int nColour;
             private Color[] colourTable;
 
-            public ColourTable(int n, float colpow, float startHue, float endHue)
+            public ColourTable(int n, double colpow, double colpow2, double startHue, double endHue, float light)
             {
                 nColour = n;
                 colourTable = new Color[nColour + 1];
@@ -222,7 +220,7 @@ namespace Mandelbrot
 
                     hue *= y;
 
-                    colourTable[nColour - i] = ColorFromHSLA((startHue / 360d) + hue, 0.888f, 0.55f);
+                    colourTable[nColour - i] = ColorFromHSLA((startHue / 360d) + hue, light, -(Math.Pow(x, colpow2)) + 1f);
                 }
             }
 

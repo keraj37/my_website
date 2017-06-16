@@ -12,6 +12,7 @@ namespace my_website.Controllers.Console.Commands.Attributes
         {
             INT,
             FLOAT,
+            DOUBLE,
             BOOL,
             STRING
         }
@@ -22,13 +23,15 @@ namespace my_website.Controllers.Console.Commands.Attributes
             public float FloatValue { get; set; }
             public bool BoolValue { get; set; }
             public string StringValue { get; set; }
+            public double DoubleValue { get; set; }
 
-            public Vo(int intValue = default(int), float floatValue = default(float), bool boolValue = default(bool), string stringValue = null)
+            public Vo(int intValue = default(int), float floatValue = default(float), bool boolValue = default(bool), string stringValue = null, double doubleValue = default(double))
             {
                 IntValue = intValue;
                 FloatValue = floatValue;
                 BoolValue = boolValue;
                 StringValue = stringValue;
+                DoubleValue = doubleValue;
             }
         }
 
@@ -78,6 +81,16 @@ namespace my_website.Controllers.Console.Commands.Attributes
                     else
                     {
                         return new Vo(floatValue: (float)DefaultValue);
+                    }
+                case CommandValueType.DOUBLE:
+                    double d = default(double);
+                    if (double.TryParse(value, out d))
+                    {
+                        return new Vo(doubleValue: d);
+                    }
+                    else
+                    {
+                        return new Vo(doubleValue: (double)DefaultValue);
                     }
                 case CommandValueType.BOOL:
                     bool b = default(bool);

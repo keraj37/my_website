@@ -22,15 +22,15 @@ namespace Mandelbrot
             mb = new Mandelbrot();
             InitializeComponent();
 
-            textBox1.Text = "-0.6";
-            textBox2.Text = "-0.6";
-            textBox3.Text = "-0.5";
-            textBox4.Text = "-0.5";
+            textBox1.Text = "-0.53";
+            textBox2.Text = "-0.53";
+            textBox3.Text = "-0.52";
+            textBox4.Text = "-0.52";
 
-            textBox8.Text = "-0.53";
-            textBox7.Text = "-0.53";
-            textBox6.Text = "-0.52";
-            textBox5.Text = "-0.52";
+            textBox8.Text = "-0.523";
+            textBox7.Text = "-0.523";
+            textBox6.Text = "-0.522";
+            textBox5.Text = "-0.522";
             textBox9.Text = "100";
 
             textBox11.Text = "250";
@@ -38,6 +38,12 @@ namespace Mandelbrot
 
             textBox13.Text = "41";
             textBox14.Text = "230";
+
+            textBox15.Text = "4";
+            textBox16.Text = "0.9";
+
+            textBox17.Text = "700";
+            textBox18.Text = "700";
         }
 
         private int GetLinearSum(int n)
@@ -53,36 +59,41 @@ namespace Mandelbrot
 
         private void button1_Click(object sender, EventArgs e)
         {
-            float minX = float.Parse(textBox1.Text);
-            float minY = float.Parse(textBox2.Text);
+            double minX = double.Parse(textBox1.Text);
+            double minY = double.Parse(textBox2.Text);
 
-            float maxX = float.Parse(textBox3.Text);
-            float maxY = float.Parse(textBox4.Text);
+            double maxX = double.Parse(textBox3.Text);
+            double maxY = double.Parse(textBox4.Text);
 
-            float tomaxY = float.Parse(textBox5.Text);
-            float tomaxX = float.Parse(textBox6.Text);
+            double tomaxY = double.Parse(textBox5.Text);
+            double tomaxX = double.Parse(textBox6.Text);
 
-            float tominY = float.Parse(textBox7.Text);
-            float tominX = float.Parse(textBox8.Text);
+            double tominY = double.Parse(textBox7.Text);
+            double tominX = double.Parse(textBox8.Text);
 
             int frames = int.Parse(textBox9.Text);
 
-            float linearSum = GetLinearSum(frames);
+            double linearSum = GetLinearSum(frames);
 
-            float xMinParticle = ((float)(tominX - minX) / linearSum);
-            float xMaxParticle = ((float)(tomaxX - maxX) / linearSum);
-            float yMinParticle = ((float)(tominY - minY) / linearSum);
-            float yMaxParticle = ((float)(tomaxY - maxY) / linearSum);
+            double xMinParticle = ((double)(tominX - minX) / linearSum);
+            double xMaxParticle = ((double)(tomaxX - maxX) / linearSum);
+            double yMinParticle = ((double)(tominY - minY) / linearSum);
+            double yMaxParticle = ((double)(tomaxY - maxY) / linearSum);
 
             //textBox10.Text = "toAddminX: " + toAddminX + "toAddminY: " + toAddminY + "toAddmaxX: " + toAddmaxX + "toAddmaxY: " + toAddmaxY;
 
             int linearSumOFrames = GetLinearSum(frames);
 
             int k = int.Parse(textBox11.Text);
-            float power = float.Parse(textBox12.Text);
+            double power = double.Parse(textBox12.Text);
+            double power2 = double.Parse(textBox15.Text);
+            float light = float.Parse(textBox16.Text);
 
             int startHue = int.Parse(textBox13.Text);
             int endHue = int.Parse(textBox14.Text);
+
+            int width = int.Parse(textBox17.Text);
+            int height = int.Parse(textBox18.Text);
 
             using (MemoryStream msGif = new MemoryStream())
             {
@@ -92,14 +103,14 @@ namespace Mandelbrot
                 {
                     using (MemoryStream msImage = new MemoryStream())
                     {
-                        mb.GetImage(minX, maxY, minY, maxY, k, power, startHue, endHue).Save(msImage, System.Drawing.Imaging.ImageFormat.Png);
+                        mb.GetImage(width, height, minX, maxY, minY, maxY, k, power, startHue, endHue, power2, light).Save(msImage, System.Drawing.Imaging.ImageFormat.Png);
                         gifWriter.WriteFrame(Image.FromStream(msImage));
                     }
 
-                    float toAddminX = xMinParticle * (float)(frames - i);
-                    float toAddmaxX = xMaxParticle * (float)(frames - i);
-                    float toAddminY = yMinParticle * (float)(frames - i);
-                    float toAddmaxY = yMaxParticle * (float)(frames - i);
+                    double toAddminX = xMinParticle * (double)(frames - i);
+                    double toAddmaxX = xMaxParticle * (double)(frames - i);
+                    double toAddminY = yMinParticle * (double)(frames - i);
+                    double toAddmaxY = yMaxParticle * (double)(frames - i);
 
                     minX += toAddminX;
                     minY += toAddminY;
@@ -113,20 +124,25 @@ namespace Mandelbrot
 
         private void button2_Click(object sender, EventArgs e)
         {
-            float minX = float.Parse(textBox1.Text);
-            float minY = float.Parse(textBox2.Text);
+            double minX = double.Parse(textBox1.Text);
+            double minY = double.Parse(textBox2.Text);
 
-            float maxX = float.Parse(textBox3.Text);
-            float maxY = float.Parse(textBox4.Text);
+            double maxX = double.Parse(textBox3.Text);
+            double maxY = double.Parse(textBox4.Text);
 
             int k = int.Parse(textBox11.Text);
-            float power = float.Parse(textBox12.Text);
+            double power = double.Parse(textBox12.Text);
+            double power2 = double.Parse(textBox15.Text);
+            float light = float.Parse(textBox16.Text);
 
             int startHue = int.Parse(textBox13.Text);
             int endHue = int.Parse(textBox14.Text);
 
+            int width = int.Parse(textBox17.Text);
+            int height = int.Parse(textBox18.Text);
+
             MemoryStream ms = new MemoryStream();
-            mb.GetImage(minX, maxY, minY, maxY, k, power, startHue, endHue).Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            mb.GetImage(width, height, minX, maxY, minY, maxY, k, power, startHue, endHue, power2, light).Save(ms, System.Drawing.Imaging.ImageFormat.Png);
             pictureBox1.Image = Image.FromStream(ms);
         }
     }

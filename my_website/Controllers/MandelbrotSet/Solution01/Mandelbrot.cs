@@ -27,9 +27,9 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
         private int numColours = 1024;
         private int zoomScale = 7;
 
-        private float colpow = 0.15f;
-        private float colhue = 0.8f;
-        private float collight = 0.52f;
+        private double colpow = 0.15f;
+        private double colhue = 0.8f;
+        private double collight = 0.52f;
 
         private ColourTable colourTable = null;
 
@@ -41,10 +41,10 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
             zoomScale = values.GetValue("zoom").IntValue;
             kMax = values.GetValue("k").IntValue;
             int xyPixelStep = values.GetValue("step").IntValue;
-            yMin = values.GetValue("ymin").FloatValue;
-            yMax = values.GetValue("ymax").FloatValue;
-            xMin = values.GetValue("xmin").FloatValue;
-            xMax = values.GetValue("xmax").FloatValue;
+            yMin = values.GetValue("ymin").DoubleValue;
+            yMax = values.GetValue("ymax").DoubleValue;
+            xMin = values.GetValue("xmin").DoubleValue;
+            xMax = values.GetValue("xmax").DoubleValue;
             colpow = values.GetValue("colpow").FloatValue;
             colhue = values.GetValue("colhue").FloatValue;
             collight = values.GetValue("collight").FloatValue;
@@ -219,7 +219,7 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
             public int nColour;
             private Color[] colourTable;
 
-            public ColourTable(int n, float colpow, float colhue, float collight, int colshift, int colshift2, float colneg, float colshiftconst)
+            public ColourTable(int n, double colpow, double colhue, double collight, int colshift, int colshift2, double colneg, double colshiftconst)
             {
                 nColour = n;
                 colourTable = new Color[nColour + 1];

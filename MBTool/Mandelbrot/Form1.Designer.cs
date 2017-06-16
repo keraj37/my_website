@@ -45,6 +45,10 @@
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox14 = new System.Windows.Forms.TextBox();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.textBox18 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -175,11 +179,43 @@
             this.textBox14.Size = new System.Drawing.Size(106, 20);
             this.textBox14.TabIndex = 16;
             // 
+            // textBox15
+            // 
+            this.textBox15.Location = new System.Drawing.Point(766, 264);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(106, 20);
+            this.textBox15.TabIndex = 17;
+            // 
+            // textBox16
+            // 
+            this.textBox16.Location = new System.Drawing.Point(766, 290);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(106, 20);
+            this.textBox16.TabIndex = 18;
+            // 
+            // textBox17
+            // 
+            this.textBox17.Location = new System.Drawing.Point(639, 186);
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(106, 20);
+            this.textBox17.TabIndex = 19;
+            // 
+            // textBox18
+            // 
+            this.textBox18.Location = new System.Drawing.Point(639, 212);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(106, 20);
+            this.textBox18.TabIndex = 20;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(994, 648);
+            this.Controls.Add(this.textBox18);
+            this.Controls.Add(this.textBox17);
+            this.Controls.Add(this.textBox16);
+            this.Controls.Add(this.textBox15);
             this.Controls.Add(this.textBox14);
             this.Controls.Add(this.textBox13);
             this.Controls.Add(this.textBox12);
@@ -224,6 +260,10 @@
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.TextBox textBox18;
     }
 }
 
