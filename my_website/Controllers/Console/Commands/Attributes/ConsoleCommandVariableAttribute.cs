@@ -51,7 +51,6 @@ namespace my_website.Controllers.Console.Commands.Attributes
             }
         }
 
-        public byte Order { get; set; }
         public string KeyName { get; set; }
         public CommandValueType Type { get; set; }
         public object DefaultValue { get; set; }
@@ -91,10 +90,9 @@ namespace my_website.Controllers.Console.Commands.Attributes
                         return new Vo(boolValue: (bool)DefaultValue);
                     }
                 case CommandValueType.STRING:
-                    string s = null;
-                    if (!string.IsNullOrEmpty(s))
+                    if (!string.IsNullOrEmpty(value))
                     {
-                        return new Vo(stringValue: s);
+                        return new Vo(stringValue: value);
                     }
                     else
                     {

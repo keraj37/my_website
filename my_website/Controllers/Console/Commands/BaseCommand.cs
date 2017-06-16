@@ -26,7 +26,7 @@ namespace my_website.Controllers.Console.Commands
 
         protected ConsoleCommandVariableAttribute.Values GetAllValuesInOrder(string[] cmds)
         {
-            var allVariables = this.GetType().GetCustomAttributes<ConsoleCommandVariableAttribute>().OrderBy(x => x.Order);
+            var allVariables = this.GetType().GetCustomAttributes<ConsoleCommandVariableAttribute>();
             var cmdsDic = GetDictionary(cmds);
             ConsoleCommandVariableAttribute.Values result = new ConsoleCommandVariableAttribute.Values(allVariables.ToDictionary(x => x.KeyName, x => x.GetValue(cmdsDic.FirstOrDefault(y => x.KeyName == y.Key).Value)));
             return result;
