@@ -30,7 +30,7 @@
 
 .navbar-custom-md2 {
     color: #ee0000;
-    background-color: rgba(100, 100, 100, 0.45);
+    background-color: rgba(20, 20, 20, 0.85);
 }
 
 .jumbotron {
@@ -144,6 +144,12 @@ h2 {
 
 .console-output {
     height: 350px;
+    overflow-y: auto;
+}
+
+.console-chat-output {
+    max-height: 5000px;
+    min-height: 300px;
     overflow-y: auto;
 }
 

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "MandelbrotSet";
+    ViewBag.Title = "Mandelbrot";
 }
 
 @Html.Partial("_ProjectsPartial")
@@ -27,6 +27,6 @@
     @Scripts.Render("~/bundles/mandelbrot_ajax")
 
     <script>
-        send(false, "mb power 2 power2 0.6 xmin -0.53 xmax -0.52 ymin -0.53 ymax -0.52 light 0.6 k 250");
+        send(false, "mb power 2 power2 0.7 xmin -0.53 xmax -0.52 ymin -0.53 ymax -0.52 light 0.6 k 500");
     </script>
 }

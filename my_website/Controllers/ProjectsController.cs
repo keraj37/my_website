@@ -24,6 +24,12 @@ namespace my_website.Controllers
         }
 
         [HttpGet]
+        public ActionResult Chat()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult MandelbrotSet()
         {
             //FractalImage model = new MandelbrotSet.MandelbrotSet().GetImage();

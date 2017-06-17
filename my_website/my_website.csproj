@@ -52,6 +52,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Controllers\AS3TOCS\AS3TOCS.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -215,6 +221,7 @@
     </Compile>
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Helpers\PaginatedList.cs" />
+    <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Migrations\201704031157451_InitialCreate.cs" />
     <Compile Include="Migrations\201704031157451_InitialCreate.Designer.cs">
       <DependentUpon>201704031157451_InitialCreate.cs</DependentUpon>
@@ -270,6 +277,8 @@
     <Content Include="Scripts\Custom\cookies.js" />
     <Content Include="Scripts\Custom\mandelbrot_ajax.js" />
     <Content Include="Scripts\Custom\console_ajax.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Custom\my_css_and_anims.js" />
@@ -340,6 +349,7 @@
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Home\Arma3.cshtml" />
     <Content Include="Views\Projects\MandelbrotSet.cshtml" />
+    <Content Include="Views\Projects\Chat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

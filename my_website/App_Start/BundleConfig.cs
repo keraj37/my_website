@@ -43,6 +43,9 @@ namespace my_website
             bundles.Add(new ScriptBundle("~/bundles/mandelbrot_ajax").Include(
                         "~/Scripts/Custom/mandelbrot_ajax.js",
                         "~/Scripts/Custom/cookies.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
+                        "~/Scripts/jquery.signalR-{version}.js"));
         }
     }
 }
