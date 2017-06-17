@@ -17,37 +17,20 @@ namespace Mandelbrot
 
     public class Mandelbrot
     {
-        private ScreenPixelManage myPixelManager;
-        private double yMin = -0.53;
-        private double yMax = -0.53;
-        private double xMin = -0.52;
-        private double xMax = -0.52;
-        private int kMax = 50;
-        private int numColours = 1024;
-        private int zoomScale = 7;
-
-        private double colpow = 0.15f;
-        private double colhue = 0.8f;
-        private double collight = 0.52f;
-
-        private ColourTable colourTable = null;
-
         public Bitmap GetImage(int width, int height, double xMinParam, double xMaxParam, double yMinParam, double yMaxParam, int kParam, double power, int startHue, int endHue, double power2, float light)
         {
-            // mb ymin - 0.6 ymax - 0.5 xmin - 0.6 xmax - 0.5 k 400 colpow 0.5 colshift - 10 colshift2 500
-            zoomScale = 7;
-            kMax = kParam;
+            int kMax = kParam;
             int xyPixelStep = 1;
-            yMin = yMinParam;
-            yMax = yMaxParam;
-            xMin = xMinParam;
-            xMax = xMaxParam;
+            double yMin = yMinParam;
+            double yMax = yMaxParam;
+            double xMin = xMinParam;
+            double xMax = xMaxParam;
 
             Bitmap bmp = new Bitmap(width, height);
 
-            numColours = kMax;
+            int numColours = kMax;
 
-            colourTable = new ColourTable(numColours, power, power2, startHue, endHue, light);
+            ColourTable colourTable = new ColourTable(numColours, power, power2, startHue, endHue, light);
 
             int kLast = -1;
             double modulusSquared;
@@ -57,7 +40,7 @@ namespace Mandelbrot
             ComplexPoint screenBottomLeft = new ComplexPoint(xMinParam, yMinParam);
             ComplexPoint screenTopRight = new ComplexPoint(xMaxParam, yMaxParam);
 
-            myPixelManager = new ScreenPixelManage(bmp, screenBottomLeft, screenTopRight);
+            ScreenPixelManage myPixelManager = new ScreenPixelManage(bmp, screenBottomLeft, screenTopRight);
             
             ComplexPoint pixelStep = new ComplexPoint(xyPixelStep, xyPixelStep);
             ComplexPoint xyStep = myPixelManager.GetDeltaMathsCoord(pixelStep);

@@ -16,36 +16,34 @@ namespace Mandelbrot
 {
     public partial class Form1 : Form
     {
-        private Mandelbrot mb = new Mandelbrot();
         private Dictionary<int, Bitmap> framesDic;
 
         public Form1()
         {
-            mb = new Mandelbrot();
             InitializeComponent();
 
-            textBox1.Text = "-0.53";
-            textBox2.Text = "-0.53";
-            textBox3.Text = "-0.52";
-            textBox4.Text = "-0.52";
+            textBox1.Text = "-2";
+            textBox2.Text = "-2";
+            textBox3.Text = "2";
+            textBox4.Text = "2";
 
-            textBox8.Text = "-0.523";
-            textBox7.Text = "-0.523";
-            textBox6.Text = "-0.522";
-            textBox5.Text = "-0.522";
-            textBox9.Text = "100";
+            textBox8.Text = "-1";
+            textBox7.Text = "-1";
+            textBox6.Text = "1";
+            textBox5.Text = "1";
+            textBox9.Text = "7";
 
             textBox11.Text = "250";
-            textBox12.Text = "3";
+            textBox12.Text = "2";
 
             textBox13.Text = "41";
             textBox14.Text = "230";
 
-            textBox15.Text = "4";
-            textBox16.Text = "0.9";
+            textBox15.Text = "0.6";
+            textBox16.Text = "0.6";
 
-            textBox17.Text = "700";
-            textBox18.Text = "700";
+            textBox17.Text = "600";
+            textBox18.Text = "600";
         }
 
         private int GetLinearSum(int n)
@@ -84,13 +82,11 @@ namespace Mandelbrot
             double yMinParticle = ((double)(tominY - minY) / linearSum);
             double yMaxParticle = ((double)(tomaxY - maxY) / linearSum);
 
-            //textBox10.Text = "toAddminX: " + toAddminX + "toAddminY: " + toAddminY + "toAddmaxX: " + toAddmaxX + "toAddmaxY: " + toAddmaxY;
-
             int linearSumOFrames = GetLinearSum(frames);
 
             int k = int.Parse(textBox11.Text);
-            double power = double.Parse(textBox12.Text);
-            double power2 = double.Parse(textBox15.Text);
+            float power = float.Parse(textBox12.Text);
+            float power2 = float.Parse(textBox15.Text);
             float light = float.Parse(textBox16.Text);
 
             int startHue = int.Parse(textBox13.Text);
@@ -105,17 +101,15 @@ namespace Mandelbrot
             for (int i = 0; i < frames; i++)
             {
                 int key = i;
-                Thread thread = new Thread(new ThreadStart(delegate { framesDic.Add(key, mb.GetImage(width, height, minX, maxY, minY, maxY, k, power, startHue, endHue, power2, light)); }));
+                double _minX = minX;
+                double _maxX = maxX;
+                double _minY = minY;
+                double _maxY = maxY;
+
+                Thread thread = new Thread(new ThreadStart(() => framesDic.Add(key, new Mandelbrot().GetImage(width, height, _minX, _maxX, _minY, _maxY, k, power, startHue, endHue, power2, light))));
                 threads.Add(thread);
                 thread.Start();
                 cpusCount--;
-
-                if (cpusCount == 0 || i == frames - 1)
-                {
-                    foreach (var thrd in threads)
-                        thrd.Join();
-                    cpusCount = Environment.ProcessorCount;
-                }
 
                 double toAddminX = xMinParticle * (double)(frames - i);
                 double toAddmaxX = xMaxParticle * (double)(frames - i);
@@ -126,36 +120,45 @@ namespace Mandelbrot
                 minY += toAddminY;
                 maxX += toAddmaxX;
                 maxY += toAddmaxY;
+
+                if (cpusCount == 0 || i == frames - 1)
+                {
+                    foreach (var thrd in threads)
+                        thrd.Join();
+                    cpusCount = Environment.ProcessorCount;
+                }
             }
 
-            var orderedFrames = framesDic.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+            var orderedFrames = framesDic.OrderBy(x => x.Key).Select(x => x.Value);
 
-            /*
-            using (MemoryStream msGif = new MemoryStream())
+            if (checkBox1.Checked)
             {
-                GifWriter gifWriter = new GifWriter(msGif, 50, -1);
-
-                foreach (var bitmap in orderedFrames)
+                using (MemoryStream msGif = new MemoryStream())
                 {
-                    using (MemoryStream msImage = new MemoryStream())
+                    GifWriter gifWriter = new GifWriter(msGif, 50, -1);
+
+                    foreach (var bitmap in orderedFrames)
                     {
-                        bitmap.Save(msImage, System.Drawing.Imaging.ImageFormat.Png);
-                        gifWriter.WriteFrame(Image.FromStream(msImage));
+                        using (MemoryStream msImage = new MemoryStream())
+                        {
+                            bitmap.Save(msImage, System.Drawing.Imaging.ImageFormat.Png);
+                            gifWriter.WriteFrame(Image.FromStream(msImage));
+                        }
+
                     }
 
+                    File.WriteAllBytes("test.gif", msGif.GetBuffer());
                 }
-
-                File.WriteAllBytes("test.gif", msGif.GetBuffer());
             }
-            */
-
-            foreach (var kvp in orderedFrames)
+            else
             {
-                using (FileStream msImage = new FileStream(kvp.Key + ".png", FileMode.Create))
+                foreach (var kvp in framesDic)
                 {
-                    kvp.Value.Save(msImage, System.Drawing.Imaging.ImageFormat.Png);
+                    using (FileStream msImage = new FileStream(kvp.Key + ".png", FileMode.Create))
+                    {
+                        kvp.Value.Save(msImage, System.Drawing.Imaging.ImageFormat.Png);
+                    }
                 }
-
             }
         }
 
@@ -168,8 +171,8 @@ namespace Mandelbrot
             double maxY = double.Parse(textBox4.Text);
 
             int k = int.Parse(textBox11.Text);
-            double power = double.Parse(textBox12.Text);
-            double power2 = double.Parse(textBox15.Text);
+            float power = float.Parse(textBox12.Text);
+            float power2 = float.Parse(textBox15.Text);
             float light = float.Parse(textBox16.Text);
 
             int startHue = int.Parse(textBox13.Text);
@@ -179,8 +182,13 @@ namespace Mandelbrot
             int height = int.Parse(textBox18.Text);
 
             MemoryStream ms = new MemoryStream();
-            mb.GetImage(width, height, minX, maxY, minY, maxY, k, power, startHue, endHue, power2, light).Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            new Mandelbrot().GetImage(width, height, minX, maxY, minY, maxY, k, power, startHue, endHue, power2, light).Save(ms, System.Drawing.Imaging.ImageFormat.Png);
             pictureBox1.Image = Image.FromStream(ms);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

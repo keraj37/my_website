@@ -49,6 +49,7 @@
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.textBox18 = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -207,11 +208,23 @@
             this.textBox18.Size = new System.Drawing.Size(106, 20);
             this.textBox18.TabIndex = 20;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(639, 240);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(43, 17);
+            this.checkBox1.TabIndex = 21;
+            this.checkBox1.Text = "GIF";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(994, 648);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox18);
             this.Controls.Add(this.textBox17);
             this.Controls.Add(this.textBox16);
@@ -264,6 +277,7 @@
         private System.Windows.Forms.TextBox textBox16;
         private System.Windows.Forms.TextBox textBox17;
         private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

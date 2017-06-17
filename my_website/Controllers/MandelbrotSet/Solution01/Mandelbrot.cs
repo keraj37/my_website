@@ -15,68 +15,50 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
      * "This program has been made by Joseph Dillon. Created between July 2016-March 2017"
      * Modified/ported by Jerry Switalski from WinForms to ASP.NET.
      */
-
+         
     public class Mandelbrot
     {
-        private ScreenPixelManage myPixelManager;
-        private double yMin = -2.0;
-        private double yMax = 2.0;
-        private double xMin = -2.0;
-        private double xMax = 2.0;
-        private int kMax = 50;
-        private int numColours = 1024;
-        private int zoomScale = 7;
-
-        private double colpow = 0.15f;
-        private double colhue = 0.8f;
-        private double collight = 0.52f;
-
-        private ColourTable colourTable = null;
-
         public byte[] GetImage(ConsoleCommandVariableAttribute.Values values)
         {
-            // mb ymin - 0.6 ymax - 0.5 xmin - 0.6 xmax - 0.5 k 400 colpow 0.5 colshift - 10 colshift2 500
+            //public Bitmap GetImage(int width, int height, double xMinParam, double xMaxParam, double yMinParam, double yMaxParam, int kParam, double power, int startHue, int endHue, double power2, float light)
             int width = values.GetValue("width").IntValue;
             int height = values.GetValue("height").IntValue;
-            zoomScale = values.GetValue("zoom").IntValue;
-            kMax = values.GetValue("k").IntValue;
+            int kMax = values.GetValue("k").IntValue;
             int xyPixelStep = values.GetValue("step").IntValue;
-            yMin = values.GetValue("ymin").DoubleValue;
-            yMax = values.GetValue("ymax").DoubleValue;
-            xMin = values.GetValue("xmin").DoubleValue;
-            xMax = values.GetValue("xmax").DoubleValue;
-            colpow = values.GetValue("colpow").FloatValue;
-            colhue = values.GetValue("colhue").FloatValue;
-            collight = values.GetValue("collight").FloatValue;
+            double yMinParam = values.GetValue("ymin").DoubleValue;
+            double yMaxParam = values.GetValue("ymax").DoubleValue;
+            double xMinParam = values.GetValue("xmin").DoubleValue;
+            double xMaxParam = values.GetValue("xmax").DoubleValue;
+            float power = values.GetValue("power").FloatValue;
+            float power2 = values.GetValue("power2").FloatValue;
+            int startHue = values.GetValue("starthue").IntValue;
+            int endHue = values.GetValue("endhue").IntValue;
+            float light = values.GetValue("light").FloatValue;
 
             Bitmap bmp = new Bitmap(width, height);
 
-            numColours = kMax;
+            int numColours = kMax;
 
-            if (colourTable == null)
-            {
-                colourTable = new ColourTable(numColours, colpow, colhue, collight, values.GetValue("colshift").IntValue, values.GetValue("colshift2").IntValue, values.GetValue("colneg").FloatValue, values.GetValue("colshiftconst").FloatValue);
-            }
+            ColourTable colourTable = new ColourTable(numColours, power, power2, startHue, endHue, light);
 
             int kLast = -1;
             double modulusSquared;
             Color color;
             Color colorLast = Color.Red;
 
-            ComplexPoint screenBottomLeft = new ComplexPoint(xMin, yMin);
-            ComplexPoint screenTopRight = new ComplexPoint(xMax, yMax);
+            ComplexPoint screenBottomLeft = new ComplexPoint(xMinParam, yMinParam);
+            ComplexPoint screenTopRight = new ComplexPoint(xMaxParam, yMaxParam);
 
-            myPixelManager = new ScreenPixelManage(bmp, screenBottomLeft, screenTopRight);
+            ScreenPixelManage myPixelManager = new ScreenPixelManage(bmp, screenBottomLeft, screenTopRight);
 
-            
             ComplexPoint pixelStep = new ComplexPoint(xyPixelStep, xyPixelStep);
             ComplexPoint xyStep = myPixelManager.GetDeltaMathsCoord(pixelStep);
 
             int yPix = bmp.Height - 1;
-            for (double y = yMin; y < yMax; y += xyStep.y)
+            for (double y = yMinParam; y < yMaxParam; y += xyStep.y)
             {
                 int xPix = 0;
-                for (double x = xMin; x < xMax; x += xyStep.x)
+                for (double x = xMinParam; x < xMaxParam; x += xyStep.x)
                 {
                     ComplexPoint c = new ComplexPoint(x, y);
                     ComplexPoint zk = new ComplexPoint(0, 0);
@@ -219,17 +201,25 @@ namespace my_website.Controllers.MandelbrotSet.Solution01
             public int nColour;
             private Color[] colourTable;
 
-            public ColourTable(int n, double colpow, double colhue, double collight, int colshift, int colshift2, double colneg, double colshiftconst)
+            public ColourTable(int n, double colpow, double colpow2, double startHue, double endHue, float light)
             {
                 nColour = n;
                 colourTable = new Color[nColour + 1];
 
-                for (int i = colshift; i <= nColour + colshift; i++)
+                for (int i = 0; i <= nColour; i++)
                 {
-                    double colourIndex = Math.Abs(colneg - (((double)i) / (double)(nColour + colshift2)));
-                    double hue = Math.Pow(colshiftconst + colourIndex, colpow);
+                    double diff = endHue - startHue;
+                    double perc = diff / 360d;
 
-                    colourTable[i - colshift] = ColorFromHSLA(hue, colhue, collight);
+                    double colourIndex = (((double)i) / (double)nColour);
+                    double hue = colourIndex * perc;
+
+                    double x = (double)i / (double)nColour;
+                    double y = Math.Pow(x, colpow);
+
+                    hue *= y;
+
+                    colourTable[nColour - i] = ColorFromHSLA((startHue / 360d) + hue, light, -(Math.Pow(x, colpow2)) + 1f);
                 }
             }
 
