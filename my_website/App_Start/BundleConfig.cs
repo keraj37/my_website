@@ -49,6 +49,9 @@ namespace my_website
 
             bundles.Add(new ScriptBundle("~/bundles/chat").Include(
                         "~/Scripts/Custom/chat.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/visit").Include(
+                       "~/Scripts/Custom/visit.js"));
         }
     }
 }

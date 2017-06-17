@@ -7,12 +7,12 @@ using Microsoft.AspNet.SignalR.Hubs;
 
 namespace my_website.Hubs
 {
-    [HubName("ChatHub")]
-    public class ChatHub : Hub
+    [HubName("VisitorsHub")]
+    public class VisitorsHub : Hub
     {
-        public void Send(string name, string message)
+        public void LogVisit()
         {
-            Clients.All.addNewMessageToPage(name, message);
+            Clients.All.spreadVisit(Context.Request.Environment["server.RemoteIpAddress"].ToString());
         }
     }
 }

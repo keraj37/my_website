@@ -47,6 +47,9 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Jerry Switalski</p>
+            <br />
+            
+            <ul id="visitors"></ul>
         </footer>
     </div>
 
@@ -54,7 +57,10 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/myscripts")
     @Scripts.Render("~/bundles/ajax")
-    @Scripts.Render("~/bundles/signalr")
+    @Scripts.Render("~/bundles/signalr")  
+
+    @Html.Partial("_GlobalPartial")
+
     @RenderSection("Scripts", false)
 </body>
 </html>
