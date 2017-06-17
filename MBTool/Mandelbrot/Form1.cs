@@ -10,12 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using my_website.Controllers.MandelbrotSet.MovieMaker;
+using System.Threading;
 
 namespace Mandelbrot
 {
     public partial class Form1 : Form
     {
         private Mandelbrot mb = new Mandelbrot();
+        private Dictionary<int, Bitmap> framesDic;
 
         public Form1()
         {
@@ -49,7 +51,7 @@ namespace Mandelbrot
         private int GetLinearSum(int n)
         {
             int result = 0;
-            for(int i = 1; i <= n; i++)
+            for (int i = 1; i <= n; i++)
             {
                 result += i;
             }
@@ -59,6 +61,8 @@ namespace Mandelbrot
 
         private void button1_Click(object sender, EventArgs e)
         {
+            framesDic = new Dictionary<int, Bitmap>();
+
             double minX = double.Parse(textBox1.Text);
             double minY = double.Parse(textBox2.Text);
 
@@ -95,30 +99,63 @@ namespace Mandelbrot
             int width = int.Parse(textBox17.Text);
             int height = int.Parse(textBox18.Text);
 
+            int cpusCount = Environment.ProcessorCount;
+            var threads = new List<Thread>();
+
+            for (int i = 0; i < frames; i++)
+            {
+                int key = i;
+                Thread thread = new Thread(new ThreadStart(delegate { framesDic.Add(key, mb.GetImage(width, height, minX, maxY, minY, maxY, k, power, startHue, endHue, power2, light)); }));
+                threads.Add(thread);
+                thread.Start();
+                cpusCount--;
+
+                if (cpusCount == 0 || i == frames - 1)
+                {
+                    foreach (var thrd in threads)
+                        thrd.Join();
+                    cpusCount = Environment.ProcessorCount;
+                }
+
+                double toAddminX = xMinParticle * (double)(frames - i);
+                double toAddmaxX = xMaxParticle * (double)(frames - i);
+                double toAddminY = yMinParticle * (double)(frames - i);
+                double toAddmaxY = yMaxParticle * (double)(frames - i);
+
+                minX += toAddminX;
+                minY += toAddminY;
+                maxX += toAddmaxX;
+                maxY += toAddmaxY;
+            }
+
+            var orderedFrames = framesDic.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+
+            /*
             using (MemoryStream msGif = new MemoryStream())
             {
                 GifWriter gifWriter = new GifWriter(msGif, 50, -1);
 
-                for (int i = 0; i < frames; i++)
+                foreach (var bitmap in orderedFrames)
                 {
                     using (MemoryStream msImage = new MemoryStream())
                     {
-                        mb.GetImage(width, height, minX, maxY, minY, maxY, k, power, startHue, endHue, power2, light).Save(msImage, System.Drawing.Imaging.ImageFormat.Png);
+                        bitmap.Save(msImage, System.Drawing.Imaging.ImageFormat.Png);
                         gifWriter.WriteFrame(Image.FromStream(msImage));
                     }
 
-                    double toAddminX = xMinParticle * (double)(frames - i);
-                    double toAddmaxX = xMaxParticle * (double)(frames - i);
-                    double toAddminY = yMinParticle * (double)(frames - i);
-                    double toAddmaxY = yMaxParticle * (double)(frames - i);
-
-                    minX += toAddminX;
-                    minY += toAddminY;
-                    maxX += toAddmaxX;
-                    maxY += toAddmaxY;
                 }
 
                 File.WriteAllBytes("test.gif", msGif.GetBuffer());
+            }
+            */
+
+            foreach (var kvp in orderedFrames)
+            {
+                using (FileStream msImage = new FileStream(kvp.Key + ".png", FileMode.Create))
+                {
+                    kvp.Value.Save(msImage, System.Drawing.Imaging.ImageFormat.Png);
+                }
+
             }
         }
 
