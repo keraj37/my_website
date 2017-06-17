@@ -55,9 +55,9 @@ $(document).ready(function () {
             var cmd = getCookie("__lastcmd");
             if (cmd != "") {
                 $('#console-input').val(cmd);
-            } 
+            }
         }
-    });    
+    });
 })
 
 var lastPixelWidth = 700;
@@ -84,15 +84,42 @@ function init() {
     canvas.addEventListener('mousemove', mouseMove, false);
 }
 
+function checkIfLeftMouseBtn(e) {
+    switch (e.which) {
+        case 1:
+            //alert('Left Mouse button pressed.');
+            return true;
+        case 2:
+            //alert('Middle Mouse button pressed.');
+        case 3:
+            //alert('Right Mouse button pressed.');
+        default:
+            //alert('You have a strange Mouse!');
+            return false;
+    }
+}
+
 function mouseDown(e) {
+    if (!checkIfLeftMouseBtn(e))
+        return;
+
     rect.startX = e.pageX - this.offsetLeft;
     rect.startY = e.pageY - this.offsetTop;
     drag = true;
 }
 
-function mouseUp() { drag = false; procesRectangle()}
+function mouseUp(e) {
+    if (!checkIfLeftMouseBtn(e))
+        return;
+
+    drag = false;
+    procesRectangle()
+}
 
 function mouseMove(e) {
+    if (!checkIfLeftMouseBtn(e))
+        return;
+
     if (drag) {
         ctx.clearRect(0, 0, lastPixelWidth, lastPixelWidth);
         ctx.drawImage(imageObj, 0, 0);
