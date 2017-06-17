@@ -57,6 +57,7 @@ namespace my_website.Controllers.Console.Commands.Attributes
         public string KeyName { get; set; }
         public CommandValueType Type { get; set; }
         public object DefaultValue { get; set; }
+        public int MaxIntValue { get; set; }
 
         public Vo GetValue(string value)
         {
@@ -66,6 +67,11 @@ namespace my_website.Controllers.Console.Commands.Attributes
                     int i = default(int);
                     if(int.TryParse(value, out i))
                     {
+                        if(i > MaxIntValue)
+                        {
+                            i = MaxIntValue;
+                        }
+
                         return new Vo(intValue: i);
                     }
                     else

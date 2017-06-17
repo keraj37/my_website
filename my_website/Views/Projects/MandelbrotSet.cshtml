@@ -1,5 +1,13 @@
 ﻿@{
     ViewBag.Title = "Mandelbrot";
+
+    var commandBtns = new string[]
+    {
+        "mb power 2 power2 0.7 xmin -2 xmax 2 ymin -2 ymax 2 light 0.6 k 200",
+        "mb power 2 power2 0.7 xmin -0.53 xmax -0.52 ymin -0.53 ymax -0.52 light 0.6 k 500",
+        "mb power 5 power2 0.3 xmin -0.53 xmax -0.52 ymin -0.53 ymax -0.52 light 0.6 k 900",
+        "mb power 2 power2 0.7 xmin -0.53 xmax -0.52 ymin -0.53 ymax -0.52 light 0.6 k 500 starthue 0 endhue 400"
+    };
 }
 
 @Html.Partial("_ProjectsPartial")
@@ -7,10 +15,31 @@
 <div class="myentry">
     <h2>This mathemathical beauty is a fingerprint of God</h2>
     <p>Use console input below image to modify view of it. In example: "mb power 4 power2 2.6 xmin -0.6 xmax -0.5 ymin -0.6 ymax -0.5".</p>
+    <br/>
+    <p>Drag a rectangle over the image to zoom in</p>
+    <p>For better reference, after the drag is complete, consule input will be filled with generated command</p>
+    <br />
+    <p>Or just use some predefined commands assigned to buttons on the right part of the rendered image</p>
+    <br />
+    <p>There is option to generate gif animations like this (not yet implemented in web app version - soon will be done):</p>
     <img src="/Imgs/Mandelbrot/sample.gif" />
 </div>
 <div class="console">
-    <img id="mb_img01" src="/Imgs/loading.gif" />
+    <p>Use this input to force "k" value when zooming. If input is empty k will have default value.</p>
+    <input id="k-input" type="text" name="k" class="console" value="550" />
+    <canvas id="mb_canvas" width="700" height="700">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas>
+    <div style="float: right; column-count:1;">        
+        @{
+            int cmdNum = 1;
+            foreach (var cmd in commandBtns)
+            {
+                <button type="button" class="console-button" title="@cmd" onclick="send(false, '@cmd');">Command @cmdNum</button>
+                cmdNum++;
+            }
+        }
+    </div>
 </div>
 <div style="position: relative">
     <section id="console">
@@ -25,8 +54,7 @@
 @section Scripts
 {
     @Scripts.Render("~/bundles/mandelbrot_ajax")
-
     <script>
-        send(false, "mb power 2 power2 0.7 xmin -0.53 xmax -0.52 ymin -0.53 ymax -0.52 light 0.6 k 500");
+        send(false, "@commandBtns[0]");
     </script>
 }

@@ -14,7 +14,7 @@ namespace my_website.Controllers.Console.Commands
     [ConsoleCommandDescription(Name = "mb ('M'andel'b'rot)", Description = "Mandelbrot Set modification command\n\tUse it with console input from 'MandelbrotSet' site", Priority = 4)]
     [ConsoleCommandVariable(KeyName = "width", Type = ConsoleCommandVariableAttribute.CommandValueType.INT, DefaultValue = 700)]
     [ConsoleCommandVariable(KeyName = "height", Type = ConsoleCommandVariableAttribute.CommandValueType.INT, DefaultValue = 700)]
-    [ConsoleCommandVariable(KeyName = "k", Type = ConsoleCommandVariableAttribute.CommandValueType.INT, DefaultValue = 250)]
+    [ConsoleCommandVariable(KeyName = "k", Type = ConsoleCommandVariableAttribute.CommandValueType.INT, DefaultValue = 250, MaxIntValue = 1500)]
     [ConsoleCommandVariable(KeyName = "step", Type = ConsoleCommandVariableAttribute.CommandValueType.INT, DefaultValue = 1)]
     [ConsoleCommandVariable(KeyName = "ymin", Type = ConsoleCommandVariableAttribute.CommandValueType.DOUBLE, DefaultValue = -2d)]
     [ConsoleCommandVariable(KeyName = "ymax", Type = ConsoleCommandVariableAttribute.CommandValueType.DOUBLE, DefaultValue = 2d)]
@@ -37,7 +37,8 @@ namespace my_website.Controllers.Console.Commands
             ConsoleCommandVariableAttribute.Values vals = GetAllValuesInOrder(cmd);
             IConsoleCommandStrategy mbset = this.GetType().GetCustomAttribute<ConsoleCommandStrategyAttribute>().GetInstance();
             FractalImage img = (FractalImage)mbset.Execute(vals);
-            ConsoleMandelbrotReturnVo result = new ConsoleMandelbrotReturnVo("\nMandelbrotSet: applied values...", image: img.ImageBase64);
+            double lastWidth = vals.GetValue("xmax").DoubleValue - vals.GetValue("xmin").DoubleValue;
+            ConsoleMandelbrotReturnVo result = new ConsoleMandelbrotReturnVo("\nMandelbrotSet: applied values...", image: img.ImageBase64, lastX: vals.GetValue("xmin").DoubleValue, lastY: vals.GetValue("ymin").DoubleValue, lastWidth: lastWidth);
             return result;
         }
     }
