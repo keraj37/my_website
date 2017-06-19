@@ -51,7 +51,7 @@ h2 {
 }
 
     .myentry:hover {
-        transform: scale(1.02);
+        transform: scale(1.01);
         color: rgba(100, 100, 100, 1);
     }
 
@@ -78,8 +78,8 @@ h2 {
 .console {
     border: 1px;
     border-style: solid;
-    border-color: lawngreen;
-    background-color: rgba(00, 00, 00, 1);
+    border-color: black;
+    background-color: rgba(00, 30, 190, 0.4);
     color: lawngreen;
     width: 100%;
 }
@@ -96,9 +96,10 @@ h2 {
 }
 
 .console-button {
-    background-color: rgba(00, 00, 00, 1);
+    background-color: rgba(00, 30, 190, 0.4);
     color: lawngreen;
 }
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
