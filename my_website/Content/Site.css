@@ -51,7 +51,7 @@ h2 {
 }
 
     .myentry:hover {
-        transform: scale(1.04);
+        transform: scale(1.02);
         color: rgba(100, 100, 100, 1);
     }
 
@@ -65,7 +65,7 @@ h2 {
 }
 
     .myblog:hover {
-        transform: scale(1.015);
+        transform: scale(1.009);
         color: rgba(100, 100, 100, 1);
         /*background-color: rgba(00, 00, 00, 1);*/
     }
