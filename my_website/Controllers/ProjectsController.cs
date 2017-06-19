@@ -143,7 +143,7 @@ namespace my_website.Controllers
 
             if(!string.IsNullOrEmpty(key))
             {
-                As3tocsHub hub = new As3tocsHub();
+                GeneralHub hub = new GeneralHub();
                 hub.Send(key, className, csString[0]);
             }
 

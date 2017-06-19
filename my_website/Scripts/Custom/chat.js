@@ -1,12 +1,10 @@
-﻿var chat = $.connection.ChatHub;
-
-function sendMessageChat() {
-    chat.server.send($('#displayname').val(), $('#message').val());
+﻿function sendMessageChat() {
+    generalHub.server.sendChatMessage($('#displayname').val(), $('#message').val());
     $('#message').val('').focus();
 }
 
 $(function () {
-    chat.client.addNewMessageToPage = function (name, message) {
+    generalHub.client.addNewMessageToPage = function (name, message) {
         $('#discussion').append('<li><strong>' + htmlEncode(name)
             + '</strong>: ' + htmlEncode(message) + '</li>');
     };
