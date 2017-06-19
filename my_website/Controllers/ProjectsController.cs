@@ -1,5 +1,6 @@
 ﻿using my_website.Controllers.Console;
 using my_website.DataCollection;
+using my_website.Hubs;
 using my_website.Models;
 using System;
 using System.Collections.Generic;
@@ -126,7 +127,7 @@ namespace my_website.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult AS3TOCS(string source)
+        public ActionResult AS3TOCS(string source, string key)
         {
             if (IsBigpointPassSet && !IsBigpoint)
             {
@@ -139,6 +140,12 @@ namespace my_website.Controllers
             string[] csString = new AS3TOCS.AS3TOCS().Convert(source);
 
             string className = csString[1] ?? "YourCSharpFile";
+
+            if(!string.IsNullOrEmpty(key))
+            {
+                As3tocsHub hub = new As3tocsHub();
+                hub.Send(key, className, csString[0]);
+            }
 
             return File(Encoding.UTF8.GetBytes(csString[0]), "text/plain", className + ".cs");
         }
