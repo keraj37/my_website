@@ -1,6 +1,6 @@
 ﻿var visitHub = $.connection.VisitorsHub;
 
-function sendMessage() {
+function sendMessageVisit() {
     visitHub.server.logVisit();
 }
 
@@ -9,6 +9,6 @@ $(function () {
         $('#visitors').append('<li>Detected visit from: <strong>' + ip + '</strong></li>');
     };
     $.connection.hub.start().done(function () {
-        sendMessage();
+        sendMessageVisit();
     });
 });

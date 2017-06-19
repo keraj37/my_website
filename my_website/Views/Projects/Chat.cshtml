@@ -4,7 +4,6 @@
 
 @Html.Partial("_ProjectsPartial")
 
-<h2>Chat</h2>
 <div class="container">
     <input type="text" id="message" class="console"/>
     <input type="button" id="sendmessage" value="Send" class="console-button"/>
@@ -16,6 +15,5 @@
 </div>
 
 @section Scripts {
-    <script src="~/signalr/hubs"></script>
     @Scripts.Render("~/bundles/chat")   
 }

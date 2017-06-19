@@ -1,6 +1,6 @@
 ﻿var chat = $.connection.ChatHub;
 
-function sendMessage() {
+function sendMessageChat() {
     chat.server.send($('#displayname').val(), $('#message').val());
     $('#message').val('').focus();
 }
@@ -14,13 +14,13 @@ $(function () {
     $('#message').focus();
     $.connection.hub.start().done(function () {
         $('#sendmessage').click(function () {
-            sendMessage();
+            sendMessageChat();
         });
 
         $('#message').keypress(function (e) {
             var keyCode = e.keyCode || e.which;
             if (keyCode == 13) {
-                sendMessage();
+                sendMessageChat();
             }
         });
     });
