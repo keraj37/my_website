@@ -9,14 +9,14 @@
     };
 }
 
-<div class="navbar navbar-custom-md2 navbar-inverse">
+<div class="navbar navbar-custom-md2">
     <div class="container">
         <div>
             <ul class="nav navbar-nav">
                 @foreach (var nav in allNavigations)
                 {
-                    string active = ViewBag.Title == nav.linkText ? "class=\"active\"" : string.Empty;
-                    <li @Html.Raw(active)>@Html.ActionLink(nav.linkText, nav.actionName, nav.controlerName)</li>
+                    //string active = ViewBag.Title == nav.linkText ? "class=\"active\"" : string.Empty;
+                    <li>@Html.ActionLink(nav.linkText, nav.actionName, nav.controlerName)</li>
                 }
             </ul>
         </div>

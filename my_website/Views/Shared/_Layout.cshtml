@@ -21,7 +21,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-custom navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-custom navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -34,8 +34,8 @@
                 <ul class="nav navbar-nav">
                     @foreach (var nav in allNavigations)
                     {
-                        string active = ViewBag.Title == nav.linkText ? "class=\"active\"" : string.Empty;
-                        <li @Html.Raw(active)>@Html.ActionLink(nav.linkText, nav.actionName, nav.controlerName)</li>
+                        //string active = ViewBag.Title == nav.linkText ? "class=\"active\"" : string.Empty;
+                        <li>@Html.ActionLink(nav.linkText, nav.actionName, nav.controlerName)</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

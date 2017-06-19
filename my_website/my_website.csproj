@@ -247,7 +247,6 @@
     <Content Include="Imgs\Art\1.jpg" />
     <Content Include="Imgs\Art\2.jpg" />
     <Content Include="Imgs\Art\3.jpg" />
-    <Content Include="back.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -353,7 +352,6 @@
     <Content Include="Views\Home\Arma3.cshtml" />
     <Content Include="Views\Projects\MandelbrotSet.cshtml" />
     <Content Include="Views\Projects\Chat.cshtml" />
-    <Content Include="Views\Shared\_GlobalPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

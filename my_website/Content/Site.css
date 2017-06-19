@@ -1,12 +1,12 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #000000;
-    background: url('../back.jpg');
+    background-color: #FFFFFF;
+    /*background: url('../back.jpg');
     background-size: cover;
     background-repeat: repeat-x;
     background-attachment: fixed;
-    margin-bottom: 60px;
+    margin-bottom: 60px;*/
     font-family: Tahoma, Tahoma, serif;
 }
 
@@ -24,25 +24,15 @@
 }
 
 .navbar-custom {
-    color: #ee0000;
-    background-color: rgba(50, 50, 50, 0.85);
+    background-color: rgba(255, 255, 255, 0.85);
 }
 
 .navbar-custom-md2 {
-    color: #ee0000;
-    background-color: rgba(20, 20, 20, 0.85);
-}
-
-.jumbotron {
-    background-color: rgba(00, 00, 00, 0.59);
+    background-color: rgba(255, 255, 255, 0.85);
 }
 
 .col-md-4 {
     padding: 0px;
-}
-
-.grow {
-    transition: all .2s ease-in-out;
 }
 
 h2 {
@@ -58,33 +48,11 @@ h2 {
 .myentry {
     margin: 3px;
     padding: 28px;
-    border: 3px;
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.59);
-    border-radius: 10px;
-    background-color: rgba(00, 00, 00, 0.59);
-    transition: all .2s ease-in-out;
-    animation-name: myentryanim;
-    animation-duration: 0.9s;
 }
 
     .myentry:hover {
         transform: scale(1.04);
-        background-color: rgba(00, 00, 00, 0.89);
-    }
-
-.threejscanvas {
-    margin: 3px;
-    padding: 28px;
-    border: 3px;
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.59);
-    border-radius: 10px;
-    background-color: rgba(00, 00, 00, 1);
-}
-
-    .threejscanvas:hover {
-        transform: scale(1.1);
+        color: rgba(100, 100, 100, 1);
     }
 
 .randomsize {
@@ -93,40 +61,14 @@ h2 {
 .myblog {
     margin: 3px;
     padding: 28px;
-    border: 3px;
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.59);
-    border-radius: 10px;
-    background-color: rgba(00, 00, 00, 0.59);
-    transition: all .2s ease-in-out;
-    animation-name: mybloganim;
-    animation-duration: 0.9s;
+    /*background-color: rgba(00, 00, 00, 0.59);*/
 }
 
     .myblog:hover {
         transform: scale(1.015);
-        background-color: rgba(00, 00, 00, 0.91);
+        color: rgba(100, 100, 100, 1);
+        /*background-color: rgba(00, 00, 00, 1);*/
     }
-
-@keyframes myentryanim {
-    from {
-        background-color: rgba(00, 00, 00, 0.00);
-    }
-
-    to {
-        background-color: rgba(00, 00, 00, 0.59);
-    }
-}
-
-@keyframes mybloganim {
-    from {
-        background-color: rgba(00, 00, 00, 0.00);
-    }
-
-    to {
-        background-color: rgba(00, 00, 00, 0.59);
-    }
-}
 
 .multiline {
     padding: 20px;
@@ -134,11 +76,11 @@ h2 {
 }
 
 .console {
-    border: 3px;
+    border: 1px;
     border-style: solid;
-    border-color: rgba(255, 255, 255, 0.59);
+    border-color: lawngreen;
     background-color: rgba(00, 00, 00, 1);
-    color: chartreuse;
+    color: lawngreen;
     width: 100%;
 }
 
@@ -155,7 +97,7 @@ h2 {
 
 .console-button {
     background-color: rgba(00, 00, 00, 1);
-    color: chartreuse;
+    color: lawngreen;
 }
 /* Set width on the form input elements since they're 100% wide by default */
 input,
