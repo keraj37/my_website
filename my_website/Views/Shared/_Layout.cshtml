@@ -57,26 +57,10 @@
     @Scripts.Render("~/bundles/myscripts")
     @Scripts.Render("~/bundles/ajax")
     @Scripts.Render("~/bundles/signalr")
-    
+
     @Scripts.Render("~/signalr/hubs")
     <script>
         var generalHub = $.connection.GeneralHub;
-        var documentReadyListners = [];
-        var connectionReadyListners = [];
-
-        documentReadyListners.push(function () {
-            $.connection.hub.start().done(function () {
-                connectionReadyListners.forEach(function (item, index) {
-                    item();
-                })
-            });
-        });
-
-        $(function () {
-            documentReadyListners.forEach(function (item, index) {
-                item();
-            })
-        })
     </script>
     @Scripts.Render("~/bundles/visit")
 
