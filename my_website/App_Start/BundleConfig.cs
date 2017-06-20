@@ -37,12 +37,13 @@ namespace my_website
                         "~/Scripts/jquery.validate.unobtrusive.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/console_ajax").Include(
-                        "~/Scripts/Custom/console_ajax.js",
+                        "~/Scripts/Custom/console_ajax.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/cookies").Include(
                         "~/Scripts/Custom/cookies.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/mandelbrot_ajax").Include(
-                        "~/Scripts/Custom/mandelbrot_ajax.js",
-                        "~/Scripts/Custom/cookies.js"));
+                        "~/Scripts/Custom/mandelbrot_ajax.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
                         "~/Scripts/jquery.signalR-{version}.js"));
