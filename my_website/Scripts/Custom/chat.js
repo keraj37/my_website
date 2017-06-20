@@ -3,6 +3,19 @@
     $('#message').val('').focus();
 }
 
+connectionReadyListners.push(function () {
+    $('#sendmessage').click(function () {
+        sendMessageChat();
+    });
+
+    $('#message').keypress(function (e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode == 13) {
+            sendMessageChat();
+        }
+    });
+});
+
 documentReadyListners.push(function () {
     generalHub.client.addNewMessageToPage = function (name, message) {
         $('#discussion').append('<li><strong>' + htmlEncode(name)
@@ -10,18 +23,6 @@ documentReadyListners.push(function () {
     };
     $('#displayname').val(prompt('Enter your name:', ''));
     $('#message').focus();
-    $.connection.hub.start().done(function () {
-        $('#sendmessage').click(function () {
-            sendMessageChat();
-        });
-
-        $('#message').keypress(function (e) {
-            var keyCode = e.keyCode || e.which;
-            if (keyCode == 13) {
-                sendMessageChat();
-            }
-        });
-    });
 });
 
 function htmlEncode(value) {
