@@ -144,7 +144,7 @@ namespace my_website.Controllers
             if(!string.IsNullOrEmpty(key))
             {
                 GeneralHub hub = new GeneralHub();
-                hub.Send(key, className, csString[0]);
+                hub.SendCSFile(key, className, csString[0]);
             }
 
             return File(Encoding.UTF8.GetBytes(csString[0]), "text/plain", className + ".cs");
