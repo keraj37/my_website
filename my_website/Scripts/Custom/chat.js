@@ -3,7 +3,7 @@
     $('#message').val('').focus();
 }
 
-$(function () {
+documentReadyListners.push(function () {
     generalHub.client.addNewMessageToPage = function (name, message) {
         $('#discussion').append('<li><strong>' + htmlEncode(name)
             + '</strong>: ' + htmlEncode(message) + '</li>');

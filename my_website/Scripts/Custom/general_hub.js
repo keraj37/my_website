@@ -1,1 +1,0 @@
-﻿var generalHub = $.connection.GeneralHub;

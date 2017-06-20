@@ -20,11 +20,14 @@ namespace my_website.Hubs
             Clients.All.addNewMessageToPage(name, message);
         }
 
+        //Moved to seperate hub - it was the only way to make it work :(
+        /*
         public void SendCSFile(string key, string className, string csFile)
         {
             //TODO Most likly I don't need this, as client usues proxy
             var context = GlobalHost.ConnectionManager.GetHubContext<GeneralHub>();
             context.Clients.All.send(key, csFile, className);
         }
+        */
     }
 }

@@ -59,7 +59,16 @@
     @Scripts.Render("~/bundles/signalr")
     
     @Scripts.Render("~/signalr/hubs")
-    @Scripts.Render("~/bundles/generalHub")
+    <script>
+        var generalHub = $.connection.GeneralHub;
+        var documentReadyListners = [];
+
+        $(function () {
+            documentReadyListners.forEach(function (item, index) {
+                item();
+            })
+        })
+    </script>
     @Scripts.Render("~/bundles/visit")
 
     @RenderSection("Scripts", false)

@@ -53,9 +53,6 @@ namespace my_website
 
             bundles.Add(new Bundle("~/bundles/visit").Include(
                        "~/Scripts/Custom/visit.js"));
-
-            bundles.Add(new Bundle("~/bundles/generalHub").Include(
-                    "~/Scripts/Custom/general_hub.js"));
         }
     }
 }

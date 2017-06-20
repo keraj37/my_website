@@ -2,7 +2,7 @@
     generalHub.server.logVisit();
 }
 
-$(function () {
+documentReadyListners.push(function () {
     generalHub.client.spreadVisit = function (ip) {
         $('#visitors').append('<li>Detected visit from: <strong>' + ip + '</strong></li>');
     };
