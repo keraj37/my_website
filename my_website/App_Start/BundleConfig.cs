@@ -48,6 +48,9 @@ namespace my_website
             bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
                         "~/Scripts/jquery.signalR-{version}.js"));
 
+            bundles.Add(new Bundle("~/bundles/signalREventBinder").Include(
+                      "~/Scripts/Custom/signalREventBinder.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/chat").Include(
                         "~/Scripts/Custom/chat.js"));
 

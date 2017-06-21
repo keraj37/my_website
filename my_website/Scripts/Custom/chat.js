@@ -3,7 +3,7 @@
     $('#message').val('').focus();
 }
 
-function triggerAndNewMessagetopage(name, message) {
+function triggerAndNewMessageToPage(name, message) {
     $('#discussion').append('<li><strong>' + htmlEncode(name)
         + '</strong>: ' + htmlEncode(message) + '</li>');
 }
@@ -11,8 +11,6 @@ function triggerAndNewMessagetopage(name, message) {
 $(function () {    
     $('#displayname').val(prompt('Enter your name:', ''));
     $('#message').focus();
-
-    $.connection.hub.logging = true;
 
     $.connection.hub.start().done(function () {
         $('#sendmessage').click(function () {
