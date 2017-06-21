@@ -3,13 +3,17 @@
     $('#message').val('').focus();
 }
 
-$(function () {
-    generalHub.client.addNewMessageToPage = function (name, message) {
-        $('#discussion').append('<li><strong>' + htmlEncode(name)
-            + '</strong>: ' + htmlEncode(message) + '</li>');
-    };
+function triggerAndNewMessagetopage(name, message) {
+    $('#discussion').append('<li><strong>' + htmlEncode(name)
+        + '</strong>: ' + htmlEncode(message) + '</li>');
+}
+
+$(function () {    
     $('#displayname').val(prompt('Enter your name:', ''));
     $('#message').focus();
+
+    $.connection.hub.logging = true;
+
     $.connection.hub.start().done(function () {
         $('#sendmessage').click(function () {
             sendMessageChat();
