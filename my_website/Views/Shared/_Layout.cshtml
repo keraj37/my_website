@@ -55,10 +55,13 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/myscripts")
+    @Scripts.Render("~/bundles/ajax")
     @Scripts.Render("~/bundles/signalr")
 
     @Scripts.Render("~/signalr/hubs")
-
+    <script>
+        var generalHub = $.connection.GeneralHub;
+    </script>
     @Scripts.Render("~/bundles/visit")
 
     @RenderSection("Scripts", false)
