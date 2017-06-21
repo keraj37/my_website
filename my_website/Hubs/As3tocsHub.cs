@@ -12,7 +12,7 @@ namespace my_website.Hubs
     {
         public void Send(string key, string className, string csFile)
         {
-            //TODO Most likly I don't need this, as client usues proxy
+            //TODO Most likly I don't need this, as client usues proxy bind
             var context = GlobalHost.ConnectionManager.GetHubContext<As3tocsHub>();
             context.Clients.All.send(key, csFile, className);
         }
