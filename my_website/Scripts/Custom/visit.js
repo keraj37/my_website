@@ -7,11 +7,10 @@ $(function () {
         $('#visitors').append('<li>Detected visit from: <strong>' + ip + '</strong></li>');
     };
 
-    if (typeof triggerAndNewMessagetopage !== 'undefined' && triggerAndNewMessagetopage)
-        generalHub.client.addNewMessageToPage = triggerAndNewMessagetopage;
+    if (typeof triggerAndNewMessageToPage !== 'undefined' && triggerAndNewMessageToPage)
+        generalHub.client.addNewMessageToPage = triggerAndNewMessageToPage;
 
     //$.connection.hub.logging = true;
-
     $.connection.hub.start().done(function () {
         sendMessageVisit();
     });
