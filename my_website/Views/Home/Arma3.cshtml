@@ -19,21 +19,49 @@
         @"https://steamuserimages-a.akamaihd.net/ugc/841456062822434499/42A8C33476E799E44CD664510A591FDC0E33C5D0/"
     };
     var random = new Random();
-    imgsUrls.Sort((x,y) => random.Next(100) > 50 ? 0 : 1 );
+    imgsUrls.Sort((x, y) => random.Next(100) > 50 ? 0 : 1);
 }
 
-<div class="Dbox">
-    <main>
-        @{
-            foreach (var url in imgsUrls)
+<div class="myentry">
+    <h2>The Best Game</h2>
+    <p>Arma3 is simply the best video game, military simulator I have ever played.</p>
+    <p>These are mine screenshots from my Steam account.</p>
+    <p>I will add soon more content here including videos and SQF scripts</p>
+</div>
+
+<div class="grid">
+    @{
+        bool isFirst = true;
+
+        foreach (var url in imgsUrls)
+        {
+            string cssClass = "grid-item";
+            if (isFirst)
             {
-                var maxWidth = random.Next(100, 300).ToString() + "px";
-                <article class="mybox" style="width:@(maxWidth);">
-                    <img src="@(url)" alt="Arma3" style="max-width:100%; max-height:100%;">
-                </article>
+                cssClass = "grid-sizer";
             }
+            else
+            {
+                if (random.Next(0, 10) >= 5)
+                {
+                    cssClass += " grid-item--width2";
+                }
+            }
+
+            isFirst = false;
+
+            //var width = random.Next(150, 700).ToString() + "px";
+
+            <img src="@url" alt="Arma3" class="@cssClass" onclick="window.open('@url');" />
         }
-    </main>
+
+        @*
+            <figure class="@cssClass">
+                        <img src="@(url)" alt="Arma3" class="@cssClass"/>
+                        <figcaption><div>Thumbnail Caption</div></figcaption>
+                    </figure>
+        *@
+    }
 </div>
 
 
