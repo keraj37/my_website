@@ -120,6 +120,9 @@ textarea {
 .grid-item {
     width: 20%;
 }
+    .grid-item:hover {
+        background: #0000ff;
+    }
 
 .grid-item--width2 {
     width: 40%;
@@ -133,15 +136,7 @@ textarea {
 }
 
 figure {
-    width: 400px;
-    height: 300px;
-    overflow: hidden;
-    position: relative;
     display: inline-block;
-    vertical-align: top;
-    border: 5px solid #fff;
-    box-shadow: 0 0 5px #ddd;
-    margin: 1em;
 }
 
 figcaption {
