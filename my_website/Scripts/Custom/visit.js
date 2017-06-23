@@ -4,7 +4,7 @@
 
 $(function () {
     generalHub.client.spreadVisit = function (ip) {
-        $('#visitors').append('<li>Detected visit from: <strong>' + ip + '</strong></li>');
+        $('#visitors').append('<li>Detected request from: <strong>' + ip + '</strong></li>');
     };
 
     if (typeof triggerAndNewMessageToPage !== 'undefined' && triggerAndNewMessageToPage)

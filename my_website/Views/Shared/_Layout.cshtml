@@ -9,6 +9,16 @@
         new { linkText = "Projects", actionName = "Index", controlerName = "Projects" },
         new { linkText = "Blog", actionName = "Index", controlerName = "Blog" }
     };
+
+    var jumpTos = new[]
+   {
+        new { linkText = "Console", actionName = "Console", controlerName = "Projects" },
+        new { linkText = "AI", actionName = "AI", controlerName = "Projects" },
+        new { linkText = "AS3TOCS", actionName = "AS3TOCS", controlerName = "Projects" },
+        new { linkText = "Mandelbrot", actionName = "MandelbrotSet", controlerName = "Projects" },
+        new { linkText = "Three.js", actionName = "Threejs", controlerName = "Projects" },
+        new { linkText = "Chat", actionName = "Chat", controlerName = "Projects" }
+    };
 }
 
 <!DOCTYPE html>
@@ -43,12 +53,24 @@
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+        <div style="width:60%;">
+            @RenderBody()
+        </div>
+        <div class="myentry menu-right">
+            <div class="center">
+                <h2>Jump to</h2>
+                <ul>
+                    @foreach (var nav in jumpTos)
+                    {
+                        <li>@Html.ActionLink(nav.linkText, nav.actionName, nav.controlerName)</li>
+                    }
+                </ul>
+                <ul id="visitors"></ul>
+            </div>
+        </div>
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Jerry Switalski</p>
-            <br />
-            <ul id="visitors"></ul>
+            <p>&copy; @DateTime.Now.Year - Jerry Switalski</p>           
         </footer>
     </div>
 

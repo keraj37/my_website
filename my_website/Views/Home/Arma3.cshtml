@@ -79,11 +79,19 @@
             }
             else
             {
-                if (random.Next(0, 10) >= 5)
+                int randomNumber = random.Next(0, 100);
+
+                if (randomNumber >= 93)
+                {
+                    cssClass += " grid-item--width3";
+                }
+                else if (randomNumber >= 68)
                 {
                     cssClass += " grid-item--width2";
                 }
             }
+
+            cssClass += " myimg";
 
             isFirst = false;
 

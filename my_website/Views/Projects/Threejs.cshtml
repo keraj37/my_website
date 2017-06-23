@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Projects";
+}
+
+@Html.Partial("_ProjectsPartial")
+
+<p class="myentry">I hope to get into it soon. Looks very promising.</p>
+<div id="threejs">
+</div>
+<script src="~/Scripts/three.js/three.min.js"></script>
+<script>
+        var camera, scene, renderer,
+            geometry, material, mesh;
+
+        init();
+        animate();
+
+        function init() {
+            scene = new THREE.Scene();
+            //scene.background = new THREE.Color(0x000000);
+
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+            camera.position.z = 1000;
+
+            geometry = new THREE.BoxGeometry(400, 400, 400);
+            material = new THREE.MeshBasicMaterial({ color: 0x7fff00, wireframe: true });
+
+            mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+
+            renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setClearColor(0x0030A1, 0.5);
+            renderer.setSize(window.innerWidth * 0.5, window.innerHeight * 0.5);
+
+            document.getElementById("threejs").appendChild(renderer.domElement);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            render();
+        }
+
+        function render() {
+            mesh.rotation.x += 0.01;
+            mesh.rotation.y += 0.02;
+
+            renderer.render(scene, camera);
+        }
+</script>

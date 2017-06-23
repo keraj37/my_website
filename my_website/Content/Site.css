@@ -2,11 +2,6 @@
     padding-top: 30px;
     padding-bottom: 20px;
     background-color: #FFFFFF;
-    /*background: url('../back.jpg');
-    background-size: cover;
-    background-repeat: repeat-x;
-    background-attachment: fixed;
-    margin-bottom: 60px;*/
     margin: 0px;
     font-family: Tahoma, Tahoma, serif;
     font-size: 18px;
@@ -39,13 +34,28 @@
 }
 
 h2 {
-    color: lawngreen
+    color:black;
 }
 
-.mybox {
-    margin: 0px;
-    padding: 0px;
-    background-color: rgba(00, 00, 00, 0.59);
+.menu-right {
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    width: 41%;
+    height: 100%;
+    border-left: solid;
+    border-width: 2px;
+    border-left-style: groove;
+    background-color: white;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    top: 25%;
+    left: 2%;
+    transform: translate(0%, -50%);
 }
 
 .myentry {
@@ -64,13 +74,11 @@ h2 {
 .myblog {
     margin: 3px;
     padding: 8px;
-    /*background-color: rgba(00, 00, 00, 0.59);*/
 }
 
     .myblog:hover {
         transform: scale(1.009);
         color: rgba(100, 100, 100, 1);
-        /*background-color: rgba(00, 00, 00, 1);*/
     }
 
 .multiline {
@@ -128,12 +136,32 @@ textarea {
     width: 40%;
 }
 
+.grid-item--width3 {
+    width: 60%;
+}
+
 *, *::before, *::after {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
+
+.myimg {
+    filter: blur(2px) grayscale(80%);
+}
+
+    .myimg:hover {
+        filter: blur(0px) grayscale(0%);
+    }
+
+.myimg-blur2 {
+    filter: blur(5px) grayscale(80%);
+}
+
+    .myimg-blur2:hover {
+        filter: blur(0px) grayscale(0%);
+    }
 
 figure {
     display: inline-block;

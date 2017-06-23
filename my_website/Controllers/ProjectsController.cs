@@ -150,6 +150,12 @@ namespace my_website.Controllers
             return File(Encoding.UTF8.GetBytes(csString[0]), "text/plain", className + ".cs");
         }
 
+        [HttpGet]
+        public ActionResult Threejs()
+        {
+            return View();
+        }
+
         [NonAction]
         private string AddNewLine(object value)
         {

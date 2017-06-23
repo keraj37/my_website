@@ -354,6 +354,7 @@
     <Content Include="Views\Home\Arma3.cshtml" />
     <Content Include="Views\Projects\MandelbrotSet.cshtml" />
     <Content Include="Views\Projects\Chat.cshtml" />
+    <Content Include="Views\Projects\Threejs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
