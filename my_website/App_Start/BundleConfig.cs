@@ -32,7 +32,8 @@ namespace my_website
                         "~/Scripts/Custom/my_css_and_anims.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/masonry").Include(
-                       "~/Scripts/Masonry/masonry.pkgd.min.js"));
+                       "~/Scripts/Masonry/masonry.pkgd.min.js",
+                       "~/Scripts/Masonry/imagesloaded.pkgd.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/ajax").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.js",
