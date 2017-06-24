@@ -8,8 +8,8 @@ function triggerAndNewMessageToPage(name, message) {
         + '</strong>: ' + htmlEncode(message) + '</li>');
 }
 
-$(function () {    
-    $('#displayname').val(prompt('Enter your name:', ''));
+$(function () {
+    $('#displayname').val(userName);
     $('#message').focus();
 
     $.connection.hub.start().done(function () {

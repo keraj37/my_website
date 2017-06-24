@@ -55,6 +55,9 @@ namespace my_website
             bundles.Add(new ScriptBundle("~/bundles/chat").Include(
                         "~/Scripts/Custom/chat.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/webcam").Include(
+                        "~/Scripts/Custom/webcam.js"));
+
             bundles.Add(new Bundle("~/bundles/visit").Include(
                        "~/Scripts/Custom/visit.js",
                        "~/Scripts/Custom/signalREventBinder.js"));

@@ -1,0 +1,15 @@
+﻿@model System.String
+
+@{
+    ViewBag.Title = "WebCam";
+}
+
+@Html.Partial("_ProjectsPartial")
+
+<div>
+    <img id="webcam" src="@Model" />
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/webcam")
+}

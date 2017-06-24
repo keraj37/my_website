@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity
+
+@{
     var allNavigations = new[]
     {
         new { linkText = "Home", actionName = "Index", controlerName = "Home" },
@@ -70,9 +72,23 @@
         </div>
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Jerry Switalski</p>           
+            <p>&copy; @DateTime.Now.Year - Jerry Switalski</p>
         </footer>
     </div>
+
+    
+    @if (Request.IsAuthenticated)
+    {
+        <script>
+            var userName = @User.Identity.GetUserName() + '@@' + @Request.UserHostAddress;
+        </script>
+    }
+    else
+    {
+        <script>
+            var userName = 'quest@@' +@Request.UserHostAddress;
+        </script>
+    }
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

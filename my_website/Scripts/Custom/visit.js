@@ -10,6 +10,9 @@ $(function () {
     if (typeof triggerAndNewMessageToPage !== 'undefined' && triggerAndNewMessageToPage)
         generalHub.client.addNewMessageToPage = triggerAndNewMessageToPage;
 
+    if (typeof updateWebCamStream !== 'undefined' && updateWebCamStream)
+        generalHub.client.updateWebCamStream = updateWebCamStream;
+
     //$.connection.hub.logging = true;
     $.connection.hub.start().done(function () {
         sendMessageVisit();

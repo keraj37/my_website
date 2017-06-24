@@ -20,6 +20,11 @@ namespace my_website.Hubs
             Clients.All.addNewMessageToPage(name, message);
         }
 
+        public void UpdateWebCamStream(string name, string image)
+        {
+            Clients.Group(name).updateWebCamStream(image);
+        }
+
         //Moved to seperate hub - it was the only way to make it work :(
         /*
         public void SendCSFile(string key, string className, string csFile)

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace my_website.Controllers
 {
@@ -154,6 +155,19 @@ namespace my_website.Controllers
         public ActionResult Threejs()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult WebCam()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public void WebCam(string name, string image)
+        {
+            GeneralHub hub = new GeneralHub();
+            hub.UpdateWebCamStream(name, image);
         }
 
         [NonAction]

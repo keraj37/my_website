@@ -274,6 +274,7 @@
     <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\Custom\webcam.js" />
     <Content Include="Scripts\Custom\visit.js" />
     <Content Include="Scripts\Custom\chat.js" />
     <Content Include="Scripts\Custom\cookies.js" />
@@ -355,6 +356,7 @@
     <Content Include="Views\Projects\MandelbrotSet.cshtml" />
     <Content Include="Views\Projects\Chat.cshtml" />
     <Content Include="Views\Projects\Threejs.cshtml" />
+    <Content Include="Views\Projects\WebCam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
