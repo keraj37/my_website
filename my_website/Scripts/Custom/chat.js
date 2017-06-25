@@ -9,7 +9,6 @@ function triggerAndNewMessageToPage(name, message) {
 }
 
 $(function () {
-    $('#displayname').val(userName);
     $('#message').focus();
 
     $.connection.hub.start().done(function () {

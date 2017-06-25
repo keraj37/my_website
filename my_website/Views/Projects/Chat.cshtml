@@ -1,13 +1,23 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity
+
+@{
     ViewBag.Title = "Chat";
 }
 
 @Html.Partial("_ProjectsPartial")
 
+@if (Request.IsAuthenticated)
+{
+    <input type="hidden" id="displayname" value="@User.Identity.GetUserName() @Html.Raw("@") @Request.UserHostAddress"/>
+}
+else
+{
+    <input type="hidden" id="displayname" value="quest @Html.Raw("@") @Request.UserHostAddress" />
+}
+
 <div class="container">
-    <input type="text" id="message" class="console"/>
-    <input type="button" id="sendmessage" value="Send" class="console-button"/>
-    <input type="hidden" id="displayname" />
+    <input type="text" id="message" class="console" />
+    <input type="button" id="sendmessage" value="Send" class="console-button" />
 
     <div class="console console-chat-output">
         <ul id="discussion"></ul>
@@ -15,5 +25,5 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/chat")   
+    @Scripts.Render("~/bundles/chat")
 }

@@ -1,6 +1,4 @@
-﻿@using Microsoft.AspNet.Identity
-
-@{
+﻿@{
     var allNavigations = new[]
     {
         new { linkText = "Home", actionName = "Index", controlerName = "Home" },
@@ -19,6 +17,7 @@
         new { linkText = "AS3TOCS", actionName = "AS3TOCS", controlerName = "Projects" },
         new { linkText = "Mandelbrot", actionName = "MandelbrotSet", controlerName = "Projects" },
         new { linkText = "Three.js", actionName = "Threejs", controlerName = "Projects" },
+        new { linkText = "WebCam", actionName = "WebCam", controlerName = "Projects" },
         new { linkText = "Chat", actionName = "Chat", controlerName = "Projects" }
     };
 }
@@ -55,7 +54,7 @@
         </div>
     </div>
     <div class="container body-content">
-        <div style="width:60%;">
+        <div style="width:73%;">
             @RenderBody()
         </div>
         <div class="myentry menu-right">
@@ -74,21 +73,7 @@
         <footer>
             <p>&copy; @DateTime.Now.Year - Jerry Switalski</p>
         </footer>
-    </div>
-
-    
-    @if (Request.IsAuthenticated)
-    {
-        <script>
-            var userName = @User.Identity.GetUserName() + '@@' + @Request.UserHostAddress;
-        </script>
-    }
-    else
-    {
-        <script>
-            var userName = 'quest@@' +@Request.UserHostAddress;
-        </script>
-    }
+    </div>   
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -100,6 +85,7 @@
     @Scripts.Render("~/signalr/hubs")
     <script>
         var generalHub = $.connection.GeneralHub;
+        var webCamHub = $.connection.WebCamHub;
     </script>
     @Scripts.Render("~/bundles/visit")
 

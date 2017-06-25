@@ -42,7 +42,7 @@ h2 {
     top: 0%;
     right: 0%;
     bottom: 0%;
-    width: 41%;
+    width: 31%;
     height: 100%;
     border-left: solid;
     border-width: 2px;
@@ -53,9 +53,10 @@ h2 {
 .center {
     margin: 0;
     position: absolute;
-    top: 25%;
+    top: 30px;
     left: 2%;
-    transform: translate(0%, -50%);
+    overflow: auto;
+    /*transform: translate(0%, -50%);*/
 }
 
 .myentry {
@@ -112,9 +113,7 @@ h2 {
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
+    input, select, textarea {
     max-width: 580px;
 }
 

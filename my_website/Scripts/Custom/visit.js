@@ -11,7 +11,7 @@ $(function () {
         generalHub.client.addNewMessageToPage = triggerAndNewMessageToPage;
 
     if (typeof updateWebCamStream !== 'undefined' && updateWebCamStream)
-        generalHub.client.updateWebCamStream = updateWebCamStream;
+        webCamHub.client.updateWebCamStream = updateWebCamStream;
 
     //$.connection.hub.logging = true;
     $.connection.hub.start().done(function () {

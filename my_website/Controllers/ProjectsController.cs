@@ -11,6 +11,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.SignalR;
 
 namespace my_website.Controllers
 {
@@ -158,6 +159,7 @@ namespace my_website.Controllers
         }
 
         [HttpGet]
+        [System.Web.Mvc.Authorize(Roles = Users.Users.Roles.ADMIN)]
         public ActionResult WebCam()
         {
             return View();
@@ -166,8 +168,12 @@ namespace my_website.Controllers
         [HttpPost]
         public void WebCam(string name, string image)
         {
-            GeneralHub hub = new GeneralHub();
-            hub.UpdateWebCamStream(name, image);
+            var context = GlobalHost.ConnectionManager.GetHubContext<WebCamHub>();
+            context.Clients.All.updateWebCamStream(image);
+            //context.Clients.Group(name).updateWebCamStream(image);
+
+            //WebCamHub hub = new WebCamHub();
+            //hub.UpdateWebCamStream(name, image);
         }
 
         [NonAction]
