@@ -2,6 +2,12 @@
     generalHub.server.logVisit();
 }
 
+function updateWebCamStream(image) {
+    var src = 'data:image/jpeg;base64,' + image;
+    if ($('#webcam'))
+        $('#webcam').attr("src", src);
+}
+
 $(function () {
     generalHub.client.spreadVisit = function (ip) {
         $('#visitors').append('<li>Detected request from: <strong>' + ip + '</strong></li>');
