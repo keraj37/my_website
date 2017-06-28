@@ -12,9 +12,9 @@ namespace my_website.Hubs
     {
         public void UpdateWebCamStream(string name, string image)
         {
-            //Clients.Group(name).updateWebCamStream(image);
-            //Clients.All.updateWebCamStream(image);
-            Clients.User(name).updateWebCamStream(image);
+            Clients.Group(name).updateWebCamStreamGroup(image);
+            Clients.All.updateWebCamStreamAll(image);
+            Clients.User(name).updateWebCamStreamUser(image);
         }
     }
 }

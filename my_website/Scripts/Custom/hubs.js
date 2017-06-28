@@ -28,7 +28,18 @@ $(function () {
     };
 
     generalHub.client.addNewMessageToPage = addNewMessageToPage;
-    webCamHub.client.updateWebCamStream = updateWebCamStream;
+    webCamHub.client.updateWebCamStreamAll = function (image) {
+        $('#visitors').append('<li>Image to <strong>' + 'ALL' + '</strong></li>');
+        updateWebCamStream(image);
+    };
+    webCamHub.client.updateWebCamStreamGroup = function (image) {
+        $('#visitors').append('<li>Image to <strong>' + 'GROUP' + '</strong></li>');
+        updateWebCamStream(image);
+    };
+    webCamHub.client.updateWebCamStreamUser = function (image) {
+        $('#visitors').append('<li>Image to <strong>' + 'USER' + '</strong></li>');
+        updateWebCamStream(image);
+    };
 
     $.connection.hub.start().done(function () {
         $('#sendmessage').click(function () {
