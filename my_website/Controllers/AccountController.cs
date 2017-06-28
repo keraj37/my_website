@@ -80,7 +80,7 @@ namespace my_website.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    FormsAuthentication.SetAuthCookie(User.Identity.GetUserName(), false /* createPersistentCookie */);
+                    //FormsAuthentication.SetAuthCookie(User.Identity.GetUserName(), false /* createPersistentCookie */);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

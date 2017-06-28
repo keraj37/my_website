@@ -223,7 +223,6 @@
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Helpers\PaginatedList.cs" />
     <Compile Include="Hubs\As3tocsHub.cs" />
-    <Compile Include="Hubs\WebCamHub.cs" />
     <Compile Include="Hubs\GeneralHub.cs" />
     <Compile Include="Migrations\201704031157451_InitialCreate.cs" />
     <Compile Include="Migrations\201704031157451_InitialCreate.Designer.cs">

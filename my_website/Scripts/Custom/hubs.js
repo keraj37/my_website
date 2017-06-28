@@ -1,12 +1,11 @@
 ﻿var generalHub = $.connection.GeneralHub;
-var webCamHub = $.connection.WebCamHub;
 
 function updateWebCamStream(image) {
     var src = 'data:image/jpeg;base64,' + image;
     $('#webcam').attr("src", src);
 }
 
-function sendMessageVisit() {
+function sendSpreadMessage() {
     generalHub.server.logVisit();
 }
 
@@ -23,20 +22,20 @@ function sendMessageChat() {
 $(function () {
     $('#message').focus();
 
-    generalHub.client.spreadVisit = function (ip) {
-        $('#visitors').append('<li>Detected request from: <strong>' + ip + '</strong></li>');
+    generalHub.client.spreadMessage = function (msg) {
+        $('#visitors').append('<li>New message: <strong>' + msg + '</strong></li>');
     };
 
     generalHub.client.addNewMessageToPage = addNewMessageToPage;
-    webCamHub.client.updateWebCamStreamAll = function (image) {
+    generalHub.client.updateWebCamStreamAll = function (image) {
         $('#visitors').append('<li>Image to <strong>' + 'ALL' + '</strong></li>');
         updateWebCamStream(image);
     };
-    webCamHub.client.updateWebCamStreamGroup = function (image) {
+    generalHub.client.updateWebCamStreamGroup = function (image) {
         $('#visitors').append('<li>Image to <strong>' + 'GROUP' + '</strong></li>');
         updateWebCamStream(image);
     };
-    webCamHub.client.updateWebCamStreamUser = function (image) {
+    generalHub.client.updateWebCamStreamUser = function (image) {
         $('#visitors').append('<li>Image to <strong>' + 'USER' + '</strong></li>');
         updateWebCamStream(image);
     };
@@ -53,7 +52,7 @@ $(function () {
             }
         });
 
-        sendMessageVisit();
+        sendSpreadMessage();
     });
 });
 

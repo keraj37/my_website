@@ -168,8 +168,8 @@ namespace my_website.Controllers
         [HttpPost]
         public void WebCam(string name, string image)
         {
-            var context = GlobalHost.ConnectionManager.GetHubContext<WebCamHub>();
-            context.Clients.Group(name).updateWebCamStream(image);
+            //var context = GlobalHost.ConnectionManager.GetHubContext<GeneralHub>();
+            //context.Clients.Group(name).updateWebCamStreamAll(image);
         }
 
         [NonAction]
