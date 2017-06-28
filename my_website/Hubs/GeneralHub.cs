@@ -28,11 +28,11 @@ namespace my_website.Hubs
 
         public void UpdateWebCamStream(string name, string image)
         {
-            TryCreatingGroup();
+            //TryCreatingGroup();
 
             Clients.Group(name).updateWebCamStreamGroup(image);
-            Clients.All.updateWebCamStreamAll(image);
-            Clients.User(name).updateWebCamStreamUser(image);
+            //Clients.All.updateWebCamStreamAll(image);
+            //Clients.User(name).updateWebCamStreamUser(image);
         }
 
         private void TryCreatingGroup()
@@ -41,7 +41,7 @@ namespace my_website.Hubs
             {
                 string name = Context.User != null ? Context.User.Identity.Name : "quest";
                 Groups.Add(Context.ConnectionId, name);
-                Clients.All.spreadMessage("Group created: " + name);
+                //Clients.All.spreadMessage("Group created: " + name);
             }
             catch (Exception e)
             {
