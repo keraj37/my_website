@@ -52,15 +52,8 @@ namespace my_website
             bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
                         "~/Scripts/jquery.signalR-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/chat").Include(
-                        "~/Scripts/Custom/chat.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/webcam").Include(
-                        "~/Scripts/Custom/webcam.js"));
-
-            bundles.Add(new Bundle("~/bundles/visit").Include(
-                       "~/Scripts/Custom/visit.js",
-                       "~/Scripts/Custom/signalREventBinder.js"));
+            bundles.Add(new ScriptBundle("~/bundles/hubs").Include(
+                        "~/Scripts/Custom/hubs.js"));
         }
     }
 }

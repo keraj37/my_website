@@ -277,9 +277,7 @@
     <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Scripts\Custom\webcam.js" />
-    <Content Include="Scripts\Custom\visit.js" />
-    <Content Include="Scripts\Custom\chat.js" />
+    <Content Include="Scripts\Custom\hubs.js" />
     <Content Include="Scripts\Custom\cookies.js" />
     <Content Include="Scripts\Custom\mandelbrot_ajax.js" />
     <Content Include="Scripts\Custom\console_ajax.js" />
