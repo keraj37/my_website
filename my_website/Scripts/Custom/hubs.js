@@ -32,11 +32,11 @@ $(function () {
         updateWebCamStream(image);
     };
     generalHub.client.updateWebCamStreamGroup = function (image) {
-        $('#visitors').append('<li>Image to <strong>' + 'GROUP' + '</strong></li>');
+        //$('#visitors').append('<li>Image to <strong>' + 'GROUP' + '</strong></li>');
         updateWebCamStream(image);
     };
     generalHub.client.updateWebCamStreamUser = function (image) {
-        $('#visitors').append('<li>Image to <strong>' + 'USER' + '</strong></li>');
+        //$('#visitors').append('<li>Image to <strong>' + 'USER' + '</strong></li>');
         updateWebCamStream(image);
     };
 
