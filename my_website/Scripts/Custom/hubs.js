@@ -28,7 +28,7 @@ $(function () {
 
     generalHub.client.addNewMessageToPage = addNewMessageToPage;
     generalHub.client.updateWebCamStreamAll = function (image) {
-        $('#visitors').append('<li>Image to <strong>' + 'ALL' + '</strong></li>');
+        //$('#visitors').append('<li>Image to <strong>' + 'ALL' + '</strong></li>');
         updateWebCamStream(image);
     };
     generalHub.client.updateWebCamStreamGroup = function (image) {

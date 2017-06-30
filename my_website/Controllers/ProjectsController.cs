@@ -159,17 +159,9 @@ namespace my_website.Controllers
         }
 
         [HttpGet]
-        [System.Web.Mvc.Authorize(Roles = Users.Users.Roles.ADMIN)]
         public ActionResult WebCam()
         {
             return View();
-        }
-
-        [HttpPost]
-        public void WebCam(string name, string image)
-        {
-            //var context = GlobalHost.ConnectionManager.GetHubContext<GeneralHub>();
-            //context.Clients.Group(name).updateWebCamStreamAll(image);
         }
 
         [NonAction]
