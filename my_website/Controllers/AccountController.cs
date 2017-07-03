@@ -62,6 +62,17 @@ namespace my_website.Controllers
             return View();
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public JsonResult LoginCheck(string email, string password)
+        {
+            ApplicationUser user = UserManager.Find(email, password);
+            if (user != null)
+                return Json(new { result = "success" });
+            else
+                return Json(new { result = "failed" });
+        }
+
         //
         // POST: /Account/Login
         [HttpPost]
@@ -76,6 +87,7 @@ namespace my_website.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
+
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
