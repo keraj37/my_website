@@ -261,6 +261,7 @@
     <Content Include="Imgs\Blog\templar.png" />
     <Content Include="Imgs\loading.gif" />
     <Content Include="Imgs\Mandelbrot\sample.gif" />
+    <Content Include="Imgs\WebCam\no_signal.jpg" />
     <Content Include="logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -273,6 +274,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Files\webcam0.0.1.apk" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />

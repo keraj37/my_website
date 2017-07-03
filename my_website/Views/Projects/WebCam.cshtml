@@ -4,6 +4,29 @@
 
 @Html.Partial("_ProjectsPartial")
 
-<div>
-    <img id="webcam" src="/logo.png" />
-</div>
+@if (Request.IsAuthenticated)
+{
+    <img id="webcam" src="~/Imgs/WebCam/no_signal.jpg" />
+    <div id="no-signal">
+        <div class="myentry">
+            <h2>No signal detected!</h2>
+            <p>Make sure to run Android client, and enter in it email you registered on this site and password correctly.</p>
+            <p>Also make sure you have internet connection.</p>
+        </div>
+    </div>
+    <div id="signal-detected" style="display:none;">
+        <div class="myentry">
+            <h2>Signal detected!</h2>
+            <p>Looks like everything works.</p>
+        </div>
+    </div>
+}
+else
+{
+    <div class="myentry">
+        <h2>Service only for registered users!</h2>
+        <p>Please register first (you can use fake email if you prefare), then download the Android client:</p>
+    </div>
+}
+
+<a href="~/Files/webcam0.0.1.apk">WebCamClient - Android (4.3 and higher)</a>

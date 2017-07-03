@@ -10,6 +10,8 @@ namespace my_website.DataCollection
 {
     public class DataCollection
     {
+        private static long lastSend = 0;
+
         private static GMailer mailer;
         private static ApplicationDbContext db = new ApplicationDbContext();       
 
@@ -49,6 +51,24 @@ namespace my_website.DataCollection
                 db.DataCollections.Add(data);
                 db.SaveChanges();
             }, null);
+        }
+
+        public static void QuickMail(string subject, string body)
+        {
+            TimeSpan span = new TimeSpan(DateTime.UtcNow.Ticks - lastSend);
+
+            if (span.TotalSeconds >= 360)
+            {
+                lastSend = DateTime.UtcNow.Ticks;
+
+                ThreadPool.QueueUserWorkItem(delegate
+                {
+                    mailer.Subject = "[mywebsite] " + subject;
+                    mailer.Body = body;
+                    mailer.IsHtml = false;
+                    mailer.Send();
+                }, null);
+            }
         }
     }
 }
