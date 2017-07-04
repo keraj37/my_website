@@ -10,10 +10,20 @@ function updateWebCamStream(image) {
 }
 
 function updateWebCamDeviceConnected(device) {
-    if (device == "No devices connected")
-        $('#device-connected').html('Devices: <span style="color:#ff0000">{0}</span>'.format(device));
-    else
-        $('#device-connected').html('Devices: <span style="color:#00ffff">Device connected: {0}</span>'.format(device));
+    if (device == "No devices connected") {
+        setTimeout(function () {
+            $('#button-startstream').css('display', 'none');
+            $('#button-screeshot').css('display', 'none');
+            $('#device-connected').html('Devices: <span style="color:#ff0000">{0}</span>'.format(device));
+        }, 800)
+    }
+    else {
+        setTimeout(function () {
+            $('#button-startstream').css('display', 'unset');
+            $('#button-screeshot').css('display', 'unset');
+            $('#device-connected').html('Devices: <span style="color:#00ffff">Device connected: {0}</span>'.format(device));
+        }, 800)
+    }
 }
 
 function sendSpreadMessage() {
@@ -66,7 +76,7 @@ $(function () {
             if (keyCode == 13) {
                 sendMessageChat();
             }
-        });        
+        });
 
         if (typeof checkDevices == 'function') {
             checkDevices();

@@ -30,6 +30,7 @@ namespace my_website.Hubs
             }
         }
 
+        private const string NO_DEVICE = "No devices connected";
         private readonly static Dictionary<string, Device> connectedDevises = new Dictionary<string, Device>();
 
         public void LogVisit()
@@ -65,6 +66,16 @@ namespace my_website.Hubs
             Clients.Group(name).updateWebCamDeviceConnected(device);
         }
 
+        public void DeviceDisconnected(string name)
+        {
+            if (connectedDevises.ContainsKey(name))
+            {
+                connectedDevises.Remove(name);
+            }
+
+            Clients.Group(name).updateWebCamDeviceConnected(NO_DEVICE);
+        }
+
         public void GetConnectedDevice()
         {
             string name = Context.User != null ? Context.User.Identity.Name : "quest";
@@ -73,7 +84,7 @@ namespace my_website.Hubs
             if (connectedDevises.ContainsKey(name))
             {
                 TimeSpan span = new TimeSpan(DateTime.UtcNow.Ticks - connectedDevises[name].lastPing);
-                if (span.TotalSeconds >= 130)
+                if (span.TotalSeconds >= 2.5d)
                     connected = false;
             }
             else
@@ -87,7 +98,27 @@ namespace my_website.Hubs
             }
             else
             {
-                Clients.Group(name).updateWebCamDeviceConnected("No devices connected");
+                Clients.Group(name).updateWebCamDeviceConnected(NO_DEVICE);
+            }
+        }
+
+        public void Stream(string cmd)
+        {
+            string name = Context.User != null ? Context.User.Identity.Name : "quest";
+
+            if (connectedDevises.ContainsKey(name))
+            {
+                Clients.User(connectedDevises[name].connectionId).remoteCommand(cmd);
+            }
+        }
+
+        public void GetScreeshot()
+        {
+            string name = Context.User != null ? Context.User.Identity.Name : "quest";
+
+            if (connectedDevises.ContainsKey(name))
+            {
+                Clients.User(connectedDevises[name].connectionId).remoteCommand("screenshot");
             }
         }
 
