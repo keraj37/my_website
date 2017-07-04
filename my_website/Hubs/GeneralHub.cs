@@ -16,6 +16,14 @@ namespace my_website.Hubs
     [HubName("GeneralHub")]
     public class GeneralHub : Hub
     {
+        private enum RemoteCommand
+        {
+            SCREENSHOT,
+            START_STREAM,
+            STOP_STREAM,
+            SET_STREAM_DELAY
+        }
+
         private struct Device
         {
             public string connectionId;
@@ -102,13 +110,33 @@ namespace my_website.Hubs
             }
         }
 
-        public void Stream(string cmd)
+        public void StartStream()
         {
             string name = Context.User != null ? Context.User.Identity.Name : "quest";
 
             if (connectedDevises.ContainsKey(name))
             {
-                Clients.Client(connectedDevises[name].connectionId).remoteCommand(cmd);
+                Clients.Client(connectedDevises[name].connectionId).remoteCommand(RemoteCommand.START_STREAM.ToString());
+            }
+        }
+
+        public void StopStream()
+        {
+            string name = Context.User != null ? Context.User.Identity.Name : "quest";
+
+            if (connectedDevises.ContainsKey(name))
+            {
+                Clients.Client(connectedDevises[name].connectionId).remoteCommand(RemoteCommand.STOP_STREAM.ToString());
+            }
+        }
+
+        public void SetStreamDelay(string param)
+        {
+            string name = Context.User != null ? Context.User.Identity.Name : "quest";
+
+            if (connectedDevises.ContainsKey(name))
+            {
+                Clients.Client(connectedDevises[name].connectionId).remoteCommand(RemoteCommand.SET_STREAM_DELAY.ToString(), param);
             }
         }
 
@@ -118,7 +146,7 @@ namespace my_website.Hubs
 
             if (connectedDevises.ContainsKey(name))
             {
-                Clients.Client(connectedDevises[name].connectionId).remoteCommand("screenshot");
+                Clients.Client(connectedDevises[name].connectionId).remoteCommand(RemoteCommand.SCREENSHOT.ToString());
             }
         }
 

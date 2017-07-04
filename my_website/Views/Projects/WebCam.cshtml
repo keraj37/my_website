@@ -10,8 +10,12 @@
     <div>
         <span id="device-connected">Devices: <span style="color:#ff0000">No devices connected</span></span>
         <button type="button" class="console-button" title="Check devices" onclick="checkDevices(true);">Check devices</button>
-        <button id="button-startstream" style="display:none;" type="button" class="console-button" title="Start stream" onclick="startStream();">Start stream</button>
-        <button id="button-screeshot" style="display:none;" type="button" class="console-button" title="Get screeshot" onclick="getScreeshot();">Get screeshot</button>
+        <div id="buttons-when-connected" style="display:none;">
+            <button type="button" class="console-button" title="Start stream" onclick="startStream();">Start stream</button>
+            <button type="button" class="console-button" title="Stop stream" onclick="stopStream();">Stop stream</button>
+            <button type="button" class="console-button" title="Set stream delay" onclick="setStreamDelay();">Set stream delay</button>
+            <button type="button" class="console-button" title="Get screeshot" onclick="getScreeshot();">Get screeshot</button>
+        </div>
     </div>
     <div id="no-signal">
         <div class="myentry">
@@ -48,6 +52,23 @@
                 }
             };
 
+            function stopStream() {
+                if ($.connection.hub && $.connection.hub.state === $.signalR.connectionState.connected) {
+                    if (generalHub != null)
+                        generalHub.server.stopStream();
+                }
+            };
+
+            function setStreamDelay() {
+                if ($.connection.hub && $.connection.hub.state === $.signalR.connectionState.connected) {
+                    if (generalHub != null)
+                    {
+                        var delay = prompt("Set delay between frames in stream in seconds");
+                        generalHub.server.setStreamDelay(delay);
+                    }
+                }
+            };
+
             function getScreeshot() {
                 if ($.connection.hub && $.connection.hub.state === $.signalR.connectionState.connected) {
                     if (generalHub != null)
@@ -61,7 +82,7 @@ else
 {
     <div class="myentry">
         <h2>Service only for registered users!</h2>
-        <p>Please register first (you can use fake email if you prefare), then download the Android client:</p>
+        <p>Please @Html.ActionLink("register", "Register", "Account", routeValues: new { returnUrl = "/Projects/WebCam" }, htmlAttributes: new { id = "registerLink" }) and/or @Html.ActionLink("login", "Login", "Account", routeValues: new { returnUrl = "/Projects/WebCam"}, htmlAttributes: new { id = "loginLink" }) first (you can use fake email if you prefare), then download, install and run the Android client.</p>
     </div>
 }
 
