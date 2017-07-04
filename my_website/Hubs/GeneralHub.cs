@@ -108,7 +108,7 @@ namespace my_website.Hubs
 
             if (connectedDevises.ContainsKey(name))
             {
-                Clients.User(connectedDevises[name].connectionId).remoteCommand(cmd);
+                Clients.Client(connectedDevises[name].connectionId).remoteCommand(cmd);
             }
         }
 
@@ -118,7 +118,7 @@ namespace my_website.Hubs
 
             if (connectedDevises.ContainsKey(name))
             {
-                Clients.User(connectedDevises[name].connectionId).remoteCommand("screenshot");
+                Clients.Client(connectedDevises[name].connectionId).remoteCommand("screenshot");
             }
         }
 
