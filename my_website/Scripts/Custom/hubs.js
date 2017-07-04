@@ -9,6 +9,13 @@ function updateWebCamStream(image) {
     $('#webcam').attr("src", src);
 }
 
+function updateWebCamDeviceConnected(device) {
+    if (device == "No devices connected")
+        $('#device-connected').html('Devices: <span style="color:#ff0000">{0}</span>'.format(device));
+    else
+        $('#device-connected').html('Devices: <span style="color:#00ffff">Device connected: {0}</span>'.format(device));
+}
+
 function sendSpreadMessage() {
     generalHub.server.logVisit();
 }
@@ -44,6 +51,11 @@ $(function () {
         updateWebCamStream(image);
     };
 
+    generalHub.client.updateWebCamDeviceConnected = function (device) {
+        //$('#visitors').append('<li>Device update:<strong>' + 'USER' + '</strong></li>');
+        updateWebCamDeviceConnected(device);
+    };
+
     $.connection.hub.start().done(function () {
         $('#sendmessage').click(function () {
             sendMessageChat();
@@ -54,7 +66,11 @@ $(function () {
             if (keyCode == 13) {
                 sendMessageChat();
             }
-        });
+        });        
+
+        if (typeof checkDevices == 'function') {
+            checkDevices();
+        }
 
         sendSpreadMessage();
     });

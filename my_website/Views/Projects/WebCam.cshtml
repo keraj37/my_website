@@ -6,7 +6,8 @@
 
 @if (Request.IsAuthenticated)
 {
-    <img id="webcam" src="~/Imgs/WebCam/no_signal.jpg" />
+    <img id="webcam" src="~/Imgs/WebCam/no_signal.jpg" /><span id="device-connected">Devices: <span style="color:#ff0000">No device connected...</span></span>
+    <button type="button" class="console-button" title="Check devices" onclick="checkDevices();">Check devices</button>
     <div id="no-signal">
         <div class="myentry">
             <h2>No signal detected!</h2>
@@ -32,4 +33,20 @@ else
 <div>
     <a href="~/Files/webcam0.0.1.apk">WebCamClient - Android (4.3 and higher)</a>
 </div>
+
+@section Scripts
+{
+    <script>
+        setInterval(checkDevices, 2000)
+
+        function checkDevices() {
+            console.log("Checking devices...")
+
+            if ($.connection.hub && $.connection.hub.state === $.signalR.connectionState.connected) {
+                if (generalHub != null)
+                    generalHub.server.getConnectedDevice();
+            }
+        };
+    </script>
+}
 
