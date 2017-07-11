@@ -1,8 +1,27 @@
 ﻿var generalHub = $.connection.GeneralHub;
 
+
 function updateWebCamStream(image) {
+    $('#no-signal').css('display', 'none');
+    $('#signal-detected').css('display', 'unset');
+
     var src = 'data:image/jpeg;base64,' + image;
     $('#webcam').attr("src", src);
+}
+
+function updateWebCamDeviceConnected(device) {
+    if (device == "No devices connected") {
+        setTimeout(function () {
+            $('#buttons-when-connected').css('display', 'none');
+            $('#device-connected').html('Devices: <span style="color:#ff0000">{0}</span>'.format(device));
+        }, 800)
+    }
+    else {
+        setTimeout(function () {
+            $('#buttons-when-connected').css('display', 'unset');
+            $('#device-connected').html('Devices: <span style="color:#00ffff">Device connected: {0}</span>'.format(device));
+        }, 800)
+    }
 }
 
 function sendSpreadMessage() {
@@ -40,6 +59,11 @@ $(function () {
         updateWebCamStream(image);
     };
 
+    generalHub.client.updateWebCamDeviceConnected = function (device) {
+        //$('#visitors').append('<li>Device update:<strong>' + 'USER' + '</strong></li>');
+        updateWebCamDeviceConnected(device);
+    };
+
     $.connection.hub.start().done(function () {
         $('#sendmessage').click(function () {
             sendMessageChat();
@@ -51,6 +75,10 @@ $(function () {
                 sendMessageChat();
             }
         });
+
+        if (typeof checkDevices == 'function') {
+            checkDevices();
+        }
 
         sendSpreadMessage();
     });

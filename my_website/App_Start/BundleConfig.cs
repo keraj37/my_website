@@ -29,7 +29,8 @@ namespace my_website
                       "~/Content/grid.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/myscripts").Include(
-                        "~/Scripts/Custom/my_css_and_anims.js"));
+                        "~/Scripts/Custom/my_css_and_anims.js",
+                        "~/Scripts/Custom/utils.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/masonry").Include(
                        "~/Scripts/Masonry/masonry.pkgd.min.js",

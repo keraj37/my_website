@@ -4,6 +4,88 @@
 
 @Html.Partial("_ProjectsPartial")
 
+@if (Request.IsAuthenticated)
+{
+    <img id="webcam" src="~/Imgs/WebCam/no_signal.jpg" />
+    <div>
+        <span id="device-connected">Devices: <span style="color:#ff0000">No devices connected</span></span>
+        <button type="button" class="console-button" title="Check devices" onclick="checkDevices(true);">Check devices</button>
+        <div id="buttons-when-connected" style="display:none;">
+            <button type="button" class="console-button" title="Start stream" onclick="startStream();">Start stream</button>
+            <button type="button" class="console-button" title="Stop stream" onclick="stopStream();">Stop stream</button>
+            <button type="button" class="console-button" title="Set stream delay" onclick="setStreamDelay();">Set stream delay</button>
+            <button type="button" class="console-button" title="Get screeshot" onclick="getScreeshot();">Get screeshot</button>
+        </div>
+    </div>
+    <div id="no-signal">
+        <div class="myentry">
+            <h2>No signal detected!</h2>
+            <p>Make sure to run Android client, and enter in it email you registered on this site and password correctly.</p>
+            <p>Also make sure you have internet connection.</p>
+        </div>
+    </div>
+    <div id="signal-detected" style="display:none;">
+        <div class="myentry">
+            <h2>Signal detected!</h2>
+            <p>Looks like everything works.</p>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script>
+            setInterval(checkDevices, 2000)
+
+            function checkDevices(force = false) {
+                if ($.connection.hub && $.connection.hub.state === $.signalR.connectionState.connected) {
+                    if (generalHub != null) {
+                        if (force)
+                            $('#device-connected').html('Devices: <span style="color:#ffa500">Checking connected devices...</span>');
+                        generalHub.server.getConnectedDevice();
+                    }
+                }
+            };
+
+            function startStream() {
+                if ($.connection.hub && $.connection.hub.state === $.signalR.connectionState.connected) {
+                    if (generalHub != null)
+                        generalHub.server.startStream();
+                }
+            };
+
+            function stopStream() {
+                if ($.connection.hub && $.connection.hub.state === $.signalR.connectionState.connected) {
+                    if (generalHub != null)
+                        generalHub.server.stopStream();
+                }
+            };
+
+            function setStreamDelay() {
+                if ($.connection.hub && $.connection.hub.state === $.signalR.connectionState.connected) {
+                    if (generalHub != null)
+                    {
+                        var delay = prompt("Set delay between frames in stream in seconds");
+                        generalHub.server.setStreamDelay(delay);
+                    }
+                }
+            };
+
+            function getScreeshot() {
+                if ($.connection.hub && $.connection.hub.state === $.signalR.connectionState.connected) {
+                    if (generalHub != null)
+                        generalHub.server.getScreeshot();
+                }
+            };
+        </script>
+    }
+}
+else
+{
+    <div class="myentry">
+        <h2>Service only for registered users!</h2>
+        <p>Please @Html.ActionLink("register", "Register", "Account", routeValues: new { returnUrl = "/Projects/WebCam" }, htmlAttributes: new { id = "registerLink" }) and/or @Html.ActionLink("login", "Login", "Account", routeValues: new { returnUrl = "/Projects/WebCam"}, htmlAttributes: new { id = "loginLink" }) first (you can use fake email if you prefare), then download, install and run the Android client.</p>
+    </div>
+}
+
 <div>
-    <img id="webcam" src="/logo.png" />
+    <a href="~/Files/webcam0.0.1.apk">WebCamClient - Android (4.3 and higher)</a>
 </div>
