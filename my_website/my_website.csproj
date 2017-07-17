@@ -361,6 +361,7 @@
     <Content Include="Views\Projects\Chat.cshtml" />
     <Content Include="Views\Projects\Threejs.cshtml" />
     <Content Include="Views\Projects\WebCam.cshtml" />
+    <Content Include="Views\Projects\HackingAthenticator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
