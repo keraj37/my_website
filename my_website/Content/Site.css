@@ -3,7 +3,7 @@
     padding-bottom: 20px;
     background-color: #FFFFFF;
     margin: 0px;
-    font-family: Tahoma, Tahoma, serif;
+    font-family: Muli-Regular;
     font-size: 18px;
     font-weight: 300;
     height: 100%;
@@ -33,8 +33,9 @@
     padding: 0px;
 }
 
-h2 {
-    color:black;
+h1, h2, h3 {
+    color: black;
+    font-family: Gotham-Ultra;
 }
 
 .menu-right {
@@ -222,4 +223,18 @@ figcaption:hover div {
 figure:hover img {
     -webkit-transform: scale3d(1.2, 1.2, 1);
     transform: scale3d(1.2, 1.2, 1);
+}
+
+@font-face {
+    font-weight: 400;
+    font-style: normal;
+    font-family: Gotham-Ultra;
+    src: local("Gotham-Ultra"),url(../fonts/Gotham-Ultra.ttf) format("truetype")
+}
+
+@font-face {
+    font-weight: 400;
+    font-style: normal;
+    font-family: Muli-Regular;
+    src: local("Muli-Regular"),url(../fonts/Muli-Regular.ttf) format("truetype")
 }
