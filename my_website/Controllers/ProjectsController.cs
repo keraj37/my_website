@@ -164,6 +164,12 @@ namespace my_website.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult FmvBemup()
+        {
+            return View();
+        }
+
         [NonAction]
         private string AddNewLine(object value)
         {

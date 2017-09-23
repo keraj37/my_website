@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "FmvBemup";
+}
+
+<h2>FmvBemup</h2>
+
+@section Scripts
+{
+    <script src="~/Content/FmvBemup/Build/UnityLoader.js"></script>
+    <script>
+        var gameInstance = UnityLoader.instantiate("gameContainer", "Content/FmvBemup/Build/build.json");
+    </script>
+    <div id="gameContainer" style="width: 986px; height: 554px; margin: auto"></div>
+}
+
