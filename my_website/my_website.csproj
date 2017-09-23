@@ -373,7 +373,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="bin\" />
     <Folder Include="Controllers\MandelbrotSet\MovieMaker\Libs\" />
   </ItemGroup>
   <ItemGroup>
