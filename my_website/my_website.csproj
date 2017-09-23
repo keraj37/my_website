@@ -248,6 +248,8 @@
     <Content Include="Content\FmvBemup\Build\index.html" />
     <Content Include="Content\grid.css" />
     <Content Include="Controllers\AS3TOCS\AS3TOCS.dll" />
+    <Content Include="FmvBemup\Build\UnityLoader.js" />
+    <Content Include="FmvBemup\index.html" />
     <Content Include="Imgs\Art\1.jpg" />
     <Content Include="Imgs\Art\2.jpg" />
     <Content Include="Imgs\Art\3.jpg" />
@@ -276,6 +278,11 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Files\webcam0.0.1.apk" />
+    <Content Include="FmvBemup\Build\build.asm.code.unityweb" />
+    <Content Include="FmvBemup\Build\build.asm.framework.unityweb" />
+    <Content Include="FmvBemup\Build\build.asm.memory.unityweb" />
+    <Content Include="FmvBemup\Build\build.data.unityweb" />
+    <Content Include="FmvBemup\Build\build.json" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

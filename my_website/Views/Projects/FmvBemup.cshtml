@@ -5,12 +5,14 @@
 
 <h2>FmvBemup</h2>
 
-@section Scripts
-{
-    <script src="~/Content/FmvBemup/Build/UnityLoader.js"></script>
-    <script>
-        var gameInstance = UnityLoader.instantiate("gameContainer", "Content/FmvBemup/Build/build.json");
-    </script>
-    <div id="gameContainer" style="width: 986px; height: 554px; margin: auto"></div>
-}
+<style>
+    .unity {
+        -ms-transform: scale(1, 1); /* IE 9 */
+        -webkit-transform: scale(1, 1); /* Safari */
+        transform: scale(1, 1);
+    }
+</style>
 
+<div class="unity">
+    <iframe width="660" height="380" src="~/FmvBemup/index.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+</div>
