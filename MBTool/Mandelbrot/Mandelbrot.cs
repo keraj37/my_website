@@ -12,7 +12,7 @@ namespace Mandelbrot
 {
     /* Original project: https://www.codeproject.com/Articles/1177443/Mandelbrot-Set-With-Csharp
      * "This program has been made by Joseph Dillon. Created between July 2016-March 2017"
-     * Modified/ported by Jerry Switalski from WinForms to ASP.NET.
+     * Modified/ported by J.S. from WinForms to ASP.NET.
      */
 
     public class Mandelbrot

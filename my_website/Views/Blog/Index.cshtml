@@ -18,7 +18,7 @@
 
 @foreach (var item in Model)
 {
-    <div class="myblog multiline"><h2>@Html.Raw(item.Title)</h2><br/>@Html.Raw(item.Content)<br /><b>@Html.Encode(item.User) &nbsp @Html.Encode(item.Time)</b></div>
+    <div class="myblog multiline"><h2>@Html.Raw(item.Title)</h2><br/>@Html.Raw(item.Content)<br /><b>J.S.@*@Html.Encode(item.User)*@ &nbsp @Html.Encode(item.Time)</b></div>
 
     if (User.IsInRole(Users.Roles.ADMIN))
     {
