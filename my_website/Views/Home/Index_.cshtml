@@ -1,0 +1,42 @@
+﻿@model  my_website.Models.UserClient
+
+@{
+    ViewBag.Title = "Home";   
+}
+
+<div class="D">
+    <main>
+        <article class="myentry randomsize">
+            <h1><span style="color:#00ff90">J</span>.<span style="color:#00ff90">S</span>. - Personal Website</h1>
+        </article>
+        <article class="myentry randomsize">
+            <p class="lead">Here you can find my projects, blog and many more as I will be updating this site on regular basis.</p>
+        </article>
+        <article class="myentry randomsize">
+            <h2>Source code</h2>
+            <p>If you are intrested, you can find source code of this entire site here: <a href="https://github.com/keraj37/my_website" target="_blank">github</a></p>
+        </article>
+        <article class="myentry randomsize">
+            <h2>Blog</h2>
+            <p>@Html.ActionLink("Here", "Index", "Blog", new { page = 1 }, null) you can find my blog. I will be adding new entries there from time to time.</p>
+        </article>
+        <article class="myentry randomsize">
+            <h2>3D</h2>
+            <p>@Html.ActionLink("Here", "3D") you can find some of my 3D renders.</p>
+        </article>
+        <article class="myentry randomsize">
+            <h2>More to come!</h2>
+            <p>This site is going to be my hub for learning and doing some technical experiments.</p>
+        </article>
+        <article class="myentry">
+            <h2>Site Under Construction</h2>
+            <p>Site Under Construction</p>
+        </article>
+        <article class="myentry randomsize">
+            <h2>Welcome!</h2>
+            <p>Your IP is <span style="color:#00ff90">@Model.IP</span> and you are most likely viewing this site using <span style="color:#00ff90">@Model.Browser</span> on <span style="color:#00ff90">@Model.OS</span></p>
+        </article>
+    </main>
+</div>
+
+

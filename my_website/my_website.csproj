@@ -262,6 +262,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Imgs\Blog\general_michael.png" />
     <Content Include="Imgs\Blog\templar.png" />
+    <Content Include="Imgs\cats\starsglow1.gif" />
     <Content Include="Imgs\loading.gif" />
     <Content Include="Imgs\Mandelbrot\sample.gif" />
     <Content Include="Imgs\WebCam\no_signal.jpg" />
@@ -318,6 +319,27 @@
     <Content Include="Scripts\three.js\three.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Imgs\Blog\rozaniec.png" />
+    <None Include="Views\Home\Index.cshtml" />
+    <Content Include="Imgs\cats\a1star.gif" />
+    <Content Include="Imgs\cats\cat_png1.png" />
+    <Content Include="Imgs\cats\cat_PNG10.png" />
+    <Content Include="Imgs\cats\cat_PNG104.png" />
+    <Content Include="Imgs\cats\cat_PNG127.png" />
+    <Content Include="Imgs\cats\cat_PNG132.png" />
+    <Content Include="Imgs\cats\cat_PNG134.png" />
+    <Content Include="Imgs\cats\cat_PNG138.png" />
+    <Content Include="Imgs\cats\cat_PNG139.png" />
+    <Content Include="Imgs\cats\cat_png2.png" />
+    <Content Include="Imgs\cats\cat_PNG5.png" />
+    <Content Include="Imgs\cats\cat_PNG6.png" />
+    <Content Include="Imgs\cats\cat_PNG8.png" />
+    <Content Include="Imgs\cats\cat_PNG9.png" />
+    <Content Include="Imgs\cats\cat_PNG92.png" />
+    <Content Include="Imgs\cats\crazycatlady.css" />
+    <Content Include="Imgs\cats\spacecat1.jfif" />
+    <Content Include="Imgs\cats\spacecat2.jfif" />
+    <Content Include="Imgs\cats\spacecat3.jfif" />
+    <Content Include="Imgs\cats\spacecat6.jfif" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -331,7 +353,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index_.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
