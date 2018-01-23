@@ -12,8 +12,22 @@ namespace my_website.Controllers
     {
         public ActionResult Index()
         {
-            DataCollection.DataCollection.Save(Request.UserHostAddress, "Home/Index GET", "Someone opened site main node" + "\n\n" + new UserClient(Request).ToString());
-            return View(new Models.UserClient(Request));
+            //DataCollection.DataCollection.Save(Request.UserHostAddress, "Home/Index GET", "Someone opened site main node" + "\n\n" + new UserClient(Request).ToString());
+            //return View(new Models.UserClient(Request));
+
+            int i = new Random().Next(3);
+
+            switch(i)
+            {
+                case 0:
+                    return View("Index_cats");
+                case 1:
+                    return View("Index_batman");
+                case 2:
+                    return View("Index_zeus");
+            }
+
+            return View("Index_cats");
         }
 
         public ActionResult About()

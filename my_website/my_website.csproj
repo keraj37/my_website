@@ -260,12 +260,21 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imgs\batman_files\adamchris.jfif" />
+    <Content Include="Imgs\batman_files\pow.jpg" />
+    <Content Include="Imgs\batman_files\ugly.css" />
     <Content Include="Imgs\Blog\general_michael.png" />
     <Content Include="Imgs\Blog\templar.png" />
     <Content Include="Imgs\cats\starsglow1.gif" />
     <Content Include="Imgs\loading.gif" />
     <Content Include="Imgs\Mandelbrot\sample.gif" />
     <Content Include="Imgs\WebCam\no_signal.jpg" />
+    <Content Include="Imgs\zeus_files\leda.jfif" />
+    <Content Include="Imgs\zeus_files\olympus.jfif" />
+    <Content Include="Imgs\zeus_files\storm-cloud-md.png" />
+    <Content Include="Imgs\zeus_files\temple1.jfif" />
+    <Content Include="Imgs\zeus_files\titian-europa.jfif" />
+    <Content Include="Imgs\zeus_files\zeus.css" />
     <Content Include="logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -319,7 +328,8 @@
     <Content Include="Scripts\three.js\three.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Imgs\Blog\rozaniec.png" />
-    <None Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index_batman.cshtml" />
+    <None Include="Views\Home\Index_cats.cshtml" />
     <Content Include="Imgs\cats\a1star.gif" />
     <Content Include="Imgs\cats\cat_png1.png" />
     <Content Include="Imgs\cats\cat_PNG10.png" />
@@ -392,6 +402,7 @@
     <Content Include="Views\Projects\WebCam.cshtml" />
     <Content Include="Views\Projects\HackingAthenticator.cshtml" />
     <Content Include="Views\Projects\FmvBemup.cshtml" />
+    <Content Include="Views\Home\Index_zeus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
