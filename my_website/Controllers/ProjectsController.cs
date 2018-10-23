@@ -26,6 +26,12 @@ namespace my_website.Controllers
             return View();
         }
 
+		[HttpGet]
+        public ActionResult SOTB_PrivacyPolicy()
+        {            
+            return View("privacy_policy.html");
+        }
+		
         [HttpGet]
         public ActionResult Chat()
         {
